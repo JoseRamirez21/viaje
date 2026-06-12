@@ -1,0 +1,787 @@
+/* ============================================================
+   ANTEZANA — TRANSPORTE & TURISMO PREMIUM
+   animations.css  |  Keyframes · Efectos · Micro-animaciones
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   1. PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   — respeta usuarios con vestibular disorders
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   2. FADE UPS — entrada desde abajo
+══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpBig {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════
+   3. HERO — entradas escalonadas
+══════════════════════════════════════════ */
+.hero-eyebrow {
+  opacity: 0;
+  animation: fadeUp .65s cubic-bezier(.16,1,.3,1) 2.1s forwards;
+}
+
+.hero-title-line1 {
+  opacity: 0;
+  animation: fadeUpBig .75s cubic-bezier(.16,1,.3,1) 2.3s forwards;
+}
+
+.hero-title-line2 {
+  opacity: 0;
+  animation: fadeUpBig .75s cubic-bezier(.16,1,.3,1) 2.48s forwards;
+}
+
+.hero-subtitle {
+  opacity: 0;
+  animation: fadeUp .65s cubic-bezier(.16,1,.3,1) 2.65s forwards;
+}
+
+.hero-search {
+  opacity: 0;
+  animation: fadeUpBig .7s cubic-bezier(.16,1,.3,1) 2.85s forwards;
+}
+
+.hero-btns {
+  opacity: 0;
+  animation: fadeUp .65s cubic-bezier(.16,1,.3,1) 3.05s forwards;
+}
+
+.hero-scroll-hint {
+  opacity: 0;
+  animation: fadeIn .65s cubic-bezier(.16,1,.3,1) 3.4s forwards;
+}
+
+/* ══════════════════════════════════════════
+   4. TEXTO — efecto máquina de escribir
+══════════════════════════════════════════ */
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blinkCursor {
+  0%, 100% { border-right-color: var(--az-red); }
+  50%       { border-right-color: transparent; }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--az-red);
+  animation:
+    typewriter 2.5s steps(30, end) 2.2s forwards,
+    blinkCursor .75s step-end infinite;
+  width: 0;
+}
+
+/* ══════════════════════════════════════════
+   5. CONTADOR ANIMADO (stats)
+══════════════════════════════════════════ */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number.animate {
+  animation: countUp .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* ══════════════════════════════════════════
+   6. PARALLAX — imagen de fondo hero
+══════════════════════════════════════════ */
+.parallax-bg {
+  will-change: transform;
+  transform: translateY(0);
+  transition: transform 0s linear;
+}
+
+/* ══════════════════════════════════════════
+   7. GLITCH — efecto título especial
+══════════════════════════════════════════ */
+@keyframes glitch1 {
+  0%        { clip-path: inset(40% 0 61% 0); transform: translate(-3px, 0); }
+  20%       { clip-path: inset(92% 0 1% 0);  transform: translate(3px, 0); }
+  40%       { clip-path: inset(43% 0 1% 0);  transform: translate(-2px, 0); }
+  60%       { clip-path: inset(25% 0 58% 0); transform: translate(2px, 0); }
+  80%       { clip-path: inset(54% 0 7% 0);  transform: translate(-3px, 0); }
+  100%      { clip-path: inset(58% 0 43% 0); transform: translate(0); }
+}
+
+@keyframes glitch2 {
+  0%        { clip-path: inset(24% 0 29% 0); transform: translate(3px, 0); }
+  20%       { clip-path: inset(54% 0 36% 0); transform: translate(-3px, 0); }
+  40%       { clip-path: inset(73% 0 9% 0);  transform: translate(2px, 0); }
+  60%       { clip-path: inset(14% 0 72% 0); transform: translate(-2px, 0); }
+  80%       { clip-path: inset(31% 0 59% 0); transform: translate(3px, 0); }
+  100%      { clip-path: inset(64% 0 25% 0); transform: translate(0); }
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+
+.glitch::before {
+  color: var(--az-red);
+  animation: glitch1 3.5s infinite linear;
+  opacity: .7;
+}
+
+.glitch::after {
+  color: var(--az-blue-light);
+  animation: glitch2 3.5s infinite linear;
+  opacity: .7;
+}
+
+/* ══════════════════════════════════════════
+   8. SHIMMER — loading skeleton
+══════════════════════════════════════════ */
+@keyframes shimmer {
+  0%   { background-position: -700px 0; }
+  100% { background-position: 700px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,.04) 25%,
+    rgba(255,255,255,.08) 37%,
+    rgba(255,255,255,.04) 63%
+  );
+  background-size: 700px 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--r-md);
+}
+
+/* ══════════════════════════════════════════
+   9. CARD HOVER — efecto imagen zoom
+══════════════════════════════════════════ */
+.card-img-wrap {
+  overflow: hidden;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+
+.card-img-wrap img {
+  transition: transform .6s cubic-bezier(.16,1,.3,1),
+              filter .6s cubic-bezier(.16,1,.3,1);
+  transform-origin: center;
+}
+
+.card:hover .card-img-wrap img {
+  transform: scale(1.07);
+  filter: brightness(.85);
+}
+
+/* ══════════════════════════════════════════
+   10. DESTINO CARD — hover reveal
+══════════════════════════════════════════ */
+.dest-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  cursor: pointer;
+}
+
+.dest-card img {
+  height: 100%;
+  transition: transform .6s cubic-bezier(.16,1,.3,1),
+              filter .5s cubic-bezier(.16,1,.3,1);
+}
+
+.dest-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(.5);
+}
+
+.dest-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5,15,44,.95) 0%,
+    rgba(5,15,44,.4) 50%,
+    transparent 100%
+  );
+  transition: background .4s ease;
+}
+
+.dest-card:hover .dest-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(5,15,44,.98) 0%,
+    rgba(5,15,44,.7) 60%,
+    rgba(5,15,44,.3) 100%
+  );
+}
+
+.dest-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.8rem;
+  z-index: 2;
+}
+
+.dest-card-name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: .06em;
+  color: var(--az-white);
+  line-height: 1;
+  margin-bottom: .35rem;
+  transform: translateY(8px);
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.dest-card:hover .dest-card-name {
+  transform: translateY(0);
+}
+
+.dest-card-meta {
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--az-white-dim);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .4s ease .05s,
+              transform .4s cubic-bezier(.16,1,.3,1) .05s;
+}
+
+.dest-card:hover .dest-card-meta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dest-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: .75rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--az-red);
+  margin-top: .9rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s ease .1s,
+              transform .4s cubic-bezier(.16,1,.3,1) .1s;
+}
+
+.dest-card:hover .dest-card-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dest-card-btn span {
+  transition: transform .25s var(--ease);
+}
+
+.dest-card:hover .dest-card-btn span {
+  transform: translateX(5px);
+}
+
+/* ══════════════════════════════════════════
+   11. SERVICIO CARD — efecto borde rojo
+══════════════════════════════════════════ */
+.svc-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--az-glass);
+  border: 1px solid var(--az-glass-bd);
+  transition: border-color .35s ease,
+              transform .35s cubic-bezier(.16,1,.3,1),
+              box-shadow .35s ease;
+}
+
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--az-blue-mid), var(--az-red));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.16,1,.3,1);
+}
+
+.svc-card:hover {
+  border-color: rgba(200,32,31,.3);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45),
+              0 0 0 1px rgba(200,32,31,.15);
+}
+
+.svc-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ══════════════════════════════════════════
+   12. BOTÓN — ondas ripple al clic
+══════════════════════════════════════════ */
+@keyframes ripple {
+  from { transform: scale(0); opacity: .5; }
+  to   { transform: scale(4); opacity: 0; }
+}
+
+.ripple-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  animation: ripple .55s linear;
+  pointer-events: none;
+  transform: scale(0);
+}
+
+/* ══════════════════════════════════════════
+   13. LÍNEA INFERIOR ANIMADA — nav activo
+══════════════════════════════════════════ */
+@keyframes lineSlide {
+  from { transform: scaleX(0) translateX(-100%); }
+  to   { transform: scaleX(1) translateX(0); }
+}
+
+/* ══════════════════════════════════════════
+   14. NÚMERO ESTADÍSTICA — conteo JS-ready
+══════════════════════════════════════════ */
+@keyframes statReveal {
+  from { opacity: 0; transform: translateY(20px) scale(.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.stat-item.visible .stat-number {
+  animation: statReveal .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* ══════════════════════════════════════════
+   15. PULSO SUAVE — elementos destacados
+══════════════════════════════════════════ */
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200,32,31,.35); }
+  50%       { box-shadow: 0 0 0 10px rgba(200,32,31,0); }
+}
+
+.pulse-red   { animation: softPulse 2.5s ease-in-out infinite; }
+
+@keyframes softPulseBlue {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,81,197,.35); }
+  50%       { box-shadow: 0 0 0 10px rgba(34,81,197,0); }
+}
+
+.pulse-blue  { animation: softPulseBlue 2.5s ease-in-out infinite; }
+
+@keyframes softPulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196,151,58,.35); }
+  50%       { box-shadow: 0 0 0 10px rgba(196,151,58,0); }
+}
+
+.pulse-gold  { animation: softPulseGold 2.5s ease-in-out infinite; }
+
+/* ══════════════════════════════════════════
+   16. ROTACIÓN LENTA — ícono decorativo
+══════════════════════════════════════════ */
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.rotate-slow  { animation: rotateSlow 18s linear infinite; }
+.rotate-slow-rev { animation: rotateSlow 22s linear infinite reverse; }
+
+/* ══════════════════════════════════════════
+   17. FLOAT — elemento flotante suave
+══════════════════════════════════════════ */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes floatX {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(8px); }
+}
+
+.float-y { animation: floatY 4s ease-in-out infinite; }
+.float-x { animation: floatX 5s ease-in-out infinite; }
+
+/* ══════════════════════════════════════════
+   18. GLOW — texto o ícono con resplandor
+══════════════════════════════════════════ */
+@keyframes glowRed {
+  0%, 100% { text-shadow: 0 0 8px rgba(200,32,31,0); }
+  50%       { text-shadow: 0 0 24px rgba(200,32,31,.65), 0 0 48px rgba(200,32,31,.25); }
+}
+
+@keyframes glowGold {
+  0%, 100% { text-shadow: 0 0 8px rgba(196,151,58,0); }
+  50%       { text-shadow: 0 0 24px rgba(196,151,58,.65), 0 0 48px rgba(196,151,58,.25); }
+}
+
+.glow-red  { animation: glowRed  3s ease-in-out infinite; }
+.glow-gold { animation: glowGold 3s ease-in-out infinite; }
+
+/* ══════════════════════════════════════════
+   19. SLIDER / CARRUSEL — transiciones
+══════════════════════════════════════════ */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutLeft {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-60px); }
+}
+
+@keyframes slideOutRight {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(60px); }
+}
+
+.slide-enter-right { animation: slideInRight .5s cubic-bezier(.16,1,.3,1) forwards; }
+.slide-enter-left  { animation: slideInLeft  .5s cubic-bezier(.16,1,.3,1) forwards; }
+.slide-exit-left   { animation: slideOutLeft .4s cubic-bezier(.4,0,1,1) forwards; }
+.slide-exit-right  { animation: slideOutRight .4s cubic-bezier(.4,0,1,1) forwards; }
+
+/* ══════════════════════════════════════════
+   20. PÁGINA — transición de entrada
+══════════════════════════════════════════ */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: pageEnter .55s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* Cortina de transición entre páginas */
+#page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: var(--az-navy);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+@keyframes curtainIn {
+  from { transform: scaleY(0); transform-origin: bottom; }
+  to   { transform: scaleY(1); transform-origin: bottom; }
+}
+
+@keyframes curtainOut {
+  from { transform: scaleY(1); transform-origin: top; }
+  to   { transform: scaleY(0); transform-origin: top; }
+}
+
+#page-curtain.in  { animation: curtainIn  .45s cubic-bezier(.76,0,.24,1) forwards; }
+#page-curtain.out { animation: curtainOut .45s cubic-bezier(.76,0,.24,1) .1s forwards; }
+
+/* ══════════════════════════════════════════
+   21. IMAGEN — reveal con clip-path
+══════════════════════════════════════════ */
+@keyframes imgReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+.img-reveal {
+  clip-path: inset(0 100% 0 0);
+}
+
+.img-reveal.on {
+  animation: imgReveal .85s cubic-bezier(.76,0,.24,1) forwards;
+}
+
+/* ══════════════════════════════════════════
+   22. INDICADOR DE SCROLL — barra progress
+══════════════════════════════════════════ */
+#scroll-progress {
+  position: fixed;
+  top: 28px;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--az-red), var(--az-blue-mid));
+  z-index: 91;
+  transition: width .1s linear;
+  box-shadow: 0 0 8px rgba(200,32,31,.5);
+}
+
+/* ══════════════════════════════════════════
+   23. HOVER MAGNÉTICO — botones CTA grandes
+══════════════════════════════════════════ */
+.magnetic {
+  transition: transform .3s cubic-bezier(.16,1,.3,1);
+  display: inline-block;
+}
+
+/* JS aplica transform: translate(dx, dy) inline */
+
+/* ══════════════════════════════════════════
+   24. TEXTO — highlight animado subrayado
+══════════════════════════════════════════ */
+.underline-anim {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-anim::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--az-red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.underline-anim:hover::after,
+.underline-anim.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ══════════════════════════════════════════
+   25. NÚMERO GRANDE — background texto
+══════════════════════════════════════════ */
+.bg-number {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 18vw, 16rem);
+  letter-spacing: -.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════════════
+   26. GRADIENTE ANIMADO — fondo secciones
+══════════════════════════════════════════ */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animated {
+  background: linear-gradient(
+    -45deg,
+    var(--az-navy),
+    var(--az-navy2),
+    rgba(26,58,143,.3),
+    rgba(200,32,31,.08),
+    var(--az-navy)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* ══════════════════════════════════════════
+   27. MAPA / TERMINAL — pin animado
+══════════════════════════════════════════ */
+@keyframes pinDrop {
+  0%   { transform: translateY(-20px) scale(.8); opacity: 0; }
+  60%  { transform: translateY(4px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes pinPulse {
+  0%, 100% { transform: scale(1); opacity: .8; }
+  50%       { transform: scale(1.6); opacity: 0; }
+}
+
+.map-pin { animation: pinDrop .6s cubic-bezier(.16,1,.3,1) forwards; }
+.map-pin-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--az-red);
+  animation: pinPulse 2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════
+   28. FORMULARIO BOOKING — campo focus
+══════════════════════════════════════════ */
+@keyframes fieldGlow {
+  from { box-shadow: 0 0 0 0 rgba(34,81,197,0); }
+  to   { box-shadow: 0 0 0 3px rgba(34,81,197,.25); }
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  animation: fieldGlow .2s ease forwards;
+}
+
+/* ══════════════════════════════════════════
+   29. TOAST NOTIFICACIÓN
+══════════════════════════════════════════ */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%) scale(.9); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to   { opacity: 0; transform: translateX(100%) scale(.9); }
+}
+
+.toast {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 2rem;
+  z-index: 9000;
+  background: var(--az-navy2);
+  border: 1px solid var(--az-glass-bd);
+  border-left: 3px solid var(--az-red);
+  border-radius: var(--r-md);
+  padding: 1rem 1.4rem;
+  min-width: 280px;
+  box-shadow: var(--sh-lg);
+  animation: toastIn .4s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.toast.hide { animation: toastOut .35s ease forwards; }
+
+.toast-title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  color: var(--az-white);
+  margin-bottom: .25rem;
+}
+
+.toast-msg {
+  font-size: .8rem;
+  color: var(--az-white-dim);
+}
+
+/* ══════════════════════════════════════════
+   30. LÍNEAS DECORATIVAS ANIMADAS — hero
+══════════════════════════════════════════ */
+@keyframes lineGrow {
+  from { width: 0; opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-deco-line {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg,
+    var(--az-red) 0%,
+    var(--az-blue-mid) 50%,
+    transparent 100%
+  );
+  animation: lineGrow 1.2s cubic-bezier(.16,1,.3,1) 3s forwards;
+  width: 0;
+}
+
+/* ══════════════════════════════════════════
+   31. ICONO SERVICIO — hover giro
+══════════════════════════════════════════ */
+.svc-icon-wrap {
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.svc-card:hover .svc-icon-wrap {
+  transform: rotateY(180deg);
+}
+
+/* ══════════════════════════════════════════
+   32. APARICIÓN STAGGER — grids de cards
+══════════════════════════════════════════ */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .55s cubic-bezier(.16,1,.3,1),
+              transform .55s cubic-bezier(.16,1,.3,1);
+}
+
+.stagger.on > *:nth-child(1)  { opacity: 1; transform: none; transition-delay: .05s; }
+.stagger.on > *:nth-child(2)  { opacity: 1; transform: none; transition-delay: .12s; }
+.stagger.on > *:nth-child(3)  { opacity: 1; transform: none; transition-delay: .19s; }
+.stagger.on > *:nth-child(4)  { opacity: 1; transform: none; transition-delay: .26s; }
+.stagger.on > *:nth-child(5)  { opacity: 1; transform: none; transition-delay: .33s; }
+.stagger.on > *:nth-child(6)  { opacity: 1; transform: none; transition-delay: .40s; }
+.stagger.on > *:nth-child(7)  { opacity: 1; transform: none; transition-delay: .47s; }
+.stagger.on > *:nth-child(8)  { opacity: 1; transform: none; transition-delay: .54s; }
