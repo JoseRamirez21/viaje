@@ -1,0 +1,471 @@
+/* ============================================================
+   ANTEZANA — TRANSPORTE & TURISMO PREMIUM
+   responsive.css  |  Breakpoints · Mobile · Tablet · Desktop
+   ============================================================
+
+   Breakpoints:
+   — xs:  < 480px   (móvil pequeño)
+   — sm:  < 640px   (móvil estándar)
+   — md:  < 768px   (móvil grande / tablet vertical)
+   — lg:  < 1024px  (tablet horizontal / laptop pequeño)
+   — xl:  < 1280px  (laptop estándar)
+   — 2xl: < 1536px  (desktop grande)
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   1. DESKTOP GRANDE — ajustes finos
+══════════════════════════════════════════ */
+@media (max-width: 1536px) {
+  :root { --wrap: 1140px; }
+  .wrap { padding: 0 2.5rem; }
+}
+
+@media (max-width: 1280px) {
+  :root { --wrap: 1020px; }
+  .wrap { padding: 0 2rem; }
+
+  #navbar { padding: 1.1rem 2.5rem; }
+  #navbar.scrolled { padding: .65rem 2.5rem; }
+
+  .nav-links a {
+    font-size: .75rem;
+    padding: .5rem .7rem;
+  }
+}
+
+/* ══════════════════════════════════════════
+   2. TABLET HORIZONTAL  (≤ 1024px)
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+  /* Navbar */
+  #navbar { padding: 1rem 1.8rem; }
+  #navbar.scrolled { padding: .6rem 1.8rem; }
+
+  .nav-links {
+    display: none;  /* se reemplaza por hamburguesa */
+  }
+
+  .nav-hamburger { display: flex; }
+
+  /* Footer grid → 2 columnas */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+  }
+
+  /* Stats strip → wrap */
+  .stats-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stats-strip .stat-item:nth-child(4),
+  .stats-strip .stat-item:nth-child(5) {
+    border-top: 1px solid var(--az-border);
+  }
+
+  .stats-strip .stat-item:nth-child(3) {
+    border-right: none;
+  }
+}
+
+/* ══════════════════════════════════════════
+   3. TABLET VERTICAL  (≤ 768px)
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Base */
+  html { font-size: 15px; }
+  .wrap { padding: 0 1.4rem; }
+
+  /* Ticker */
+  #ticker { height: 24px; }
+  .tk-item { font-size: .6rem; padding: 0 1.6rem; }
+
+  /* Navbar */
+  #navbar {
+    top: 24px;
+    padding: .85rem 1.4rem;
+  }
+  #navbar.scrolled { padding: .55rem 1.4rem; }
+
+  .nav-logo-mark { width: 36px; height: 36px; }
+  .nav-logo-name { font-size: 1.25rem; }
+
+  /* Scroll progress */
+  #scroll-progress { top: 24px; }
+
+  /* Secciones — padding */
+  section { padding: 4rem 0; }
+
+  /* Section header */
+  .sec-title { font-size: clamp(2rem, 7vw, 3rem); }
+  .sec-head { margin-bottom: 2.4rem; }
+
+  /* Stats strip → 2 columnas */
+  .stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-strip .stat-item:nth-child(2) {
+    border-right: none;
+  }
+
+  .stats-strip .stat-item:nth-child(3),
+  .stats-strip .stat-item:nth-child(4),
+  .stats-strip .stat-item:nth-child(5) {
+    border-top: 1px solid var(--az-border);
+  }
+
+  .stats-strip .stat-item:nth-child(4) {
+    border-right: none;
+  }
+
+  .stat-number { font-size: clamp(2.2rem, 8vw, 3.2rem); }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand-desc { max-width: 100%; }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: .8rem;
+    text-align: center;
+  }
+
+  /* Hero texto */
+  .hero-title-line1,
+  .hero-title-line2 {
+    font-size: clamp(3.2rem, 11vw, 5.5rem);
+  }
+
+  /* Toast */
+  .toast {
+    left: 1rem;
+    right: 1rem;
+    min-width: unset;
+    bottom: 5rem;
+  }
+
+  /* WhatsApp flotante */
+  #waf { bottom: 1.4rem; right: 1.4rem; width: 50px; height: 50px; }
+  #waf svg { width: 24px; height: 24px; }
+
+  /* Botones — full width en stacks verticales */
+  .btn-stack {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-stack .btn-primary,
+  .btn-stack .btn-outline {
+    justify-content: center;
+  }
+
+  /* Destinos grid → 2 col */
+  .destinos-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Servicios grid → 1 col */
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ══════════════════════════════════════════
+   4. MÓVIL GRANDE  (≤ 640px)
+══════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  html { font-size: 14px; }
+  .wrap { padding: 0 1.1rem; }
+
+  /* Secciones */
+  section { padding: 3.2rem 0; }
+
+  /* Sec header */
+  .sec-title { letter-spacing: .02em; }
+  .sec-sub { font-size: .88rem; }
+
+  /* Stats strip → 1 col */
+  .stats-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Footer → 1 col */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  /* Nav logo sub — ocultar */
+  .nav-logo-sub { display: none; }
+
+  /* Destinos → 1 col */
+  .destinos-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Servicios → 1 col */
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Paquetes grid */
+  .paquetes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hero search box — inputs stack */
+  .search-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .search-grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Título hero más pequeño */
+  .hero-title-line1,
+  .hero-title-line2 {
+    font-size: clamp(2.8rem, 13vw, 4.2rem);
+  }
+
+  /* Blog grid → 1 col */
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Experiencias grid */
+  .experiencias-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ══════════════════════════════════════════
+   5. MÓVIL PEQUEÑO  (≤ 480px)
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  html { font-size: 13.5px; }
+
+  /* Ticker — velocidad más lenta */
+  .tk-track { animation-duration: 40s; }
+
+  /* Título hero */
+  .hero-title-line1,
+  .hero-title-line2 {
+    font-size: clamp(2.4rem, 14vw, 3.6rem);
+  }
+
+  /* Sección eyebrow */
+  .sec-eye { font-size: .62rem; }
+  .sec-eye::before,
+  .sec-eye::after { width: 16px; }
+
+  /* Stats → 1 col */
+  .stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-strip .stat-item {
+    border-right: none;
+    border-bottom: 1px solid var(--az-border);
+    padding: 1.6rem 1rem;
+  }
+
+  .stats-strip .stat-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Botones */
+  .btn-primary,
+  .btn-outline,
+  .btn-gold {
+    padding: .8rem 1.5rem;
+    font-size: .8rem;
+  }
+
+  /* Loader */
+  .ld-bar { width: 140px; }
+  .ld-tagline { font-size: .6rem; letter-spacing: .22em; }
+
+  /* Navbar */
+  .nav-logo-name { font-size: 1.1rem; }
+  .nav-logo-mark { width: 32px; height: 32px; }
+
+  /* Search box */
+  .search-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Form */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: .75rem .85rem;
+    font-size: .85rem;
+  }
+
+  /* Footer */
+  .footer-brand-name { font-size: 1.8rem; }
+
+  /* Mobile nav — tipografía más pequeña */
+  #nav-mobile a { font-size: 2.2rem; }
+}
+
+/* ══════════════════════════════════════════
+   6. PANTALLAS MUY GRANDES  (≥ 1600px)
+══════════════════════════════════════════ */
+@media (min-width: 1600px) {
+  :root { --wrap: 1360px; }
+  html { font-size: 17px; }
+
+  #navbar { padding: 1.3rem 5rem; }
+  #navbar.scrolled { padding: .8rem 5rem; }
+}
+
+@media (min-width: 1920px) {
+  :root { --wrap: 1560px; }
+  html { font-size: 18px; }
+}
+
+/* ══════════════════════════════════════════
+   7. LANDSCAPE MÓVIL — ajuste altura hero
+══════════════════════════════════════════ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-full {
+    min-height: 100svh;
+    padding: 6rem 0 3rem;
+  }
+
+  .hero-scroll-hint { display: none; }
+
+  .stats-strip {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ══════════════════════════════════════════
+   8. PRINT — versión impresión
+══════════════════════════════════════════ */
+@media print {
+
+  #loader,
+  #ticker,
+  #waf,
+  #nav-mobile,
+  #scroll-progress,
+  #canvas-bg,
+  .nav-hamburger {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  #navbar {
+    position: static;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    padding: .5rem 1rem;
+  }
+
+  .nav-logo-name { color: #000; }
+
+  .btn-primary,
+  .btn-outline,
+  .btn-gold {
+    display: none;
+  }
+
+  a { color: #000; }
+  a[href]::after { content: ' (' attr(href) ')'; font-size: .75em; color: #666; }
+}
+
+/* ══════════════════════════════════════════
+   9. UTILIDADES RESPONSIVE
+══════════════════════════════════════════ */
+
+/* Ocultar / mostrar por breakpoint */
+.hide-mobile  { display: block; }
+.show-mobile  { display: none; }
+.hide-tablet  { display: block; }
+.show-tablet  { display: none; }
+
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+}
+
+@media (max-width: 1024px) {
+  .hide-tablet { display: none !important; }
+  .show-tablet { display: block !important; }
+}
+
+/* Texto centrado en móvil */
+@media (max-width: 640px) {
+  .text-center-mobile { text-align: center !important; }
+  .mx-auto-mobile     { margin-left: auto !important; margin-right: auto !important; }
+}
+
+/* Grid responsive helpers */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .grid-auto-fit {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Padding de sección responsive */
+.sec-py {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+@media (max-width: 1024px) {
+  .sec-py { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+}
+
+@media (max-width: 768px) {
+  .sec-py { padding-top: 4rem; padding-bottom: 4rem; }
+}
+
+@media (max-width: 480px) {
+  .sec-py { padding-top: 3rem; padding-bottom: 3rem; }
+}
+
+/* Imagen hero responsive */
+.hero-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 768px) {
+  .hero-img { object-position: 70% center; }
+}
+
+/* Espacio top (por navbar fijo + ticker) */
+.page-top-offset {
+  padding-top: calc(28px + 72px);
+}
+
+@media (max-width: 768px) {
+  .page-top-offset {
+    padding-top: calc(24px + 60px);
+  }
+}
