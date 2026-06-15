@@ -1,585 +1,647 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Empresa de Transportes Antezana — Viajes seguros, puntuales y cómodos a Lima, Ayacucho, Huanta, Huancayo, Ica y más destinos del Perú."/>
+<title>Antezana — Transporte & Turismo Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --red:#C8201F;--red2:#A01818;--navy:#050F2C;--navy2:#0A1A3F;
+  --red:#C8201F;--red2:#9A1515;--red-soft:rgba(200,32,31,.08);
+  --navy:#0B1F4B;--navy2:#1A3A8F;--navy3:#2251C5;--navy-soft:rgba(11,31,75,.06);
+  --white:#FFFFFF;--gray50:#F8F9FB;--gray100:#EEF2F8;--gray200:#D8E0EF;
+  --gray400:#9AAAC4;--gray600:#5A6A88;--gray800:#2C3A54;--gray900:#0D1A30;
   --gold:#C4973A;--goldl:#E8BA5E;
-  --gray50:#F8F9FA;--gray100:#F1F3F5;--gray200:#E9ECEF;--gray400:#ADB5BD;--gray600:#6C757D;--gray800:#343A40;--gray900:#212529;
-  --white:#FFFFFF;
   --f-display:'Bebas Neue',sans-serif;
   --f-ui:'Barlow Condensed',sans-serif;
   --f-body:'Inter',sans-serif;
 }
-body{font-family:var(--f-body);background:var(--white);color:var(--gray900);overflow-x:hidden}
-.w{max-width:1100px;margin:0 auto;padding:0 2rem}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--f-body);background:#fff;color:var(--gray900);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#fff}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:99px}
+::selection{background:var(--red);color:#fff}
 
-/* TICKER */
-.ticker{background:var(--red);height:28px;overflow:hidden;display:flex;align-items:center}
-.tk-inner{display:flex;white-space:nowrap;animation:tkroll 30s linear infinite}
-.tk-i{font-family:var(--f-ui);font-weight:700;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;padding:0 2rem}
-.tk-sep{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4);display:inline-block;margin:0 .2rem;vertical-align:middle}
-@keyframes tkroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* SCROLL PROGRESS */
+#sp{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--navy2),var(--red));z-index:300;transition:width .1s linear;width:0}
 
-/* NAV */
-.nav{background:var(--white);border-bottom:.5px solid var(--gray200);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:28px;z-index:90;box-shadow:0 1px 0 var(--gray100)}
-.nav-logo{display:flex;align-items:center;gap:.6rem}
-.nav-logo-mark{width:36px;height:36px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center}
-.nav-logo-mark svg{width:20px;height:20px;fill:white}
-.nav-brand{display:flex;flex-direction:column}
-.nav-brand-name{font-family:var(--f-display);font-size:1.25rem;letter-spacing:.08em;color:var(--gray900);line-height:1}
-.nav-brand-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);margin-top:1px}
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:9999;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem}
+.ld-logo{font-family:var(--f-display);font-size:clamp(4rem,12vw,7rem);letter-spacing:.08em;color:var(--navy);line-height:1}
+.ld-logo em{color:var(--red);font-style:normal}
+.ld-sub{font-family:var(--f-ui);font-weight:700;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gray400)}
+.ld-bar{width:200px;height:2px;background:var(--gray100);border-radius:99px;overflow:hidden}
+.ld-fill{height:100%;width:0;background:linear-gradient(90deg,var(--navy2),var(--red));animation:ldFill 2.5s cubic-bezier(.16,1,.3,1) forwards;border-radius:99px}
+@keyframes ldFill{to{width:100%}}
+.ld-dots{display:flex;gap:.4rem}
+.ld-dots span{width:6px;height:6px;border-radius:50%;animation:ldDot .9s ease-in-out infinite}
+.ld-dots span:nth-child(1){background:var(--navy2);animation-delay:0s}
+.ld-dots span:nth-child(2){background:var(--red);animation-delay:.15s}
+.ld-dots span:nth-child(3){background:var(--gold);animation-delay:.3s}
+@keyframes ldDot{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-8px);opacity:1}}
+
+/* NAVBAR */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all .35s ease}
+#navbar.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:.8rem 4rem;border-bottom:1px solid var(--gray100);box-shadow:0 2px 24px rgba(11,31,75,.08)}
+.nav-logo{display:flex;align-items:center;gap:.7rem}
+.nav-logo-mark{width:40px;height:40px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(200,32,31,.3);transition:transform .2s}
+.nav-logo-mark:hover{transform:scale(1.08) rotate(-3deg)}
+.nav-logo-mark svg{width:22px;height:22px;fill:#fff}
+.nav-logo-name{font-family:var(--f-display);font-size:1.45rem;letter-spacing:.1em;color:var(--navy);line-height:1}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);display:block;margin-top:1px}
+/* links color cambia según si el fondo es blanco (scrolled) o transparente (hero) */
 .nav-links{display:flex;align-items:center;gap:.1rem}
-.nav-links a{font-family:var(--f-ui);font-weight:600;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray600);padding:.4rem .75rem;border-radius:4px;text-decoration:none;transition:color .15s,background .15s}
-.nav-links a:hover{color:var(--gray900);background:var(--gray100)}
-.nav-links a.act{color:var(--red)}
-.nav-cta{background:var(--red)!important;color:white!important;padding:.4rem 1.1rem!important;border-radius:4px!important;font-weight:700!important}
+.nav-links a{font-family:var(--f-ui);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);padding:.5rem .85rem;border-radius:4px;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:.85rem;width:0;height:1.5px;background:var(--red);transition:width .3s cubic-bezier(.16,1,.3,1);border-radius:1px}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after,.nav-links a.on::after{width:calc(100% - 1.7rem)}
+.nav-links a.on{color:#fff}
+/* cuando scrolled → texto oscuro */
+#navbar.scrolled .nav-links a{color:var(--gray600)}
+#navbar.scrolled .nav-links a:hover{color:var(--navy)}
+#navbar.scrolled .nav-links a.on{color:var(--navy2)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.3rem!important;border-radius:4px!important;font-weight:800!important;box-shadow:0 4px 14px rgba(200,32,31,.3)}
+.nav-cta::after{display:none!important}
 .nav-cta:hover{background:var(--red2)!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.3rem}
+.nav-burger span{display:block;width:22px;height:1.5px;border-radius:2px;transition:all .3s}
+/* burger color según estado */
+.nav-burger span{background:#fff}
+#navbar.scrolled .nav-burger span{background:var(--navy)}
+#nav-mobile{display:none;position:fixed;inset:0;z-index:150;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+#nav-mobile.open{display:flex}
+#nav-mobile a{font-family:var(--f-display);font-size:3rem;letter-spacing:.06em;color:var(--gray400);transition:color .2s}
+#nav-mobile a:hover{color:var(--red)}
+#nav-mobile-close{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--gray400);cursor:pointer;border:none;background:none;font-family:var(--f-display)}
 
 /* HERO */
-.hero{position:relative;height:92vh;min-height:580px;overflow:hidden;background:var(--gray900)}
-.hero-slides{position:absolute;inset:0}
-.h-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
-.h-slide.act{opacity:1;z-index:1}
-.h-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.38)}
-.h-grad{position:absolute;inset:0;background:linear-gradient(to right, rgba(5,15,44,.95) 0%, rgba(5,15,44,.7) 50%, transparent 100%)}
-.h-grad2{position:absolute;inset:0;background:linear-gradient(to top, rgba(5,15,44,.9) 0%, transparent 60%)}
-.hero-content{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:0 4rem 5rem}
-.h-eyebrow{font-family:var(--f-ui);font-weight:700;font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem}
-.h-eyebrow::before{content:'';width:24px;height:1.5px;background:var(--red);display:block}
-.h-title{font-family:var(--f-display);font-size:clamp(4rem,9vw,8.5rem);line-height:.92;letter-spacing:.02em;color:white;margin-bottom:1.2rem}
-.h-title em{color:var(--goldl);font-style:normal}
-.h-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.65);max-width:440px;line-height:1.75;margin-bottom:2rem}
-.h-btns{display:flex;gap:.75rem}
-.btn-r{background:var(--red);color:white;padding:.75rem 1.8rem;font-family:var(--f-ui);font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s,transform .2s}
-.btn-r:hover{background:var(--red2);transform:translateY(-2px)}
-.btn-o{background:transparent;color:white;padding:.75rem 1.8rem;font-family:var(--f-ui);font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.25);border-radius:4px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:border-color .2s,transform .2s}
-.btn-o:hover{border-color:rgba(255,255,255,.7);transform:translateY(-2px)}
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:var(--navy)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.3;transform:scale(1.06);animation:hZoom 14s ease-out forwards}
+@keyframes hZoom{to{transform:scale(1)}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,rgba(11,31,75,.97) 0%,rgba(11,31,75,.82) 45%,rgba(11,31,75,.25) 100%)}
+.hero-bg::before{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,#fff 0%,transparent 100%);z-index:2}
+.hero-inner{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 6rem;max-width:1280px;margin:0 auto;padding-bottom:6rem}
+.h-eyebrow{font-family:var(--f-ui);font-weight:700;font-size:.72rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .6s ease 2.3s forwards}
+.h-eyebrow span{width:28px;height:1.5px;background:var(--red);display:block;flex-shrink:0}
+.h-title{font-family:var(--f-display);font-size:clamp(4.5rem,10.5vw,10.5rem);line-height:.9;letter-spacing:.02em;color:#fff;margin-bottom:1.8rem}
+.h-l1{display:block;opacity:0;animation:fadeUpBig .8s cubic-bezier(.16,1,.3,1) 2.45s forwards}
+.h-l2{display:block;color:var(--goldl);opacity:0;animation:fadeUpBig .8s cubic-bezier(.16,1,.3,1) 2.62s forwards}
+.h-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.55);max-width:480px;line-height:1.8;margin-bottom:2.4rem;opacity:0;animation:fadeUp .65s ease 2.8s forwards}
+.h-btns{display:flex;gap:1rem;opacity:0;animation:fadeUp .65s ease 2.97s forwards}
+.h-dots-wrap{position:absolute;bottom:7rem;left:6rem;z-index:4;display:flex;align-items:center;gap:1.4rem;opacity:0;animation:fadeIn .65s ease 3.1s forwards}
+.h-dots{display:flex;gap:.55rem}
+.h-dot{width:24px;height:2.5px;border-radius:2px;background:rgba(255,255,255,.2);border:none;padding:0;cursor:pointer;transition:width .35s,background .25s}
+.h-dot.on{width:44px;background:var(--red)}
+.h-count{font-family:var(--f-display);font-size:1.3rem;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:.4rem}
+.h-count-cur{color:#fff;font-size:1.6rem}
+.h-count-sep{width:20px;height:1px;background:rgba(255,255,255,.2);transform:rotate(-55deg)}
+.h-scroll-hint{position:absolute;right:4rem;bottom:7rem;z-index:4;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:0;animation:fadeIn .65s ease 3.3s forwards}
+.h-scroll-txt{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.h-scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,var(--red),transparent);animation:sPulse 2.2s ease-in-out infinite}
+@keyframes sPulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeUpBig{from{opacity:0;transform:translateY(64px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* Hero controls */
-.h-dots{position:absolute;bottom:2.5rem;right:4rem;z-index:3;display:flex;gap:.5rem;align-items:center}
-.h-dot{width:28px;height:3px;background:rgba(255,255,255,.25);border-radius:2px;cursor:pointer;border:none;padding:0;transition:width .3s,background .3s}
-.h-dot.act{width:44px;background:var(--red)}
-.h-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.08);z-index:3}
-.h-prog-fill{height:100%;background:var(--red);width:0;transition:none}
+/* BUSCADOR */
+.bk-section{background:#fff;border-bottom:1px solid var(--gray100);box-shadow:0 4px 32px rgba(11,31,75,.06)}
+.bk-wrap{max-width:1200px;margin:0 auto;padding:1.6rem 4rem}
+.bk-form{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:.85rem;align-items:end}
+.bk-field{display:flex;flex-direction:column;gap:.3rem}
+.bk-lbl{font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray400)}
+.bk-sel,.bk-inp{border:1.5px solid var(--gray200);border-radius:6px;padding:.7rem 1rem;font-size:.9rem;color:var(--gray900);background:var(--gray50);font-family:var(--f-body);width:100%;appearance:none;transition:border-color .2s,box-shadow .2s}
+.bk-sel:focus,.bk-inp:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(26,58,143,.1);outline:none}
+.btn-buscar{background:var(--navy2);color:#fff;padding:.72rem 1.8rem;font-family:var(--f-ui);font-weight:800;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;border:none;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:.5rem;height:44px;transition:background .2s,transform .2s}
+.btn-buscar:hover{background:var(--navy);transform:translateY(-1px)}
 
-/* SEARCH BAR */
-.search-bar{background:var(--white);border-bottom:.5px solid var(--gray200);padding:1.4rem 0;box-shadow:0 4px 24px rgba(0,0,0,.06)}
-.sb-inner{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:.75rem;align-items:end}
-.sb-field{display:flex;flex-direction:column;gap:.3rem}
-.sb-label{font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray400)}
-.sb-input,.sb-select{border:.5px solid var(--gray200);border-radius:4px;padding:.65rem .9rem;font-size:.9rem;color:var(--gray900);font-family:var(--f-body);background:var(--gray50);width:100%;appearance:none;transition:border-color .15s}
-.sb-input:focus,.sb-select:focus{outline:none;border-color:var(--red)}
-.btn-search{background:var(--red);color:white;padding:.7rem 1.4rem;font-family:var(--f-ui);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:.4rem;height:42px}
-.btn-search:hover{background:var(--red2)}
+/* WRAP */
+.w{max-width:1200px;margin:0 auto;padding:0 4rem}
 
 /* STATS */
-.stats{border-bottom:.5px solid var(--gray200);display:grid;grid-template-columns:repeat(5,1fr)}
-.st-item{padding:2rem 1rem;text-align:center;border-right:.5px solid var(--gray200);position:relative}
-.st-item:last-child{border-right:none}
-.st-item::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%) scaleX(0);width:32px;height:2px;background:var(--red);transition:transform .3s}
-.st-item:hover::after{transform:translateX(-50%) scaleX(1)}
+.stats-strip{background:#fff;border-bottom:1px solid var(--gray100)}
+.stats-inner{display:grid;grid-template-columns:repeat(5,1fr);border-left:1px solid var(--gray100)}
+.st{padding:2rem 1rem;text-align:center;border-right:1px solid var(--gray100);position:relative;transition:background .2s}
+.st::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%) scaleX(0);width:32px;height:2.5px;background:var(--red);transition:transform .3s;border-radius:1px}
+.st:hover{background:var(--gray50)}
+.st:hover::after{transform:translateX(-50%) scaleX(1)}
 .st-num{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,3.4rem);color:var(--red);line-height:1}
-.st-lbl{font-family:var(--f-ui);font-weight:600;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray400);margin-top:.3rem}
+.st-lbl{font-family:var(--f-ui);font-weight:700;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray400);margin-top:.3rem}
 
-/* SECTION */
-.sec{padding:6rem 0}
+/* SEC HEAD */
+.sec{padding:7rem 0}
 .sec-alt{background:var(--gray50)}
-.sec-eye{font-family:var(--f-ui);font-weight:700;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
-.sec-eye::before,.sec-eye::after{content:'';width:20px;height:1px;background:var(--red);opacity:.4}
+.sec-head{text-align:center;margin-bottom:3.5rem}
+.sec-head.left{text-align:left}
+.sec-eye{font-family:var(--f-ui);font-weight:700;font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.55rem}
+.sec-eye::before,.sec-eye::after{content:'';width:22px;height:1px;background:rgba(200,32,31,.4)}
+.sec-eye.left{justify-content:flex-start}
 .sec-eye.left::before{display:none}
 .sec-eye.left::after{display:none}
-.sec-ttl{font-family:var(--f-display);font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1;letter-spacing:.03em;color:var(--gray900)}
+.sec-ttl{font-family:var(--f-display);font-size:clamp(2.4rem,5vw,4.2rem);line-height:.95;letter-spacing:.03em;color:var(--navy)}
 .sec-ttl em{color:var(--red);font-style:normal}
-.sec-rule{width:40px;height:2px;background:var(--red);border-radius:1px;margin:1rem auto 0}
+.sec-rule{width:44px;height:2.5px;background:linear-gradient(90deg,var(--navy2),var(--red));border-radius:2px;margin:1rem auto 0}
 .sec-rule.left{margin-left:0}
-.sec-sub{font-size:.9rem;font-weight:400;color:var(--gray600);max-width:520px;line-height:1.75;margin-top:.9rem}
-.sec-head{text-align:center;margin-bottom:3.2rem}
+.sec-sub{font-size:.9rem;font-weight:300;color:var(--gray600);max-width:540px;line-height:1.8;margin:1rem auto 0}
+
+/* BTNS */
+.btn-r{display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:#fff;padding:.85rem 2rem;font-family:var(--f-ui);font-weight:800;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border-radius:5px;border:none;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 4px 18px rgba(200,32,31,.25);text-decoration:none}
+.btn-r:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-n{display:inline-flex;align-items:center;gap:.5rem;background:var(--navy2);color:#fff;padding:.85rem 2rem;font-family:var(--f-ui);font-weight:800;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border-radius:5px;border:none;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 4px 18px rgba(26,58,143,.2);text-decoration:none}
+.btn-n:hover{background:var(--navy);transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--navy2);padding:.85rem 2rem;font-family:var(--f-ui);font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border-radius:5px;border:1.5px solid var(--navy2);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-o:hover{background:var(--navy2);color:#fff;transform:translateY(-2px)}
+.btn-o-hero{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:rgba(255,255,255,.75);padding:.85rem 2rem;font-family:var(--f-ui);font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border-radius:5px;border:1.5px solid rgba(255,255,255,.25);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-o-hero:hover{border-color:rgba(255,255,255,.7);color:#fff;transform:translateY(-2px)}
+.btn-link{font-family:var(--f-ui);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--navy2);display:inline-flex;align-items:center;gap:.35rem;border:none;background:none;cursor:pointer;padding:0;transition:gap .2s,color .2s;text-decoration:none}
+.btn-link:hover{gap:.65rem;color:var(--red)}
 
 /* SERVICIOS */
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray200);border:.5px solid var(--gray200);border-radius:10px;overflow:hidden}
-.svc-card{background:var(--white);padding:2rem 1.6rem;position:relative;transition:background .2s}
-.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gray200);transition:background .3s}
-.svc-card:hover::before{background:var(--red)}
-.svc-card:hover{background:var(--gray50)}
-.svc-icon{width:48px;height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.2rem}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray200);border:1px solid var(--gray200);border-radius:12px;overflow:hidden}
+.svc-card{background:#fff;padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:background .25s,transform .25s,box-shadow .25s}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.svc-card.c-gold::before{background:linear-gradient(90deg,var(--gold),var(--goldl))}
+.svc-card.c-blue::before{background:linear-gradient(90deg,var(--navy2),var(--navy3))}
+.svc-card.c-green::before{background:linear-gradient(90deg,#10B87A,#4eda9b)}
+.svc-card.c-red::before{background:linear-gradient(90deg,var(--red),#E03035)}
+.svc-card:hover{background:var(--gray50);box-shadow:0 12px 40px rgba(11,31,75,.08)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-icon{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem}
 .svc-icon.gold{background:#FFF8EC}
-.svc-icon.blue{background:#EEF3FF}
+.svc-icon.blue{background:#EEF2FF}
 .svc-icon.green{background:#EDFBF4}
 .svc-icon.red{background:#FFF0F0}
-.svc-name{font-family:var(--f-display);font-size:1.5rem;letter-spacing:.04em;color:var(--gray900);margin-bottom:.4rem}
-.svc-desc{font-size:.82rem;color:var(--gray600);line-height:1.65;margin-bottom:1.2rem}
-.svc-price{font-family:var(--f-display);font-size:1.3rem;color:var(--red);margin-bottom:1.2rem}
-.svc-list{list-style:none;display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.4rem}
+.svc-badge{display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:.22rem .65rem;border-radius:3px;margin-bottom:.75rem}
+.svc-badge.gold{background:#FFF8EC;color:#8A5E00}
+.svc-badge.blue{background:#EEF2FF;color:var(--navy2)}
+.svc-badge.green{background:#EDFBF4;color:#0A6B3A}
+.svc-badge.red{background:#FFF0F0;color:var(--red2)}
+.svc-name{font-family:var(--f-display);font-size:1.75rem;letter-spacing:.04em;color:var(--navy);margin-bottom:.4rem}
+.svc-desc{font-size:.82rem;color:var(--gray600);line-height:1.7;margin-bottom:1.2rem}
+.svc-list{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.4rem}
 .svc-list li{font-size:.78rem;color:var(--gray600);display:flex;align-items:center;gap:.5rem}
 .svc-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0}
-.btn-sm{font-family:var(--f-ui);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:.3rem;text-decoration:none;border:none;background:none;cursor:pointer;padding:0;transition:gap .2s}
-.btn-sm:hover{gap:.6rem}
+.svc-price{font-family:var(--f-display);font-size:1.5rem;margin-bottom:1.1rem}
+.svc-price.gold{color:var(--gold)}
+.svc-price.blue{color:var(--navy2)}
+.svc-price.green{color:#0A6B3A}
+.svc-price.red{color:var(--red)}
 
 /* DESTINOS */
-.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray200);border:.5px solid var(--gray200);border-radius:10px;overflow:hidden}
-.dest-card{position:relative;overflow:hidden;height:260px;cursor:pointer}
-.dest-card.tall{height:inherit;grid-row:span 2}
-.dest-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .5s}
-.dest-card:hover img{transform:scale(1.08);filter:brightness(.5)}
-.dest-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,44,.92) 0%,rgba(5,15,44,.4) 50%,transparent 100%)}
-.dest-info{position:absolute;bottom:0;left:0;right:0;padding:1.4rem;z-index:2}
-.dest-tag{display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;background:var(--red);color:white;padding:.25rem .6rem;border-radius:2px;margin-bottom:.4rem}
-.dest-name{font-family:var(--f-display);font-size:1.8rem;letter-spacing:.04em;color:white;line-height:1;margin-bottom:.2rem;transform:translateY(6px);transition:transform .35s}
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray200);border:1px solid var(--gray200);border-radius:12px;overflow:hidden}
+.dest-card{position:relative;overflow:hidden;height:270px;display:block;cursor:pointer}
+.dest-card.tall{height:100%;grid-row:span 2}
+.dest-card img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.16,1,.3,1),filter .5s}
+.dest-card:hover img{transform:scale(1.09);filter:brightness(.45)}
+.dest-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,31,75,.95) 0%,rgba(11,31,75,.4) 50%,transparent 100%);transition:background .4s}
+.dest-card:hover .dest-over{background:linear-gradient(to top,rgba(11,31,75,1) 0%,rgba(11,31,75,.75) 55%,rgba(11,31,75,.2) 100%)}
+.dest-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;z-index:2}
+.dest-tag{display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;background:var(--red);color:#fff;padding:.22rem .65rem;border-radius:3px;margin-bottom:.4rem}
+.dest-name{font-family:var(--f-display);font-size:2.1rem;letter-spacing:.04em;color:#fff;line-height:1;margin-bottom:.2rem;transform:translateY(6px);transition:transform .35s}
 .dest-card:hover .dest-name{transform:none}
-.dest-meta{font-size:.75rem;color:rgba(255,255,255,.6);opacity:0;transform:translateY(8px);transition:opacity .3s .05s,transform .3s .05s}
+.dest-meta{font-size:.75rem;color:rgba(255,255,255,.55);opacity:0;transform:translateY(10px);transition:opacity .3s .05s,transform .3s .05s}
 .dest-card:hover .dest-meta{opacity:1;transform:none}
+.dest-btn{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--f-ui);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:.65rem;opacity:0;transform:translateY(8px);transition:opacity .3s .1s,transform .3s .1s}
+.dest-card:hover .dest-btn{opacity:1;transform:none}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
-.about-imgs{position:relative;height:480px}
-.ab-main{position:absolute;left:0;top:0;width:68%;height:80%;border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+/* NOSOTROS */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.ab-imgs{position:relative;height:490px}
+.ab-main{position:absolute;left:0;top:0;width:67%;height:79%;border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(11,31,75,.15)}
 .ab-main img{width:100%;height:100%;object-fit:cover}
-.ab-sec{position:absolute;right:0;bottom:0;width:54%;height:56%;border-radius:10px;overflow:hidden;border:4px solid var(--white);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.ab-sec{position:absolute;right:0;bottom:0;width:52%;height:55%;border-radius:10px;overflow:hidden;border:4px solid #fff;box-shadow:0 12px 40px rgba(11,31,75,.12)}
 .ab-sec img{width:100%;height:100%;object-fit:cover}
-.ab-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--red);padding:1.1rem 1.3rem;text-align:center;border-radius:8px;z-index:2;box-shadow:0 12px 32px rgba(200,32,31,.35)}
-.ab-badge-num{font-family:var(--f-display);font-size:2.6rem;color:white;line-height:1}
-.ab-badge-txt{font-family:var(--f-ui);font-weight:700;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7)}
-.ab-feats{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.8rem 0 2rem}
-.ab-feat{display:flex;align-items:flex-start;gap:.7rem;padding:.85rem;background:var(--gray50);border:.5px solid var(--gray200);border-radius:8px}
-.ab-feat-icon{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
-.ab-feat-name{font-family:var(--f-ui);font-weight:700;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--gray900);margin-bottom:.15rem}
-.ab-feat-txt{font-size:.75rem;color:var(--gray600);line-height:1.5}
+.ab-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--red);padding:1.2rem 1.4rem;text-align:center;border-radius:8px;z-index:3;box-shadow:0 12px 36px rgba(200,32,31,.35)}
+.ab-badge-num{font-family:var(--f-display);font-size:2.8rem;color:#fff;line-height:1}
+.ab-badge-txt{font-family:var(--f-ui);font-weight:700;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.ab-feats{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.8rem 0 2.2rem}
+.ab-feat{display:flex;align-items:flex-start;gap:.75rem;padding:.9rem 1rem;background:var(--gray50);border:1px solid var(--gray100);border-radius:8px;transition:border-color .2s,box-shadow .2s}
+.ab-feat:hover{border-color:var(--gray200);box-shadow:0 4px 16px rgba(11,31,75,.06)}
+.ab-feat-ico{font-size:1.25rem;flex-shrink:0;margin-top:.1rem}
+.ab-feat-label{font-family:var(--f-ui);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:.15rem}
+.ab-feat-desc{font-size:.76rem;color:var(--gray600);line-height:1.55}
 
-/* PROMO STRIP */
-.promo{background:var(--navy);padding:3.5rem 0;position:relative;overflow:hidden}
-.promo::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;background:rgba(255,255,255,.02);border-radius:50%}
-.promo-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;z-index:1}
-.promo-tag{display:inline-block;background:var(--red);color:white;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;padding:.28rem .75rem;border-radius:2px;margin-bottom:.7rem}
-.promo-title{font-family:var(--f-display);font-size:clamp(1.8rem,4vw,3rem);color:white;line-height:1;margin-bottom:.4rem}
-.promo-sub{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.55)}
-.promo-btns{display:flex;gap:.75rem;flex-shrink:0}
-.btn-gold{background:var(--gold);color:white;padding:.75rem 1.6rem;font-family:var(--f-ui);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:filter .2s,transform .2s}
-.btn-gold:hover{filter:brightness(1.1);transform:translateY(-2px)}
+/* PROMO */
+.promo-section{background:var(--navy);padding:4rem 0;position:relative;overflow:hidden}
+.promo-section::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;background:rgba(255,255,255,.02);border-radius:50%}
+.promo-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;z-index:1;flex-wrap:wrap}
+.promo-tag{display:inline-block;background:var(--red);color:#fff;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;padding:.28rem .8rem;border-radius:3px;margin-bottom:.7rem}
+.promo-ttl{font-family:var(--f-display);font-size:clamp(1.8rem,4vw,3.2rem);color:#fff;line-height:1;margin-bottom:.4rem;letter-spacing:.04em}
+.promo-sub{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.5)}
+.promo-btns{display:flex;gap:.75rem;flex-shrink:0;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:.45rem;background:#fff;color:var(--navy);padding:.82rem 1.8rem;font-family:var(--f-ui);font-weight:800;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;border:none;cursor:pointer;transition:filter .2s,transform .2s;text-decoration:none}
+.btn-white:hover{filter:brightness(.96);transform:translateY(-2px)}
+.btn-white-o{display:inline-flex;align-items:center;gap:.45rem;background:transparent;color:#fff;padding:.82rem 1.8rem;font-family:var(--f-ui);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;border:1.5px solid rgba(255,255,255,.25);cursor:pointer;transition:border-color .2s,transform .2s;text-decoration:none}
+.btn-white-o:hover{border-color:rgba(255,255,255,.7);transform:translateY(-2px)}
 
 /* HORARIOS */
-.hor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
-.hor-card{display:flex;align-items:center;gap:1.2rem;padding:1.1rem 1.4rem;border:.5px solid var(--gray200);border-radius:8px;background:var(--white);transition:border-color .2s,box-shadow .2s}
-.hor-card:hover{border-color:var(--red);box-shadow:0 4px 20px rgba(200,32,31,.08)}
-.hor-hora{font-family:var(--f-display);font-size:2rem;color:var(--gray900);min-width:66px;line-height:1}
+.hor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
+.hor-card{display:flex;align-items:center;gap:1.4rem;padding:1.1rem 1.5rem;background:#fff;border:1.5px solid var(--gray100);border-radius:10px;transition:border-color .2s,box-shadow .2s,transform .2s}
+.hor-card:hover{border-color:var(--navy2);box-shadow:0 4px 20px rgba(26,58,143,.1);transform:translateX(4px)}
+.hor-hora{font-family:var(--f-display);font-size:2.2rem;color:var(--navy);line-height:1;min-width:68px}
 .hor-mid{flex:1}
-.hor-route{font-size:.82rem;font-weight:600;color:var(--gray800);margin-bottom:.2rem}
-.hor-meta{font-size:.75rem;color:var(--gray400)}
-.hor-badge{display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;margin-bottom:.25rem}
-.bg-gold{background:#FFF8EC;color:#8A5E00}
-.bg-blue{background:#EEF3FF;color:#1A3A8F}
-.bg-green{background:#EDFBF4;color:#0A6B3A}
+.hor-badge{display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .6rem;border-radius:3px;margin-bottom:.25rem}
+.hor-badge.gold{background:#FFF8EC;color:#8A5E00}
+.hor-badge.blue{background:#EEF2FF;color:var(--navy2)}
+.hor-badge.green{background:#EDFBF4;color:#0A6B3A}
+.hor-route{font-size:.85rem;font-weight:600;color:var(--gray900);margin-bottom:.15rem}
+.hor-meta{font-size:.74rem;color:var(--gray400)}
 .hor-alert{font-size:.72rem;color:#B45309;font-weight:600}
-.btn-rsv{font-family:var(--f-ui);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:white;padding:.45rem 1rem;border:none;border-radius:3px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
-.btn-rsv:hover{background:var(--red2)}
+.btn-rsv{font-family:var(--f-ui);font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--navy2);color:#fff;padding:.5rem 1.1rem;border-radius:4px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s,transform .15s;border:none}
+.btn-rsv:hover{background:var(--navy);transform:translateY(-1px)}
 
 /* TESTIMONIOS */
 .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.test-card{background:var(--white);border:.5px solid var(--gray200);border-radius:10px;padding:1.6rem;position:relative}
-.test-card.feat{border-color:var(--red);border-width:1.5px}
-.test-stars{color:var(--gold);font-size:.85rem;letter-spacing:.08em;margin-bottom:.8rem}
-.test-text{font-size:.85rem;color:var(--gray600);line-height:1.75;font-style:italic;margin-bottom:1.2rem}
-.test-author{display:flex;align-items:center;gap:.7rem}
-.test-ava{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:1rem;font-weight:normal;color:white;flex-shrink:0}
-.test-name{font-size:.85rem;font-weight:600;color:var(--gray900)}
+.test-card{background:#fff;border:1.5px solid var(--gray100);border-radius:12px;padding:1.8rem;transition:border-color .2s,box-shadow .2s,transform .2s}
+.test-card:hover{border-color:var(--gray200);box-shadow:0 8px 32px rgba(11,31,75,.08);transform:translateY(-4px)}
+.test-card.feat{border-color:var(--navy2);border-width:2px}
+.test-stars{color:var(--gold);font-size:.9rem;letter-spacing:.1em;margin-bottom:.9rem}
+.test-txt{font-size:.87rem;color:var(--gray600);line-height:1.78;font-style:italic;margin-bottom:1.3rem}
+.test-author{display:flex;align-items:center;gap:.75rem}
+.test-ava{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:1.1rem;color:#fff;flex-shrink:0}
+.test-name{font-size:.85rem;font-weight:600;color:var(--navy)}
 .test-city{font-size:.72rem;color:var(--gray400)}
 
 /* FOOTER */
-footer{background:var(--gray900);padding:4.5rem 0 0;color:white}
-.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:.5px solid rgba(255,255,255,.08)}
-.ft-brand-name{font-family:var(--f-display);font-size:1.8rem;letter-spacing:.08em;margin-bottom:.6rem}
-.ft-brand-name em{color:var(--red);font-style:normal}
-.ft-brand-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7;max-width:240px;margin-bottom:1.4rem}
-.ft-col-ttl{font-family:var(--f-ui);font-weight:700;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:.5px solid rgba(255,255,255,.07)}
-.ft-links{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.ft-links a{font-size:.82rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
-.ft-links a:hover{color:white}
-.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0;font-size:.75rem;color:rgba(255,255,255,.25)}
-.ft-soc{display:flex;gap:.5rem}
-.ft-soc-btn{width:34px;height:34px;border-radius:5px;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-family:var(--f-ui);font-weight:700;font-size:.68rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,color .15s;text-decoration:none}
-.ft-soc-btn:hover{background:var(--red);border-color:var(--red);color:white}
+footer{background:var(--navy);padding:5rem 0 0}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-brand{font-family:var(--f-display);font-size:2rem;letter-spacing:.08em;color:#fff;margin-bottom:.6rem}
+.ft-brand em{color:var(--red);font-style:normal}
+.ft-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.75;max-width:250px;margin-bottom:1.6rem}
+.ft-socs{display:flex;gap:.5rem}
+.ft-soc{width:35px;height:35px;border-radius:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-family:var(--f-ui);font-weight:700;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.ft-soc:hover{background:var(--red);border-color:var(--red);color:#fff}
+.ft-col-head{font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem;padding-bottom:.55rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.ft-links{display:flex;flex-direction:column;gap:.5rem}
+.ft-links a{font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s,gap .2s}
+.ft-links a:hover{color:rgba(255,255,255,.85);gap:.7rem}
+.ft-links a::before{content:'›';color:var(--red);font-size:1.1rem;line-height:1;flex-shrink:0}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;font-size:.74rem;color:rgba(255,255,255,.18);flex-wrap:wrap;gap:.5rem}
 
-/* WA float */
-#waf{position:fixed;bottom:1.8rem;right:1.8rem;z-index:80;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s}
-#waf:hover{transform:scale(1.1)}
-#waf svg{width:26px;height:26px;fill:white}
+/* WA */
+#waf{position:fixed;bottom:2rem;right:2rem;z-index:90;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 22px rgba(37,211,102,.4);transition:transform .2s;opacity:0;pointer-events:none}
+#waf.show{opacity:1;pointer-events:all}
+#waf:hover{transform:scale(1.1) translateY(-3px)}
+#waf svg{width:27px;height:27px;fill:#fff}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rl{opacity:0;transform:translateX(-36px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rr{opacity:0;transform:translateX(36px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rv.on,.rl.on,.rr.on{opacity:1;transform:none}
+.d1{transition-delay:.09s}.d2{transition-delay:.18s}.d3{transition-delay:.27s}.d4{transition-delay:.36s}.d5{transition-delay:.45s}
+
+/* RESPONSIVE BASE */
+@media(max-width:1024px){
+  #navbar{padding:1rem 2rem}
+  #navbar.scrolled{padding:.7rem 2rem}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .w{padding:0 2rem}
+  .bk-wrap{padding:1.4rem 2rem}
+  .bk-form{grid-template-columns:1fr 1fr;gap:.7rem}
+  .bk-form .btn-buscar{grid-column:span 2}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .dest-grid{grid-template-columns:repeat(2,1fr)}
+  .dest-card.tall{grid-row:span 1;height:270px}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .ab-imgs{height:380px}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .hero-inner{padding:0 3rem;padding-bottom:6rem}
+  .h-dots-wrap{left:3rem}
+}
+@media(max-width:640px){
+  .hero-inner{padding:0 1.5rem;padding-bottom:7rem}
+  .w{padding:0 1.2rem}
+  .bk-form{grid-template-columns:1fr}
+  .bk-form .btn-buscar{grid-column:span 1}
+  .svc-grid,.dest-grid,.hor-grid,.test-grid{grid-template-columns:1fr}
+  .dest-card.tall{height:260px}
+  .ab-imgs{height:320px}
+  .ft-grid{grid-template-columns:1fr}
+  .promo-inner{flex-direction:column;align-items:flex-start}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .h-dots-wrap{left:1.5rem;bottom:5rem}
+  .h-scroll-hint{display:none}
+  .sec{padding:4.5rem 0}
+}
 </style>
+</head>
+<body>
 
-<div style="font-family:var(--f-body);background:var(--white);overflow-x:hidden">
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="tk-inner" id="ticker">
-    <span class="tk-i">Lima → Ayacucho <span class="tk-sep"></span></span>
-    <span class="tk-i">Salidas diarias mañana y noche <span class="tk-sep"></span></span>
-    <span class="tk-i">Clase Dorado King disponible <span class="tk-sep"></span></span>
-    <span class="tk-i">Antezana Cargo · Envío seguro <span class="tk-sep"></span></span>
-    <span class="tk-i">Huanta · Huancayo · Ica · Pampas <span class="tk-sep"></span></span>
-    <span class="tk-i">+20 años conectando el Perú <span class="tk-sep"></span></span>
-    <span class="tk-i">Lima → Ayacucho <span class="tk-sep"></span></span>
-    <span class="tk-i">Salidas diarias mañana y noche <span class="tk-sep"></span></span>
-    <span class="tk-i">Clase Dorado King disponible <span class="tk-sep"></span></span>
-    <span class="tk-i">Antezana Cargo · Envío seguro <span class="tk-sep"></span></span>
-    <span class="tk-i">Huanta · Huancayo · Ica · Pampas <span class="tk-sep"></span></span>
-    <span class="tk-i">+20 años conectando el Perú <span class="tk-sep"></span></span>
-  </div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-logo">ANTE<em>ZANA</em></div>
+  <div class="ld-sub">Transporte &amp; Turismo Premium</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+  <div class="ld-dots"><span></span><span></span><span></span></div>
 </div>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-logo">
+<!-- SCROLL PROGRESS -->
+<div id="sp"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
     <div class="nav-logo-mark">
       <svg viewBox="0 0 24 24"><path d="M12 2L4 7v13h4v-6h8v6h4V7L12 2z"/></svg>
     </div>
-    <div class="nav-brand">
-      <span class="nav-brand-name">ANTEZANA</span>
-      <span class="nav-brand-sub">Transporte &amp; Turismo</span>
+    <div>
+      <span class="nav-logo-name">ANTEZANA</span>
+      <span class="nav-logo-sub">Transporte &amp; Turismo</span>
     </div>
-  </div>
+  </a>
   <div class="nav-links">
-    <a href="#" class="act">Inicio</a>
-    <a href="#">Nosotros</a>
-    <a href="#">Destinos</a>
-    <a href="#">Paquetes</a>
-    <a href="#">Promociones</a>
-    <a href="#">Contacto</a>
-    <a href="#" class="nav-cta">Reservar</a>
+    <a href="index.html" class="on">Inicio</a>
+    <a href="views/nosotros.html">Nosotros</a>
+    <a href="views/destinos.html">Destinos</a>
+    <a href="views/paquetes.html">Paquetes</a>
+    <a href="views/promociones.html">Promociones</a>
+    <a href="views/contacto.html">Contacto</a>
+    <a href="views/reservas.html" class="nav-cta">Reservar</a>
   </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO SLIDER -->
-<div class="hero">
-  <div class="hero-slides">
-    <div class="h-slide act" id="s0">
-      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80" alt="Lima Ayacucho" />
-      <div class="h-grad"></div><div class="h-grad2"></div>
-    </div>
-    <div class="h-slide" id="s1">
-      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80" alt="Ayacucho" />
-      <div class="h-grad"></div><div class="h-grad2"></div>
-    </div>
-    <div class="h-slide" id="s2">
-      <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80" alt="Bus premium" />
-      <div class="h-grad"></div><div class="h-grad2"></div>
-    </div>
-    <div class="h-slide" id="s3">
-      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80" alt="Huanta" />
-      <div class="h-grad"></div><div class="h-grad2"></div>
-    </div>
-  </div>
-
-  <div class="hero-content">
-    <div class="h-eyebrow" id="h-eye">Ruta principal</div>
-    <h1 class="h-title" id="h-ttl">Lima<br><em>Ayacucho</em></h1>
-    <p class="h-sub" id="h-sub">Viaja con comodidad y seguridad por la sierra peruana. Salidas diarias mañana y noche.</p>
-    <div class="h-btns">
-      <a href="#" class="btn-r">Reservar pasaje →</a>
-      <a href="#" class="btn-o">Ver horarios</a>
-    </div>
-  </div>
-
-  <div class="h-dots">
-    <button class="h-dot act" data-i="0"></button>
-    <button class="h-dot" data-i="1"></button>
-    <button class="h-dot" data-i="2"></button>
-    <button class="h-dot" data-i="3"></button>
-  </div>
-  <div class="h-progress"><div class="h-prog-fill" id="hpf"></div></div>
+<!-- MENÚ MÓVIL -->
+<div id="nav-mobile">
+  <button id="nav-mobile-close" aria-label="Cerrar">✕</button>
+  <a href="index.html">Inicio</a>
+  <a href="views/nosotros.html">Nosotros</a>
+  <a href="views/destinos.html">Destinos</a>
+  <a href="views/paquetes.html">Paquetes</a>
+  <a href="views/experiencias.html">Experiencias</a>
+  <a href="views/promociones.html">Promociones</a>
+  <a href="views/reservas.html">Reservas</a>
+  <a href="views/contacto.html">Contacto</a>
 </div>
 
-<!-- SEARCH BAR -->
-<div class="search-bar">
-  <div class="w">
-    <div class="sb-inner">
-      <div class="sb-field">
-        <label class="sb-label">Origen</label>
-        <select class="sb-select">
-          <option>Lima</option>
-          <option>Ayacucho</option>
-          <option>Huanta</option>
-          <option>Huancayo</option>
-        </select>
-      </div>
-      <div class="sb-field">
-        <label class="sb-label">Destino</label>
-        <select class="sb-select">
-          <option>Ayacucho</option>
-          <option>Lima</option>
-          <option>Huanta</option>
-          <option>Huancayo</option>
-          <option>Ica</option>
-        </select>
-      </div>
-      <div class="sb-field">
-        <label class="sb-label">Fecha de viaje</label>
-        <input type="date" class="sb-input" id="qdate" />
-      </div>
-      <div class="sb-field">
-        <label class="sb-label">Pasajeros</label>
-        <select class="sb-select">
-          <option>1 pasajero</option>
-          <option>2 pasajeros</option>
-          <option>3 pasajeros</option>
-          <option>4+ pasajeros</option>
-        </select>
-      </div>
-      <button class="btn-search">
-        <i class="ti ti-search" aria-hidden="true"></i> Buscar
-      </button>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <img id="hero-img" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&q=80" alt="Antezana hero"/>
+  </div>
+  <div class="hero-inner">
+    <div class="h-eyebrow"><span></span><span id="h-eye">Ruta principal</span></div>
+    <h1 class="h-title">
+      <span class="h-l1" id="h-l1">Lima</span>
+      <span class="h-l2" id="h-l2">Ayacucho</span>
+    </h1>
+    <p class="h-sub" id="h-sub">Viaja con comodidad y seguridad por la sierra peruana. Salidas diarias mañana y noche con nuestra flota moderna.</p>
+    <div class="h-btns">
+      <a href="views/reservas.html" class="btn-r">Reservar pasaje →</a>
+      <a href="#destinos" class="btn-o-hero">Ver destinos</a>
     </div>
+  </div>
+  <div class="h-dots-wrap">
+    <div class="h-dots">
+      <button class="h-dot on" data-i="0"></button>
+      <button class="h-dot" data-i="1"></button>
+      <button class="h-dot" data-i="2"></button>
+      <button class="h-dot" data-i="3"></button>
+    </div>
+    <div class="h-count">
+      <span class="h-count-cur" id="hcc">01</span>
+      <span class="h-count-sep"></span>
+      <span>04</span>
+    </div>
+  </div>
+  <div class="h-scroll-hint">
+    <span class="h-scroll-txt">Scroll</span>
+    <span class="h-scroll-line"></span>
+  </div>
+</section>
+
+<!-- BUSCADOR -->
+<div class="bk-section">
+  <div class="bk-wrap">
+    <form class="bk-form" onsubmit="return false">
+      <div class="bk-field">
+        <label class="bk-lbl">📍 Ciudad de origen</label>
+        <select class="bk-sel"><option value="">Desde...</option><option>Lima</option><option>Ayacucho</option><option>Huanta</option><option>Huancayo</option><option>Ica</option></select>
+      </div>
+      <div class="bk-field">
+        <label class="bk-lbl">🏁 Ciudad de destino</label>
+        <select class="bk-sel"><option value="">Hacia...</option><option>Lima</option><option>Ayacucho</option><option>Huanta</option><option>Huancayo</option><option>Ica</option><option>Pampas</option></select>
+      </div>
+      <div class="bk-field">
+        <label class="bk-lbl">📅 Fecha de viaje</label>
+        <input type="date" class="bk-inp" id="bkf"/>
+      </div>
+      <div class="bk-field">
+        <label class="bk-lbl">👤 Pasajeros</label>
+        <select class="bk-sel"><option>1 pasajero</option><option>2 pasajeros</option><option>3 pasajeros</option><option>4+ pasajeros</option></select>
+      </div>
+      <a href="views/reservas.html" class="btn-buscar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Buscar
+      </a>
+    </form>
   </div>
 </div>
 
 <!-- STATS -->
-<div class="stats">
-  <div class="st-item"><div class="st-num" id="c1">0+</div><div class="st-lbl">Años de experiencia</div></div>
-  <div class="st-item"><div class="st-num" id="c2">0</div><div class="st-lbl">Destinos en el Perú</div></div>
-  <div class="st-item"><div class="st-num" id="c3">0K+</div><div class="st-lbl">Pasajeros transportados</div></div>
-  <div class="st-item"><div class="st-num" id="c4">0%</div><div class="st-lbl">Seguridad vial</div></div>
-  <div class="st-item"><div class="st-num" id="c5">0</div><div class="st-lbl">Días al año operando</div></div>
+<div class="stats-strip">
+  <div class="w">
+    <div class="stats-inner">
+      <div class="st rv"><div class="st-num" data-count="20" data-sfx="+">20+</div><div class="st-lbl">Años de experiencia</div></div>
+      <div class="st rv d1"><div class="st-num" data-count="13" data-sfx="">13</div><div class="st-lbl">Destinos en el Perú</div></div>
+      <div class="st rv d2"><div class="st-num" data-count="500" data-sfx="K+">500K+</div><div class="st-lbl">Pasajeros transportados</div></div>
+      <div class="st rv d3"><div class="st-num" data-count="100" data-sfx="%">100%</div><div class="st-lbl">Seguridad vial</div></div>
+      <div class="st rv d4"><div class="st-num" data-count="365" data-sfx="">365</div><div class="st-lbl">Días al año operando</div></div>
+    </div>
+  </div>
 </div>
 
 <!-- SERVICIOS -->
-<section class="sec">
+<section class="sec" id="servicios">
   <div class="w">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <div class="sec-eye">Nuestros servicios</div>
       <h2 class="sec-ttl">Elige tu clase <em>de viaje</em></h2>
       <div class="sec-rule"></div>
-      <p class="sec-sub" style="margin:1rem auto 0">Desde el máximo confort hasta la mejor tarifa, siempre con la puntualidad y seguridad que nos caracterizan.</p>
+      <p class="sec-sub">Desde el máximo confort hasta la mejor tarifa, siempre con la seguridad y puntualidad que nos caracterizan.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc-card">
+      <div class="svc-card c-gold rv">
         <div class="svc-icon gold">👑</div>
-        <div style="display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;background:#FFF8EC;color:#8A5E00;padding:.2rem .6rem;border-radius:2px;margin-bottom:.7rem">Premium</div>
+        <div class="svc-badge gold">Premium</div>
         <div class="svc-name">Dorado King</div>
         <p class="svc-desc">El máximo confort en cada kilómetro. Asientos reclinables 180°, Wi-Fi y servicio a bordo incluido.</p>
-        <ul class="svc-list">
-          <li>Asiento totalmente reclinable</li>
-          <li>Wi-Fi gratuito a bordo</li>
-          <li>TV individual + snack</li>
-          <li>Manta y almohada</li>
-        </ul>
-        <div class="svc-price">Desde S/ 75</div>
-        <a href="#" class="btn-sm">Reservar <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <ul class="svc-list"><li>Asiento totalmente reclinable</li><li>Wi-Fi gratuito a bordo</li><li>TV individual + snack</li><li>Manta y almohada</li></ul>
+        <div class="svc-price gold">Desde S/ 75</div>
+        <a href="views/reservas.html" class="btn-link">Reservar ahora →</a>
       </div>
-      <div class="svc-card">
+      <div class="svc-card c-blue rv d1">
         <div class="svc-icon blue">💺</div>
-        <div style="display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;background:#EEF3FF;color:#1A3A8F;padding:.2rem .6rem;border-radius:2px;margin-bottom:.7rem">Estándar</div>
+        <div class="svc-badge blue">Estándar</div>
         <div class="svc-name">Comercial</div>
         <p class="svc-desc">Ideal para viajeros frecuentes. Asientos cómodos, aire acondicionado y puntualidad garantizada.</p>
-        <ul class="svc-list">
-          <li>Asiento cómodo reclinable</li>
-          <li>Aire acondicionado</li>
-          <li>TV grupal</li>
-          <li>20 kg equipaje incluido</li>
-        </ul>
-        <div class="svc-price">Desde S/ 42</div>
-        <a href="#" class="btn-sm">Reservar <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <ul class="svc-list"><li>Asiento cómodo reclinable</li><li>Aire acondicionado</li><li>TV grupal</li><li>20 kg equipaje incluido</li></ul>
+        <div class="svc-price blue">Desde S/ 42</div>
+        <a href="views/reservas.html" class="btn-link">Reservar ahora →</a>
       </div>
-      <div class="svc-card">
+      <div class="svc-card c-green rv d2">
         <div class="svc-icon green">✅</div>
-        <div style="display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;background:#EDFBF4;color:#0A6B3A;padding:.2rem .6rem;border-radius:2px;margin-bottom:.7rem">Accesible</div>
+        <div class="svc-badge green">Accesible</div>
         <div class="svc-name">Económico</div>
-        <p class="svc-desc">El mejor precio sin sacrificar seguridad ni puntualidad. Todas las garantías de Antezana.</p>
-        <ul class="svc-list">
-          <li>Asiento estándar</li>
-          <li>Salidas puntuales</li>
-          <li>20 kg equipaje incluido</li>
-          <li>Precio inmejorable</li>
-        </ul>
-        <div class="svc-price">Desde S/ 8</div>
-        <a href="#" class="btn-sm">Reservar <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <p class="svc-desc">El mejor precio sin sacrificar seguridad ni puntualidad. Todas las garantías de Antezana al alcance de todos.</p>
+        <ul class="svc-list"><li>Asiento estándar</li><li>Salidas puntuales</li><li>20 kg equipaje incluido</li><li>Precio inmejorable</li></ul>
+        <div class="svc-price green">Desde S/ 8</div>
+        <a href="views/reservas.html" class="btn-link">Reservar ahora →</a>
       </div>
-      <div class="svc-card">
+      <div class="svc-card c-red rv d3">
         <div class="svc-icon red">📦</div>
-        <div style="display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;background:#FFF0F0;color:#8A1010;padding:.2rem .6rem;border-radius:2px;margin-bottom:.7rem">Encomiendas</div>
+        <div class="svc-badge red">Encomiendas</div>
         <div class="svc-name">Antezana Cargo</div>
-        <p class="svc-desc">Envía tus paquetes con total seguridad a todos nuestros destinos. Rápido y confiable.</p>
-        <ul class="svc-list">
-          <li>Entrega garantizada</li>
-          <li>Seguimiento en tiempo real</li>
-          <li>Todos los destinos</li>
-          <li>Tarifas por volumen</li>
-        </ul>
-        <div class="svc-price" style="color:var(--red)">Consultar tarifa</div>
-        <a href="#" class="btn-sm">Consultar <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <p class="svc-desc">Envía tus paquetes con total seguridad a todos nuestros destinos. Rápido, confiable y económico.</p>
+        <ul class="svc-list"><li>Entrega garantizada</li><li>Seguimiento en tiempo real</li><li>Todos los destinos</li><li>Tarifas por volumen</li></ul>
+        <div class="svc-price red">Consultar tarifa</div>
+        <a href="views/contacto.html" class="btn-link">Consultar ahora →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- DESTINOS -->
-<section class="sec sec-alt">
+<section class="sec sec-alt" id="destinos">
   <div class="w">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <div class="sec-eye">Nuestras rutas</div>
       <h2 class="sec-ttl">Destinos <em>populares</em></h2>
       <div class="sec-rule"></div>
     </div>
-    <div class="dest-grid">
-      <div class="dest-card tall" style="height:530px">
-        <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=700&q=80" alt="Lima" />
+    <div class="dest-grid rv d1">
+      <a href="views/reservas.html" class="dest-card tall">
+        <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=800&q=80" alt="Lima"/>
         <div class="dest-over"></div>
         <div class="dest-info">
           <div class="dest-tag">Salidas diarias</div>
           <div class="dest-name">Lima</div>
           <div class="dest-meta">Capital del Perú · 8h 30min · Desde S/ 35</div>
+          <div class="dest-btn">Reservar →</div>
         </div>
-      </div>
-      <div class="dest-card">
-        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Huanta" />
+      </a>
+      <a href="views/reservas.html" class="dest-card">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Huanta"/>
         <div class="dest-over"></div>
         <div class="dest-info">
           <div class="dest-tag">Tierra de Flores</div>
           <div class="dest-name">Huanta</div>
           <div class="dest-meta">1h desde Ayacucho · Desde S/ 8</div>
+          <div class="dest-btn">Reservar →</div>
         </div>
-      </div>
-      <div class="dest-card">
-        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80" alt="Huancayo" />
+      </a>
+      <a href="views/reservas.html" class="dest-card">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80" alt="Huancayo"/>
         <div class="dest-over"></div>
         <div class="dest-info">
           <div class="dest-tag">Sierra Central</div>
           <div class="dest-name">Huancayo</div>
           <div class="dest-meta">6h 30min desde Lima · Desde S/ 30</div>
+          <div class="dest-btn">Reservar →</div>
         </div>
-      </div>
-      <div class="dest-card">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Ayacucho" />
+      </a>
+      <a href="views/reservas.html" class="dest-card">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Ayacucho"/>
         <div class="dest-over"></div>
         <div class="dest-info">
           <div class="dest-tag">Patrimonio Cultural</div>
           <div class="dest-name">Ayacucho</div>
           <div class="dest-meta">8h 30min desde Lima · Desde S/ 35</div>
+          <div class="dest-btn">Reservar →</div>
         </div>
-      </div>
-      <div class="dest-card">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Ica" />
+      </a>
+      <a href="views/reservas.html" class="dest-card">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Ica"/>
         <div class="dest-over"></div>
         <div class="dest-info">
           <div class="dest-tag">Costa Sur</div>
           <div class="dest-name">Ica</div>
           <div class="dest-meta">4h desde Lima · Desde S/ 28</div>
+          <div class="dest-btn">Reservar →</div>
         </div>
-      </div>
+      </a>
     </div>
-    <div style="text-align:center;margin-top:2.2rem">
-      <a href="#" class="btn-sm" style="justify-content:center;font-size:.8rem">Ver todos los destinos <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    <div style="text-align:center;margin-top:2.5rem" class="rv">
+      <a href="views/destinos.html" class="btn-o">Ver todos los destinos →</a>
     </div>
   </div>
 </section>
 
 <!-- NOSOTROS -->
-<section class="sec">
+<section class="sec" id="nosotros">
   <div class="w">
     <div class="about-grid">
-      <div class="about-imgs">
-        <div class="ab-main"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=80" alt="Bus Antezana" /></div>
-        <div class="ab-sec"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&q=80" alt="Paisaje andino" /></div>
+      <div class="ab-imgs rl">
+        <div class="ab-main"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=80" alt="Bus Antezana"/></div>
+        <div class="ab-sec"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&q=80" alt="Paisaje andino"/></div>
         <div class="ab-badge"><div class="ab-badge-num">+20</div><div class="ab-badge-txt">Años de servicio</div></div>
       </div>
-      <div>
+      <div class="rr">
         <div class="sec-eye left" style="justify-content:flex-start">Quiénes somos</div>
         <h2 class="sec-ttl" style="margin-top:.5rem">Más de dos décadas<br><em>conectando el Perú</em></h2>
-        <div class="sec-rule left" style="margin-top:.8rem"></div>
-        <p style="font-size:.88rem;color:var(--gray600);line-height:1.8;margin:1.4rem 0 .8rem;font-weight:300">La Empresa de Transportes Antezana nació con el compromiso de ofrecer un servicio de transporte seguro, puntual y cómodo a todos los peruanos. Desde nuestros inicios conectamos Lima con la sierra sur del país.</p>
-        <p style="font-size:.88rem;color:var(--gray600);line-height:1.8;font-weight:300">Con una flota moderna y conductores profesionales, seguimos creciendo para llevar a nuestros pasajeros con seguridad a cada rincón del Perú.</p>
+        <div class="sec-rule left"></div>
+        <p style="font-size:.9rem;font-weight:300;color:var(--gray600);line-height:1.8;margin:1.4rem 0 .8rem">La Empresa de Transportes Antezana nació con el compromiso de ofrecer un servicio de transporte seguro, puntual y cómodo a todos los peruanos. Desde nuestros inicios conectamos Lima con la sierra sur del país.</p>
+        <p style="font-size:.9rem;font-weight:300;color:var(--gray600);line-height:1.8;margin-bottom:2rem">Con una flota moderna y conductores profesionales, seguimos creciendo para llevar a nuestros pasajeros con seguridad a cada rincón del Perú.</p>
         <div class="ab-feats">
-          <div class="ab-feat"><div class="ab-feat-icon">🛡️</div><div><div class="ab-feat-name">Seguridad</div><div class="ab-feat-txt">Revisión técnica permanente y GPS en todos los buses</div></div></div>
-          <div class="ab-feat"><div class="ab-feat-icon">⏰</div><div><div class="ab-feat-name">Puntualidad</div><div class="ab-feat-txt">Salidas y llegadas en los horarios comprometidos</div></div></div>
-          <div class="ab-feat"><div class="ab-feat-icon">🤝</div><div><div class="ab-feat-name">Confianza</div><div class="ab-feat-txt">Miles de familias confían en nosotros cada día</div></div></div>
-          <div class="ab-feat"><div class="ab-feat-icon">💰</div><div><div class="ab-feat-name">Precio justo</div><div class="ab-feat-txt">La mejor relación calidad-precio del mercado</div></div></div>
+          <div class="ab-feat"><div class="ab-feat-ico">🛡️</div><div><div class="ab-feat-label">Seguridad</div><div class="ab-feat-desc">Revisión técnica permanente y GPS en todos los buses</div></div></div>
+          <div class="ab-feat"><div class="ab-feat-ico">⏰</div><div><div class="ab-feat-label">Puntualidad</div><div class="ab-feat-desc">Salidas y llegadas en los horarios comprometidos</div></div></div>
+          <div class="ab-feat"><div class="ab-feat-ico">🤝</div><div><div class="ab-feat-label">Confianza</div><div class="ab-feat-desc">Miles de familias confían en nosotros cada día</div></div></div>
+          <div class="ab-feat"><div class="ab-feat-ico">💰</div><div><div class="ab-feat-label">Precio justo</div><div class="ab-feat-desc">La mejor relación calidad-precio del mercado</div></div></div>
         </div>
-        <a href="#" class="btn-r">Conocer más →</a>
+        <a href="views/nosotros.html" class="btn-n">Conocer más →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROMO -->
-<div class="promo">
+<div class="promo-section">
   <div class="w">
-    <div class="promo-inner">
+    <div class="promo-inner rv">
       <div>
-        <div class="promo-tag">Oferta especial</div>
-        <div class="promo-title">20% OFF en viajes<br>ida y vuelta</div>
+        <div class="promo-tag">🔥 Oferta especial</div>
+        <div class="promo-ttl">20% OFF en viajes<br>ida y vuelta</div>
         <div class="promo-sub">Válido hasta fin de mes · Clase Comercial y Económico · Sujeto a disponibilidad</div>
       </div>
       <div class="promo-btns">
-        <a href="#" class="btn-gold">Ver promoción →</a>
-        <a href="#" class="btn-o">Reservar ahora</a>
+        <a href="views/promociones.html" class="btn-white">Ver promoción →</a>
+        <a href="views/reservas.html" class="btn-white-o">Reservar ahora</a>
       </div>
     </div>
   </div>
 </div>
 
 <!-- HORARIOS -->
-<section class="sec sec-alt">
+<section class="sec sec-alt" id="horarios">
   <div class="w">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <div class="sec-eye">Horarios frecuentes</div>
       <h2 class="sec-ttl">Salidas <em>de hoy</em></h2>
       <div class="sec-rule"></div>
     </div>
     <div class="hor-grid">
-      <div class="hor-card">
-        <div class="hor-hora">07:00</div>
-        <div class="hor-mid">
-          <div class="hor-badge bg-gold">Dorado King</div>
-          <div class="hor-route">Lima → Ayacucho</div>
-          <div class="hor-meta">12 asientos · 8h 30min</div>
-        </div>
-        <button class="btn-rsv">Reservar</button>
-      </div>
-      <div class="hor-card">
-        <div class="hor-hora">07:00</div>
-        <div class="hor-mid">
-          <div class="hor-badge bg-blue">Comercial</div>
-          <div class="hor-route">Lima → Huanta</div>
-          <div class="hor-meta">18 asientos · 9h</div>
-        </div>
-        <button class="btn-rsv">Reservar</button>
-      </div>
-      <div class="hor-card">
-        <div class="hor-hora">06:30</div>
-        <div class="hor-mid">
-          <div class="hor-badge bg-gold">Dorado King</div>
-          <div class="hor-route">Ayacucho → Lima</div>
-          <div class="hor-meta">10 asientos · 8h 30min</div>
-        </div>
-        <button class="btn-rsv">Reservar</button>
-      </div>
-      <div class="hor-card">
-        <div class="hor-hora">06:00</div>
-        <div class="hor-mid">
-          <div class="hor-badge bg-blue">Comercial</div>
-          <div class="hor-route">Huanta → Lima</div>
-          <div class="hor-meta">15 asientos · 9h</div>
-        </div>
-        <button class="btn-rsv">Reservar</button>
-      </div>
-      <div class="hor-card">
-        <div class="hor-hora">21:00</div>
-        <div class="hor-mid">
-          <div class="hor-badge bg-green">Económico</div>
-          <div class="hor-route">Lima → Ayacucho</div>
-          <div class="hor-meta">30 asientos · Nocturno</div>
-        </div>
-        <button class="btn-rsv">Reservar</button>
-      </div>
-      <div class="hor-card" style="border-color:rgba(200,32,31,.2)">
-        <div class="hor-hora">22:30</div>
-        <div class="hor-mid">
-          <div class="hor-badge bg-gold">Dorado King</div>
-          <div class="hor-route">Lima → Ayacucho</div>
-          <div class="hor-alert">⚡ Solo 8 asientos disponibles</div>
-        </div>
-        <button class="btn-rsv">Reservar</button>
-      </div>
+      <div class="hor-card rv"><div class="hor-hora">07:00</div><div class="hor-mid"><div class="hor-badge gold">Dorado King</div><div class="hor-route">Lima → Ayacucho</div><div class="hor-meta">12 asientos · 8h 30min</div></div><a href="views/reservas.html" class="btn-rsv">Reservar</a></div>
+      <div class="hor-card rv d1"><div class="hor-hora">07:00</div><div class="hor-mid"><div class="hor-badge blue">Comercial</div><div class="hor-route">Lima → Huanta</div><div class="hor-meta">18 asientos · 9h</div></div><a href="views/reservas.html" class="btn-rsv">Reservar</a></div>
+      <div class="hor-card rv d2"><div class="hor-hora">06:30</div><div class="hor-mid"><div class="hor-badge gold">Dorado King</div><div class="hor-route">Ayacucho → Lima</div><div class="hor-meta">10 asientos · 8h 30min</div></div><a href="views/reservas.html" class="btn-rsv">Reservar</a></div>
+      <div class="hor-card rv d3"><div class="hor-hora">06:00</div><div class="hor-mid"><div class="hor-badge blue">Comercial</div><div class="hor-route">Huanta → Lima</div><div class="hor-meta">15 asientos · 9h</div></div><a href="views/reservas.html" class="btn-rsv">Reservar</a></div>
+      <div class="hor-card rv d1"><div class="hor-hora">21:00</div><div class="hor-mid"><div class="hor-badge green">Económico</div><div class="hor-route">Lima → Ayacucho</div><div class="hor-meta">30 asientos · Nocturno</div></div><a href="views/reservas.html" class="btn-rsv">Reservar</a></div>
+      <div class="hor-card rv d2" style="border-color:rgba(200,32,31,.2)"><div class="hor-hora">22:30</div><div class="hor-mid"><div class="hor-badge gold">Dorado King</div><div class="hor-route">Lima → Ayacucho</div><div class="hor-alert">⚡ Solo 8 asientos</div></div><a href="views/reservas.html" class="btn-rsv">Reservar</a></div>
     </div>
-    <div style="text-align:center;margin-top:2rem">
-      <a href="#" class="btn-sm" style="justify-content:center;font-size:.8rem">Ver todos los horarios <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    <div style="text-align:center;margin-top:2.4rem" class="rv">
+      <a href="views/reservas.html" class="btn-o">Ver todos los horarios →</a>
     </div>
   </div>
 </section>
@@ -587,36 +649,15 @@ footer{background:var(--gray900);padding:4.5rem 0 0;color:white}
 <!-- TESTIMONIOS -->
 <section class="sec">
   <div class="w">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <div class="sec-eye">Lo que dicen nuestros pasajeros</div>
       <h2 class="sec-ttl">Miles de familias <em>confían en nosotros</em></h2>
       <div class="sec-rule"></div>
     </div>
     <div class="test-grid">
-      <div class="test-card">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-text">"Viajé en clase Dorado King de Lima a Ayacucho y fue excelente. Bus moderno, asientos cómodos y llegamos puntual. Sin duda la mejor empresa de la ruta."</p>
-        <div class="test-author">
-          <div class="test-ava" style="background:var(--red)">M</div>
-          <div><div class="test-name">María C.</div><div class="test-city">Lima, Perú</div></div>
-        </div>
-      </div>
-      <div class="test-card feat">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-text">"Uso Antezana Cargo para enviar productos de Ayacucho a Lima. Siempre llegan en perfectas condiciones y a tiempo. Muy recomendable para comerciantes."</p>
-        <div class="test-author">
-          <div class="test-ava" style="background:var(--navy)">J</div>
-          <div><div class="test-name">Jorge H.</div><div class="test-city">Ayacucho, Perú</div></div>
-        </div>
-      </div>
-      <div class="test-card">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-text">"La ruta Huanta-Lima es la que más uso. El servicio económico es bueno y los precios son los mejores. Llevo años viajando con Antezana y nunca me han fallado."</p>
-        <div class="test-author">
-          <div class="test-ava" style="background:var(--gold)">R</div>
-          <div><div class="test-name">Rosa P.</div><div class="test-city">Huanta, Ayacucho</div></div>
-        </div>
-      </div>
+      <div class="test-card rv"><div class="test-stars">★★★★★</div><p class="test-txt">"Viajé en clase Dorado King de Lima a Ayacucho y fue excelente. Bus moderno, asientos cómodos y llegamos puntual. Sin duda la mejor empresa de la ruta."</p><div class="test-author"><div class="test-ava" style="background:var(--red)">M</div><div><div class="test-name">María C.</div><div class="test-city">Lima, Perú</div></div></div></div>
+      <div class="test-card feat rv d1"><div class="test-stars">★★★★★</div><p class="test-txt">"Uso Antezana Cargo para enviar productos de Ayacucho a Lima. Siempre llegan en perfectas condiciones y a tiempo. Muy recomendable para comerciantes."</p><div class="test-author"><div class="test-ava" style="background:var(--navy2)">J</div><div><div class="test-name">Jorge H.</div><div class="test-city">Ayacucho, Perú</div></div></div></div>
+      <div class="test-card rv d2"><div class="test-stars">★★★★★</div><p class="test-txt">"La ruta Huanta-Lima es la que más uso. El servicio económico es bueno y los precios son los mejores. Llevo años viajando con Antezana y nunca me han fallado."</p><div class="test-author"><div class="test-ava" style="background:var(--gold)">R</div><div><div class="test-name">Rosa P.</div><div class="test-city">Huanta, Ayacucho</div></div></div></div>
     </div>
   </div>
 </section>
@@ -626,131 +667,190 @@ footer{background:var(--gray900);padding:4.5rem 0 0;color:white}
   <div class="w">
     <div class="ft-grid">
       <div>
-        <div class="ft-brand-name">ANTE<em>ZANA</em></div>
-        <p class="ft-brand-desc">Más de 20 años conectando el Perú con seguridad, puntualidad y el mejor servicio de transporte interprovincial.</p>
-        <div class="ft-soc">
-          <a href="#" class="ft-soc-btn">f</a>
-          <a href="#" class="ft-soc-btn">ig</a>
-          <a href="#" class="ft-soc-btn">tk</a>
-          <a href="#" class="ft-soc-btn" style="background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.2)">wa</a>
+        <div class="ft-brand">ANTE<em>ZANA</em></div>
+        <p class="ft-desc">Más de 20 años conectando el Perú con seguridad, puntualidad y el mejor servicio de transporte interprovincial.</p>
+        <div class="ft-socs">
+          <a href="#" class="ft-soc">f</a>
+          <a href="#" class="ft-soc">ig</a>
+          <a href="#" class="ft-soc">tk</a>
+          <a href="https://wa.me/51999999999" target="_blank" rel="noopener" class="ft-soc" style="background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.2)">wa</a>
         </div>
       </div>
       <div>
-        <div class="ft-col-ttl">Navegación</div>
-        <ul class="ft-links">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Nosotros</a></li>
-          <li><a href="#">Destinos</a></li>
-          <li><a href="#">Paquetes</a></li>
-          <li><a href="#">Experiencias</a></li>
-          <li><a href="#">Blog</a></li>
-        </ul>
+        <div class="ft-col-head">Navegación</div>
+        <div class="ft-links">
+          <a href="index.html">Inicio</a><a href="views/nosotros.html">Nosotros</a>
+          <a href="views/destinos.html">Destinos</a><a href="views/paquetes.html">Paquetes</a>
+          <a href="views/experiencias.html">Experiencias</a><a href="views/blog.html">Blog</a>
+        </div>
       </div>
       <div>
-        <div class="ft-col-ttl">Servicios</div>
-        <ul class="ft-links">
-          <li><a href="#">Clase Dorado King</a></li>
-          <li><a href="#">Clase Comercial</a></li>
-          <li><a href="#">Clase Económico</a></li>
-          <li><a href="#">Antezana Cargo</a></li>
-          <li><a href="#">Promociones</a></li>
-          <li><a href="#">Preguntas Frecuentes</a></li>
-        </ul>
+        <div class="ft-col-head">Servicios</div>
+        <div class="ft-links">
+          <a href="views/reservas.html">Clase Dorado King</a><a href="views/reservas.html">Clase Comercial</a>
+          <a href="views/reservas.html">Clase Económico</a><a href="views/contacto.html">Antezana Cargo</a>
+          <a href="views/promociones.html">Promociones</a><a href="views/faq.html">Preguntas Frecuentes</a>
+        </div>
       </div>
       <div>
-        <div class="ft-col-ttl">Contacto</div>
-        <ul class="ft-links">
-          <li><a href="#">📞 +51 999 999 999</a></li>
-          <li><a href="#">💬 WhatsApp 24h</a></li>
-          <li><a href="#">📍 Terminal Lima</a></li>
-          <li><a href="#">📍 Terminal Ayacucho</a></li>
-          <li><a href="#">📍 Terminal Huanta</a></li>
-          <li><a href="#" style="color:var(--goldl)">⏰ Atención: 5am – 11pm</a></li>
-        </ul>
+        <div class="ft-col-head">Contacto</div>
+        <div class="ft-links">
+          <a href="tel:+51999999999">📞 +51 999 999 999</a>
+          <a href="https://wa.me/51999999999" target="_blank">💬 WhatsApp 24h</a>
+          <a href="#">📍 Terminal Lima · La Victoria</a>
+          <a href="#">📍 Terminal Ayacucho · Huamanga</a>
+          <a href="#">📍 Terminal Huanta</a>
+          <a href="views/contacto.html" style="color:var(--goldl)">⏰ Atención: 5am – 11pm</a>
+        </div>
       </div>
     </div>
     <div class="ft-bottom">
-      <span>© 2026 Empresa de Transportes Antezana S.A.C. — Huanta, Ayacucho, Perú</span>
+      <span>© <span id="fty"></span> Empresa de Transportes Antezana S.A.C. — Huanta, Ayacucho, Perú</span>
       <span>Servicio interprovincial autorizado por el MTC</span>
     </div>
   </div>
 </footer>
 
-<!-- WA FLOTANTE -->
-<a id="waf" href="#" aria-label="WhatsApp">
+<!-- WA -->
+<a id="waf" href="https://wa.me/51999999999?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
 <script>
-const today = new Date().toISOString().split('T')[0];
-document.getElementById('qdate').value = today;
-document.getElementById('qdate').min = today;
+'use strict';
+// Fecha
+const td=new Date().toISOString().split('T')[0];
+const bkf=document.getElementById('bkf');if(bkf){bkf.value=td;bkf.min=td;}
+document.getElementById('fty').textContent=new Date().getFullYear();
 
-// SLIDER
-const slides = [
-  {eye:'Ruta principal',ttl:'Lima<br><em>Ayacucho</em>',sub:'Viaja con comodidad y seguridad por la sierra peruana. Salidas diarias mañana y noche.'},
-  {eye:'Destino recomendado',ttl:'Huanta,<br><em>Tierra de Flores</em>',sub:'Descubre la capital de la provincia de Huanta. Múltiples horarios disponibles desde Lima.'},
-  {eye:'Servicio premium',ttl:'Clase<br><em>Dorado King</em>',sub:'El máximo confort en cada kilómetro. Asientos reclinables, Wi-Fi y servicio a bordo.'},
-  {eye:'Encomiendas',ttl:'Antezana<br><em>Cargo</em>',sub:'Envía tus paquetes con total seguridad a todos nuestros destinos. Rápido y confiable.'},
-];
-let cur=0,timer,prog,filling=false;
-const INTERVAL=5500;
-
-function goTo(i){
-  document.querySelectorAll('.h-slide').forEach((s,j)=>s.classList.toggle('act',j===i));
-  document.querySelectorAll('.h-dot').forEach((d,j)=>d.classList.toggle('act',j===i));
-  document.getElementById('h-eye').textContent=slides[i].eye;
-  document.getElementById('h-ttl').innerHTML=slides[i].ttl;
-  document.getElementById('h-sub').textContent=slides[i].sub;
-  cur=i;
-  startProg();
-}
-
-function startProg(){
-  const pf=document.getElementById('hpf');
-  pf.style.transition='none';pf.style.width='0';
-  setTimeout(()=>{pf.style.transition=`width ${INTERVAL}ms linear`;pf.style.width='100%';},30);
-}
-
-function next(){goTo((cur+1)%4);}
-
-document.querySelectorAll('.h-dot').forEach(d=>{
-  d.addEventListener('click',()=>{clearInterval(timer);goTo(+d.dataset.i);timer=setInterval(next,INTERVAL);});
+// LOADER
+const loader=document.getElementById('loader'),t0=performance.now();
+window.addEventListener('load',()=>{
+  const rem=Math.max(0,2600-(performance.now()-t0));
+  setTimeout(()=>{
+    loader.style.transition='opacity .5s ease';loader.style.opacity='0';
+    setTimeout(()=>{loader.remove();document.body.classList.add('ready');initReveal();initCounters();},520);
+  },rem);
 });
 
-goTo(0);
-timer=setInterval(next,INTERVAL);
+// SCROLL PROGRESS
+const sp=document.getElementById('sp');
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  sp.style.width=pct+'%';
+},{passive:true});
 
-// COUNTERS
-function count(el,target,suffix,duration){
-  let start=null;
-  const step=ts=>{
-    if(!start)start=ts;
-    const p=Math.min((ts-start)/duration,1);
-    const e=1-Math.pow(1-p,3);
-    el.textContent=Math.round(e*target)+suffix;
-    if(p<1)requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
+// NAVBAR
+const nav=document.getElementById('navbar');
+let ly=0,tick=false;
+window.addEventListener('scroll',()=>{
+  if(!tick){requestAnimationFrame(()=>{
+    const y=window.scrollY;
+    nav.classList.toggle('scrolled',y>60);
+    if(y>300){if(y>ly+8)nav.style.transform='translateY(-110%)';else if(y<ly-4)nav.style.transform='translateY(0)';}
+    else nav.style.transform='translateY(0)';
+    ly=y;tick=false;
+  });tick=true;}
+},{passive:true});
+nav.style.transition='transform .35s ease,padding .3s ease,background .35s ease,box-shadow .3s ease';
+
+// BURGER
+const burger=document.getElementById('nav-burger');
+const mob=document.getElementById('nav-mobile');
+const mobClose=document.getElementById('nav-mobile-close');
+const openMob=()=>{mob.classList.add('open');document.body.style.overflow='hidden';}
+const closeMob=()=>{mob.classList.remove('open');document.body.style.overflow='';}
+if(burger)burger.addEventListener('click',()=>mob.classList.contains('open')?closeMob():openMob());
+if(mobClose)mobClose.addEventListener('click',closeMob);
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMob));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMob();});
+
+// HERO SLIDER
+const SLIDES=[
+  {img:'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&q=80',eye:'Ruta principal',l1:'Lima',l2:'Ayacucho',sub:'Viaja con comodidad y seguridad por la sierra peruana. Salidas diarias mañana y noche con nuestra flota moderna.'},
+  {img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80',eye:'Destino recomendado',l1:'Huanta,',l2:'Tierra de Flores',sub:'Descubre la capital de la provincia de Huanta. Múltiples horarios disponibles desde Lima y Ayacucho.'},
+  {img:'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1800&q=80',eye:'Servicio premium',l1:'Clase',l2:'Dorado King',sub:'El máximo confort en cada kilómetro. Asientos reclinables 180°, Wi-Fi a bordo y servicio de snacks incluido.'},
+  {img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800&q=80',eye:'Encomiendas',l1:'Antezana',l2:'Cargo',sub:'Envía tus paquetes con total seguridad a todos nuestros destinos. Rápido, confiable y económico.'},
+];
+let cur=0,slT;
+const hImg=document.getElementById('hero-img');
+const hEye=document.getElementById('h-eye');
+const hL1=document.getElementById('h-l1');
+const hL2=document.getElementById('h-l2');
+const hSub=document.getElementById('h-sub');
+const hDots=document.querySelectorAll('.h-dot');
+const hcc=document.getElementById('hcc');
+
+function goSlide(i){
+  const s=SLIDES[i];
+  [hEye,hL1,hL2,hSub].forEach(el=>{el.style.transition='opacity .28s ease,transform .28s ease';el.style.opacity='0';el.style.transform='translateY(16px)';});
+  hImg.style.transition='opacity .5s ease';hImg.style.opacity='0';
+  setTimeout(()=>{
+    hImg.src=s.img;
+    hImg.onload=()=>{hImg.style.opacity='.3';}
+    hEye.textContent=s.eye;hL1.textContent=s.l1;hL2.textContent=s.l2;hSub.textContent=s.sub;
+    [hEye,hL1,hL2,hSub].forEach((el,j)=>{
+      setTimeout(()=>{
+        el.style.transition=`opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)`;
+        el.style.opacity='1';el.style.transform='none';
+      },j*90+40);
+    });
+    hDots.forEach((d,j)=>d.classList.toggle('on',j===i));
+    hcc.textContent=String(i+1).padStart(2,'0');
+    cur=i;
+  },300);
 }
 
-const counters=[
-  {id:'c1',val:20,sfx:'+'},
-  {id:'c2',val:13,sfx:''},
-  {id:'c3',val:500,sfx:'K+'},
-  {id:'c4',val:100,sfx:'%'},
-  {id:'c5',val:365,sfx:''},
-];
+hDots.forEach(d=>d.addEventListener('click',()=>{clearInterval(slT);goSlide(+d.dataset.i);slT=setInterval(()=>goSlide((cur+1)%4),5800);}));
+slT=setInterval(()=>goSlide((cur+1)%4),5800);
+// Teclado
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){clearInterval(slT);goSlide((cur+1)%4);slT=setInterval(()=>goSlide((cur+1)%4),5800);}
+  if(e.key==='ArrowLeft'){clearInterval(slT);goSlide((cur-1+4)%4);slT=setInterval(()=>goSlide((cur+1)%4),5800);}
+});
+// Swipe
+let tx=0;
+document.querySelector('.hero').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+document.querySelector('.hero').addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50){clearInterval(slT);goSlide(dx<0?(cur+1)%4:(cur-1+4)%4);slT=setInterval(()=>goSlide((cur+1)%4),5800);}
+},{passive:true});
 
-const statsEl=document.querySelector('.stats');
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      counters.forEach(c=>count(document.getElementById(c.id),c.val,c.sfx,1800));
-      io.unobserve(e.target);
-    }
+// SCROLL REVEAL
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv,.rl,.rr').forEach(el=>obs.observe(el));
+}
+
+// COUNTERS
+function initCounters(){
+  const ease=t=>1-Math.pow(1-t,4);
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target,tv=+el.dataset.count,sfx=el.dataset.sfx||'',dur=1800;
+        let s=null;
+        const step=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/dur,1);el.textContent=Math.round(ease(p)*tv)+sfx;if(p<1)requestAnimationFrame(step);};
+        requestAnimationFrame(step);obs.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>obs.observe(el));
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(!t)return;e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});
   });
-},{threshold:.3});
-io.observe(statsEl);
+});
+
+// WA
+setTimeout(()=>{const w=document.getElementById('waf');w.style.transition='opacity .4s ease,transform .2s';w.classList.add('show');},3800);
 </script>
-</div>
+</body>
+</html>
