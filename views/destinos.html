@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Destinos Antezana — Lima, Ayacucho, Huanta, Huancayo, Ica y más. Conoce todas nuestras rutas, horarios y tarifas."/>
+<title>Destinos — Antezana Transporte & Turismo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C8201F;--red2:#9A1515;
+  --navy:#0B1F4B;--navy2:#1A3A8F;--navy3:#2251C5;
+  --white:#FFFFFF;--gray50:#F8F9FB;--gray100:#EEF2F8;--gray200:#D8E0EF;
+  --gray400:#9AAAC4;--gray600:#5A6A88;--gray800:#2C3A54;--gray900:#0D1A30;
+  --gold:#C4973A;--goldl:#E8BA5E;
+  --f-display:'Bebas Neue',sans-serif;
+  --f-ui:'Barlow Condensed',sans-serif;
+  --f-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:#fff;color:var(--gray900);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button,select,input{cursor:pointer;font-family:inherit;border:none;background:none}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:99px}
+::selection{background:var(--red);color:#fff}
+
+#sp{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--navy2),var(--red));z-index:300;transition:width .1s linear;width:0}
+
+/* NAVBAR */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray100);box-shadow:0 2px 24px rgba(11,31,75,.07);transition:padding .3s ease}
+#navbar.scrolled{padding:.8rem 4rem}
+.nav-logo{display:flex;align-items:center;gap:.7rem}
+.nav-logo-mark{width:40px;height:40px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(200,32,31,.3);transition:transform .2s}
+.nav-logo-mark:hover{transform:scale(1.08) rotate(-3deg)}
+.nav-logo-mark svg{width:22px;height:22px;fill:#fff}
+.nav-logo-name{font-family:var(--f-display);font-size:1.45rem;letter-spacing:.1em;color:var(--navy);line-height:1}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);display:block;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:.1rem}
+.nav-links a{font-family:var(--f-ui);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray600);padding:.5rem .85rem;border-radius:4px;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:.85rem;width:0;height:1.5px;background:var(--red);transition:width .3s cubic-bezier(.16,1,.3,1);border-radius:1px}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a:hover::after,.nav-links a.on::after{width:calc(100% - 1.7rem)}
+.nav-links a.on{color:var(--navy2)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.3rem!important;border-radius:4px!important;font-weight:800!important;box-shadow:0 4px 14px rgba(200,32,31,.3)}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--red2)!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;padding:.3rem}
+.nav-burger span{display:block;width:22px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .3s}
+#nav-mobile{display:none;position:fixed;inset:0;z-index:150;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+#nav-mobile.open{display:flex}
+#nav-mobile a{font-family:var(--f-display);font-size:3rem;letter-spacing:.06em;color:var(--gray400);transition:color .2s}
+#nav-mobile a:hover{color:var(--red)}
+#nmc{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--gray400);cursor:pointer;font-family:var(--f-display)}
+
+/* HERO PAGE */
+.page-hero{background:var(--navy);padding:10rem 0 6rem;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;opacity:.14}
+.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,#fff,transparent)}
+.ph-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 4rem}
+.ph-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.4rem}
+.ph-breadcrumb a{color:rgba(255,255,255,.35);transition:color .2s}
+.ph-breadcrumb a:hover{color:rgba(255,255,255,.7)}
+.ph-eye{font-family:var(--f-ui);font-weight:700;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem;display:flex;align-items:center;gap:.55rem}
+.ph-eye::before{content:'';width:22px;height:1.5px;background:var(--red)}
+.ph-title{font-family:var(--f-display);font-size:clamp(3.5rem,8vw,7rem);letter-spacing:.03em;color:#fff;line-height:.92;margin-bottom:1.2rem}
+.ph-title em{color:var(--goldl);font-style:normal}
+.ph-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.55);max-width:520px;line-height:1.8}
+
+.w{max-width:1200px;margin:0 auto;padding:0 4rem}
+.sec{padding:6rem 0}
+.sec-alt{background:var(--gray50)}
+.sec-eye{font-family:var(--f-ui);font-weight:700;font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.55rem}
+.sec-eye::before,.sec-eye::after{content:'';width:22px;height:1px;background:rgba(200,32,31,.4)}
+.sec-ttl{font-family:var(--f-display);font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:.95;letter-spacing:.03em;color:var(--navy)}
+.sec-ttl em{color:var(--red);font-style:normal}
+.sec-rule{width:44px;height:2.5px;background:linear-gradient(90deg,var(--navy2),var(--red));border-radius:2px;margin:.9rem auto 0}
+.sec-sub{font-size:.9rem;font-weight:300;color:var(--gray600);line-height:1.8;max-width:540px;margin:1rem auto 0}
+.sec-head{text-align:center;margin-bottom:3rem}
+
+/* FILTROS RUTA */
+.filtros-bar{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:3rem}
+.filtro-btn{font-family:var(--f-ui);font-weight:700;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray600);background:#fff;border:1.5px solid var(--gray200);padding:.6rem 1.3rem;border-radius:99px;cursor:pointer;transition:all .2s}
+.filtro-btn:hover{border-color:var(--navy2);color:var(--navy2)}
+.filtro-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 16px rgba(200,32,31,.25)}
+
+/* GRID DESTINOS DETALLADO */
+.dest-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.dd-card{background:#fff;border:1.5px solid var(--gray100);border-radius:14px;overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s;display:flex;flex-direction:column}
+.dd-card:hover{border-color:var(--gray200);box-shadow:0 16px 48px rgba(11,31,75,.1);transform:translateY(-4px)}
+.dd-img{height:220px;position:relative;overflow:hidden}
+.dd-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.dd-card:hover .dd-img img{transform:scale(1.07)}
+.dd-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,31,75,.85) 0%,transparent 55%)}
+.dd-tag{position:absolute;top:1rem;left:1rem;background:var(--red);color:#fff;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:.25rem .7rem;border-radius:3px;z-index:2}
+.dd-time-badge{position:absolute;bottom:1rem;right:1rem;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);color:var(--navy);font-family:var(--f-ui);font-weight:700;font-size:.7rem;padding:.3rem .7rem;border-radius:4px;z-index:2;display:flex;align-items:center;gap:.3rem}
+.dd-body{padding:1.6rem;flex:1;display:flex;flex-direction:column}
+.dd-name{font-family:var(--f-display);font-size:2rem;letter-spacing:.04em;color:var(--navy);margin-bottom:.3rem}
+.dd-desc{font-size:.84rem;color:var(--gray600);line-height:1.7;margin-bottom:1.1rem;flex:1}
+.dd-meta-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.dd-meta-item{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--gray600)}
+.dd-meta-item b{color:var(--navy)}
+.dd-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.1rem;border-top:1px solid var(--gray100)}
+.dd-price{display:flex;flex-direction:column}
+.dd-price-lbl{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray400)}
+.dd-price-val{font-family:var(--f-display);font-size:1.6rem;color:var(--red);line-height:1}
+.btn-rsv-sm{font-family:var(--f-ui);font-weight:800;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;background:var(--navy2);color:#fff;padding:.6rem 1.3rem;border-radius:5px;cursor:pointer;transition:background .15s,transform .15s;text-decoration:none}
+.btn-rsv-sm:hover{background:var(--navy);transform:translateY(-2px)}
+
+/* MAPA RUTAS */
+.mapa-wrap{background:#fff;border:1.5px solid var(--gray100);border-radius:16px;padding:3rem;text-align:center}
+.mapa-svg{max-width:680px;margin:0 auto 1.5rem}
+.mapa-legend{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.mapa-leg-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--gray600)}
+.mapa-leg-dot{width:10px;height:10px;border-radius:50%}
+
+/* TABLA TARIFAS */
+.tarifas-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(11,31,75,.06)}
+.tarifas-table thead{background:var(--navy)}
+.tarifas-table th{padding:1rem 1.4rem;text-align:left;font-family:var(--f-ui);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.tarifas-table td{padding:1rem 1.4rem;font-size:.85rem;color:var(--gray800);border-bottom:1px solid var(--gray100)}
+.tarifas-table tbody tr:hover{background:var(--gray50)}
+.tarifas-table tbody tr:last-child td{border-bottom:none}
+.tt-price{font-family:var(--f-display);font-size:1.1rem;color:var(--red)}
+.tt-badge{display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:3px}
+.tt-badge.gold{background:#FFF8EC;color:#8A5E00}
+.tt-badge.blue{background:#EEF2FF;color:var(--navy2)}
+.tt-badge.green{background:#EDFBF4;color:#0A6B3A}
+
+/* CTA FINAL */
+.cta-section{background:var(--navy);padding:5rem 0;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;background:rgba(255,255,255,.02);border-radius:50%}
+.cta-inner{text-align:center;position:relative;z-index:1}
+.cta-ttl{font-family:var(--f-display);font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;line-height:1;margin-bottom:.8rem;letter-spacing:.04em}
+.cta-ttl em{color:var(--goldl);font-style:normal}
+.cta-sub{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.5);max-width:480px;margin:.8rem auto 2rem;line-height:1.75}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:.45rem;background:#fff;color:var(--navy);padding:.85rem 2rem;font-family:var(--f-ui);font-weight:800;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;cursor:pointer;transition:filter .2s,transform .2s;text-decoration:none}
+.btn-white:hover{filter:brightness(.96);transform:translateY(-2px)}
+.btn-white-o{display:inline-flex;align-items:center;gap:.45rem;background:transparent;color:#fff;padding:.85rem 2rem;font-family:var(--f-ui);font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;border:1.5px solid rgba(255,255,255,.25);cursor:pointer;transition:border-color .2s,transform .2s;text-decoration:none}
+.btn-white-o:hover{border-color:rgba(255,255,255,.7);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255,255,.07)}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-brand{font-family:var(--f-display);font-size:2rem;letter-spacing:.08em;color:#fff;margin-bottom:.6rem}
+.ft-brand em{color:var(--red);font-style:normal}
+.ft-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.75;max-width:250px;margin-bottom:1.6rem}
+.ft-socs{display:flex;gap:.5rem}
+.ft-soc{width:35px;height:35px;border-radius:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-family:var(--f-ui);font-weight:700;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.ft-soc:hover{background:var(--red);border-color:var(--red);color:#fff}
+.ft-col-head{font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem;padding-bottom:.55rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.ft-links{display:flex;flex-direction:column;gap:.5rem}
+.ft-links a{font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s,gap .2s}
+.ft-links a:hover{color:rgba(255,255,255,.85);gap:.7rem}
+.ft-links a::before{content:'›';color:var(--red);font-size:1.1rem;line-height:1;flex-shrink:0}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;font-size:.74rem;color:rgba(255,255,255,.18);flex-wrap:wrap;gap:.5rem}
+
+#waf{position:fixed;bottom:2rem;right:2rem;z-index:90;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 22px rgba(37,211,102,.4);transition:transform .2s}
+#waf:hover{transform:scale(1.1) translateY(-3px)}
+#waf svg{width:27px;height:27px;fill:#fff}
+
+.rv{opacity:0;transform:translateY(32px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.09s}.d2{transition-delay:.18s}.d3{transition-delay:.27s}.d4{transition-delay:.36s}.d5{transition-delay:.45s}
+
+@media(max-width:1024px){
+  #navbar{padding:1rem 2rem}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .w{padding:0 2rem}
+  .ph-inner{padding:0 2rem}
+  .dest-detail-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .tarifas-table{font-size:.8rem}
+  .mapa-wrap{padding:2rem 1rem}
+}
+@media(max-width:640px){
+  .w{padding:0 1.2rem}
+  .ph-inner{padding:0 1.2rem}
+  .ft-grid{grid-template-columns:1fr}
+  .sec{padding:4rem 0}
+  .page-hero{padding:8rem 0 5rem}
+  .tarifas-table{display:block;overflow-x:auto;white-space:nowrap}
+  .dd-meta-row{gap:.6rem}
+}
+</style>
+</head>
+<body>
+
+<div id="sp"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v13h4v-6h8v6h4V7L12 2z"/></svg></div>
+    <div><span class="nav-logo-name">ANTEZANA</span><span class="nav-logo-sub">Transporte &amp; Turismo</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html" class="on">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="destinos.html">Destinos</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="experiencias.html">Experiencias</a>
+    <a href="promociones.html">Promociones</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="reservas.html" class="nav-cta">Reservar</a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="nav-mobile">
+  <button id="nmc" aria-label="Cerrar">✕</button>
+  <a href="../index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="destinos.html">Destinos</a>
+  <a href="paquetes.html">Paquetes</a>
+  <a href="experiencias.html">Experiencias</a>
+  <a href="promociones.html">Promociones</a>
+  <a href="reservas.html">Reservas</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<!-- HERO PAGE -->
+<div class="page-hero">
+  <div class="ph-inner">
+    <div class="ph-breadcrumb">
+      <a href="../index.html">Inicio</a><span style="color:rgba(255,255,255,.2)">/</span>
+      <span style="color:rgba(255,255,255,.65)">Destinos</span>
+    </div>
+    <div class="ph-eye">Nuestras rutas</div>
+    <h1 class="ph-title">Descubre todos<br>nuestros <em>destinos</em></h1>
+    <p class="ph-sub">Conectamos las principales ciudades del Perú con salidas diarias, tarifas justas y la mejor frecuencia del mercado.</p>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<section class="sec" style="padding-bottom:0">
+  <div class="w">
+    <div class="filtros-bar rv" id="filtros">
+      <button class="filtro-btn active" data-f="all">Todos los destinos</button>
+      <button class="filtro-btn" data-f="sierra">Sierra Sur</button>
+      <button class="filtro-btn" data-f="centro">Sierra Central</button>
+      <button class="filtro-btn" data-f="costa">Costa</button>
+    </div>
+  </div>
+</section>
+
+<!-- GRID DESTINOS -->
+<section class="sec" style="padding-top:1rem">
+  <div class="w">
+    <div class="dest-detail-grid" id="dest-grid">
+
+      <div class="dd-card rv" data-cat="costa">
+        <div class="dd-img">
+          <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=700&q=80" alt="Lima"/>
+          <div class="dd-img-overlay"></div>
+          <div class="dd-tag">Salidas diarias</div>
+          <div class="dd-time-badge">🕐 8h 30min</div>
+        </div>
+        <div class="dd-body">
+          <div class="dd-name">Lima</div>
+          <p class="dd-desc">Capital del Perú y nuestro principal terminal de conexión. Salidas diarias en clase Dorado King, Comercial y Económico hacia todos nuestros destinos.</p>
+          <div class="dd-meta-row">
+            <div class="dd-meta-item">📍 <b>568 km</b></div>
+            <div class="dd-meta-item">🚌 <b>4 salidas/día</b></div>
+            <div class="dd-meta-item">🎫 <b>3 clases</b></div>
+          </div>
+          <div class="dd-footer">
+            <div class="dd-price"><span class="dd-price-lbl">Desde</span><span class="dd-price-val">S/ 35</span></div>
+            <a href="reservas.html" class="btn-rsv-sm">Reservar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd-card rv d1" data-cat="sierra">
+        <div class="dd-img">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="Ayacucho"/>
+          <div class="dd-img-overlay"></div>
+          <div class="dd-tag">Patrimonio Cultural</div>
+          <div class="dd-time-badge">🕐 8h 30min</div>
+        </div>
+        <div class="dd-body">
+          <div class="dd-name">Ayacucho</div>
+          <p class="dd-desc">Ciudad de las 33 iglesias, declarada Patrimonio Cultural de la Nación. Famosa por su Semana Santa, una de las celebraciones más importantes del Perú.</p>
+          <div class="dd-meta-row">
+            <div class="dd-meta-item">📍 <b>568 km</b></div>
+            <div class="dd-meta-item">🚌 <b>4 salidas/día</b></div>
+            <div class="dd-meta-item">🎫 <b>3 clases</b></div>
+          </div>
+          <div class="dd-footer">
+            <div class="dd-price"><span class="dd-price-lbl">Desde</span><span class="dd-price-val">S/ 35</span></div>
+            <a href="reservas.html" class="btn-rsv-sm">Reservar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd-card rv d2" data-cat="sierra">
+        <div class="dd-img">
+          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=80" alt="Huanta"/>
+          <div class="dd-img-overlay"></div>
+          <div class="dd-tag">Tierra de Flores</div>
+          <div class="dd-time-badge">🕐 1h</div>
+        </div>
+        <div class="dd-body">
+          <div class="dd-name">Huanta</div>
+          <p class="dd-desc">Capital de la provincia de Huanta, conocida por su clima privilegiado y producción agrícola. Nuestra base de operaciones en la sierra sur.</p>
+          <div class="dd-meta-row">
+            <div class="dd-meta-item">📍 <b>47 km</b></div>
+            <div class="dd-meta-item">🚌 <b>4 salidas/día</b></div>
+            <div class="dd-meta-item">🎫 <b>1 clase</b></div>
+          </div>
+          <div class="dd-footer">
+            <div class="dd-price"><span class="dd-price-lbl">Desde</span><span class="dd-price-val">S/ 8</span></div>
+            <a href="reservas.html" class="btn-rsv-sm">Reservar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd-card rv d3" data-cat="centro">
+        <div class="dd-img">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=700&q=80" alt="Huancayo"/>
+          <div class="dd-img-overlay"></div>
+          <div class="dd-tag">Sierra Central</div>
+          <div class="dd-time-badge">🕐 6h 30min</div>
+        </div>
+        <div class="dd-body">
+          <div class="dd-name">Huancayo</div>
+          <p class="dd-desc">Capital de la región Junín, conocida como la "Ciudad Incontrastable". Famosa por su Feria Dominical y la formación rocosa de Torre Torre.</p>
+          <div class="dd-meta-row">
+            <div class="dd-meta-item">📍 <b>298 km</b></div>
+            <div class="dd-meta-item">🚌 <b>3 salidas/día</b></div>
+            <div class="dd-meta-item">🎫 <b>3 clases</b></div>
+          </div>
+          <div class="dd-footer">
+            <div class="dd-price"><span class="dd-price-lbl">Desde</span><span class="dd-price-val">S/ 30</span></div>
+            <a href="reservas.html" class="btn-rsv-sm">Reservar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd-card rv d4" data-cat="costa">
+        <div class="dd-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Ica"/>
+          <div class="dd-img-overlay"></div>
+          <div class="dd-tag">Costa Sur</div>
+          <div class="dd-time-badge">🕐 4h</div>
+        </div>
+        <div class="dd-body">
+          <div class="dd-name">Ica</div>
+          <p class="dd-desc">Tierra del pisco y el vino peruano, con paisajes desérticos únicos como las dunas de Huacachina. Conexión directa desde Lima.</p>
+          <div class="dd-meta-row">
+            <div class="dd-meta-item">📍 <b>302 km</b></div>
+            <div class="dd-meta-item">🚌 <b>2 salidas/día</b></div>
+            <div class="dd-meta-item">🎫 <b>2 clases</b></div>
+          </div>
+          <div class="dd-footer">
+            <div class="dd-price"><span class="dd-price-lbl">Desde</span><span class="dd-price-val">S/ 28</span></div>
+            <a href="reservas.html" class="btn-rsv-sm">Reservar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd-card rv d5" data-cat="centro">
+        <div class="dd-img">
+          <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=700&q=80" alt="Pampas"/>
+          <div class="dd-img-overlay"></div>
+          <div class="dd-tag">Sierra Central</div>
+          <div class="dd-time-badge">🕐 7h</div>
+        </div>
+        <div class="dd-body">
+          <div class="dd-name">Pampas</div>
+          <p class="dd-desc">Capital de la provincia de Tayacaja, en la región Huancavelica. Punto intermedio en nuestra ruta hacia la sierra central del país.</p>
+          <div class="dd-meta-row">
+            <div class="dd-meta-item">📍 <b>390 km</b></div>
+            <div class="dd-meta-item">🚌 <b>1 salida/día</b></div>
+            <div class="dd-meta-item">🎫 <b>1 clase</b></div>
+          </div>
+          <div class="dd-footer">
+            <div class="dd-price"><span class="dd-price-lbl">Desde</span><span class="dd-price-val">S/ 45</span></div>
+            <a href="reservas.html" class="btn-rsv-sm">Reservar →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAPA DE RUTAS -->
+<section class="sec sec-alt">
+  <div class="w">
+    <div class="sec-head rv">
+      <div class="sec-eye">Cobertura nacional</div>
+      <h2 class="sec-ttl">Nuestra <em>red de rutas</em></h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="mapa-wrap rv d1">
+      <svg class="mapa-svg" viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+        <!-- Líneas de ruta -->
+        <path d="M340 60 L300 180 L260 260" stroke="#1A3A8F" stroke-width="2.5" fill="none" stroke-dasharray="6 5"/>
+        <path d="M260 260 L300 300" stroke="#C8201F" stroke-width="2.5" fill="none" stroke-dasharray="6 5"/>
+        <path d="M260 260 L180 320" stroke="#1A3A8F" stroke-width="2.5" fill="none" stroke-dasharray="6 5"/>
+        <path d="M340 60 L420 200" stroke="#C4973A" stroke-width="2.5" fill="none" stroke-dasharray="6 5"/>
+        <path d="M260 260 L380 330" stroke="#1A3A8F" stroke-width="2" fill="none" stroke-dasharray="6 5"/>
+        <!-- Puntos ciudades -->
+        <circle cx="340" cy="60" r="9" fill="#C8201F"/>
+        <text x="358" y="65" font-family="Barlow Condensed" font-weight="700" font-size="15" fill="#0B1F4B">LIMA</text>
+        <circle cx="260" cy="260" r="9" fill="#1A3A8F"/>
+        <text x="278" y="265" font-family="Barlow Condensed" font-weight="700" font-size="15" fill="#0B1F4B">AYACUCHO</text>
+        <circle cx="300" cy="300" r="6" fill="#C4973A"/>
+        <text x="314" y="305" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#0B1F4B">HUANTA</text>
+        <circle cx="180" cy="320" r="6" fill="#1A3A8F"/>
+        <text x="100" y="340" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#0B1F4B">HUANCAYO</text>
+        <circle cx="420" cy="200" r="6" fill="#C4973A"/>
+        <text x="436" y="205" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#0B1F4B">ICA</text>
+        <circle cx="380" cy="330" r="6" fill="#1A3A8F"/>
+        <text x="396" y="335" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#0B1F4B">PAMPAS</text>
+      </svg>
+      <div class="mapa-legend">
+        <div class="mapa-leg-item"><span class="mapa-leg-dot" style="background:#C8201F"></span> Terminal principal</div>
+        <div class="mapa-leg-item"><span class="mapa-leg-dot" style="background:#1A3A8F"></span> Ruta sierra</div>
+        <div class="mapa-leg-item"><span class="mapa-leg-dot" style="background:#C4973A"></span> Ruta costa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLA TARIFAS -->
+<section class="sec">
+  <div class="w">
+    <div class="sec-head rv">
+      <div class="sec-eye">Precios actualizados</div>
+      <h2 class="sec-ttl">Tarifas por <em>ruta</em></h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div style="overflow-x:auto" class="rv d1">
+      <table class="tarifas-table">
+        <thead>
+          <tr><th>Ruta</th><th>Distancia</th><th>Duración</th><th>Clase</th><th>Precio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lima → Ayacucho</td><td>568 km</td><td>8h 30min</td><td><span class="tt-badge gold">Dorado King</span></td><td class="tt-price">S/ 75</td></tr>
+          <tr><td>Lima → Ayacucho</td><td>568 km</td><td>8h 30min</td><td><span class="tt-badge blue">Comercial</span></td><td class="tt-price">S/ 50</td></tr>
+          <tr><td>Lima → Ayacucho</td><td>568 km</td><td>8h 30min</td><td><span class="tt-badge green">Económico</span></td><td class="tt-price">S/ 35</td></tr>
+          <tr><td>Lima → Huanta</td><td>590 km</td><td>9h</td><td><span class="tt-badge blue">Comercial</span></td><td class="tt-price">S/ 55</td></tr>
+          <tr><td>Lima → Huancayo</td><td>298 km</td><td>6h 30min</td><td><span class="tt-badge gold">Dorado King</span></td><td class="tt-price">S/ 60</td></tr>
+          <tr><td>Lima → Ica</td><td>302 km</td><td>4h</td><td><span class="tt-badge blue">Comercial</span></td><td class="tt-price">S/ 38</td></tr>
+          <tr><td>Ayacucho → Huanta</td><td>47 km</td><td>1h</td><td><span class="tt-badge green">Económico</span></td><td class="tt-price">S/ 8</td></tr>
+          <tr><td>Lima → Pampas</td><td>390 km</td><td>7h</td><td><span class="tt-badge green">Económico</span></td><td class="tt-price">S/ 45</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="w">
+    <div class="cta-inner rv">
+      <div class="cta-ttl">¿No encuentras tu <em>destino?</em></div>
+      <p class="cta-sub">Contáctanos y te ayudamos a planificar tu viaje con la mejor opción de ruta y horario.</p>
+      <div class="cta-btns">
+        <a href="reservas.html" class="btn-white">Reservar ahora →</a>
+        <a href="contacto.html" class="btn-white-o">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="w">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand">ANTE<em>ZANA</em></div>
+        <p class="ft-desc">Más de 20 años conectando el Perú con seguridad, puntualidad y el mejor servicio de transporte interprovincial.</p>
+        <div class="ft-socs">
+          <a href="#" class="ft-soc">f</a><a href="#" class="ft-soc">ig</a><a href="#" class="ft-soc">tk</a>
+          <a href="https://wa.me/51999999999" target="_blank" rel="noopener" class="ft-soc" style="background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.2)">wa</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-head">Navegación</div>
+        <div class="ft-links">
+          <a href="../index.html">Inicio</a><a href="nosotros.html">Nosotros</a>
+          <a href="destinos.html">Destinos</a><a href="paquetes.html">Paquetes</a>
+          <a href="experiencias.html">Experiencias</a><a href="blog.html">Blog</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-head">Servicios</div>
+        <div class="ft-links">
+          <a href="reservas.html">Clase Dorado King</a><a href="reservas.html">Clase Comercial</a>
+          <a href="reservas.html">Clase Económico</a><a href="contacto.html">Antezana Cargo</a>
+          <a href="promociones.html">Promociones</a><a href="faq.html">Preguntas Frecuentes</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-head">Contacto</div>
+        <div class="ft-links">
+          <a href="tel:+51999999999">📞 +51 999 999 999</a>
+          <a href="https://wa.me/51999999999" target="_blank">💬 WhatsApp 24h</a>
+          <a href="#">📍 Terminal Lima · La Victoria</a>
+          <a href="#">📍 Terminal Ayacucho · Huamanga</a>
+          <a href="#">📍 Terminal Huanta</a>
+          <a href="contacto.html" style="color:var(--goldl)">⏰ Atención: 5am – 11pm</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© <span id="fty"></span> Empresa de Transportes Antezana S.A.C. — Huanta, Ayacucho, Perú</span>
+      <span>Servicio interprovincial autorizado por el MTC</span>
+    </div>
+  </div>
+</footer>
+
+<a id="waf" href="https://wa.me/51999999999?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+'use strict';
+document.getElementById('fty').textContent = new Date().getFullYear();
+
+const sp = document.getElementById('sp');
+window.addEventListener('scroll', () => {
+  sp.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+}, { passive: true });
+
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+const burger = document.getElementById('nav-burger');
+const mob = document.getElementById('nav-mobile');
+const nmc = document.getElementById('nmc');
+const openM = () => { mob.classList.add('open'); document.body.style.overflow = 'hidden'; };
+const closeM = () => { mob.classList.remove('open'); document.body.style.overflow = ''; };
+if (burger) burger.addEventListener('click', () => mob.classList.contains('open') ? closeM() : openM());
+if (nmc) nmc.addEventListener('click', closeM);
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', closeM));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); });
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// FILTROS
+const filtros = document.querySelectorAll('.filtro-btn');
+const cards = document.querySelectorAll('#dest-grid .dd-card');
+filtros.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filtros.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    cards.forEach(c => {
+      const show = f === 'all' || c.dataset.cat === f;
+      c.style.transition = 'opacity .3s ease, transform .3s ease';
+      if (show) {
+        c.style.display = '';
+        requestAnimationFrame(() => { c.style.opacity = '1'; c.style.transform = 'none'; });
+      } else {
+        c.style.opacity = '0'; c.style.transform = 'scale(.96)';
+        setTimeout(() => { c.style.display = 'none'; }, 300);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
