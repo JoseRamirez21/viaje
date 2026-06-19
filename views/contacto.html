@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Contacto Antezana — Escribenos, llamanos o visita nuestros terminales en Lima, Ayacucho y Huanta."/>
+<title>Contacto - Antezana Transporte & Turismo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C8201F;--red2:#9A1515;
+  --navy:#0B1F4B;--navy2:#1A3A8F;--navy3:#2251C5;
+  --white:#FFFFFF;--gray50:#F8F9FB;--gray100:#EEF2F8;--gray200:#D8E0EF;
+  --gray400:#9AAAC4;--gray600:#5A6A88;--gray800:#2C3A54;--gray900:#0D1A30;
+  --gold:#C4973A;--goldl:#E8BA5E;
+  --f-display:'Bebas Neue',sans-serif;--f-ui:'Barlow Condensed',sans-serif;--f-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:#fff;color:var(--gray900);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button,input,select,textarea{cursor:pointer;font-family:inherit;border:none;background:none}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:99px}
+::selection{background:var(--red);color:#fff}
+#sp{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--navy2),var(--red));z-index:300;transition:width .1s linear;width:0}
+
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray100);box-shadow:0 2px 24px rgba(11,31,75,.07);transition:padding .3s ease}
+#navbar.scrolled{padding:.8rem 4rem}
+.nav-logo{display:flex;align-items:center;gap:.7rem}
+.nav-logo-mark{width:40px;height:40px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(200,32,31,.3);transition:transform .2s}
+.nav-logo-mark:hover{transform:scale(1.08) rotate(-3deg)}
+.nav-logo-mark svg{width:22px;height:22px;fill:#fff}
+.nav-logo-name{font-family:var(--f-display);font-size:1.45rem;letter-spacing:.1em;color:var(--navy);line-height:1}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);display:block;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:.1rem}
+.nav-links a{font-family:var(--f-ui);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray600);padding:.5rem .85rem;border-radius:4px;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:.85rem;width:0;height:1.5px;background:var(--red);transition:width .3s cubic-bezier(.16,1,.3,1);border-radius:1px}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a:hover::after,.nav-links a.on::after{width:calc(100% - 1.7rem)}
+.nav-links a.on{color:var(--navy2)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.3rem!important;border-radius:4px!important;font-weight:800!important;box-shadow:0 4px 14px rgba(200,32,31,.3)}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--red2)!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;padding:.3rem}
+.nav-burger span{display:block;width:22px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .3s}
+#nav-mobile{display:none;position:fixed;inset:0;z-index:150;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+#nav-mobile.open{display:flex}
+#nav-mobile a{font-family:var(--f-display);font-size:3rem;letter-spacing:.06em;color:var(--gray400);transition:color .2s}
+#nav-mobile a:hover{color:var(--red)}
+#nmc{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--gray400);cursor:pointer;font-family:var(--f-display)}
+
+.page-hero{background:var(--navy);padding:10rem 0 6rem;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=1600&q=80') center/cover no-repeat;opacity:.14}
+.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,#fff,transparent)}
+.ph-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 4rem}
+.ph-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.4rem}
+.ph-breadcrumb a{color:rgba(255,255,255,.35);transition:color .2s}
+.ph-breadcrumb a:hover{color:rgba(255,255,255,.7)}
+.ph-eye{font-family:var(--f-ui);font-weight:700;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem;display:flex;align-items:center;gap:.55rem}
+.ph-eye::before{content:'';width:22px;height:1.5px;background:var(--red)}
+.ph-title{font-family:var(--f-display);font-size:clamp(3.2rem,7.5vw,6.8rem);letter-spacing:.03em;color:#fff;line-height:.92;margin-bottom:1.2rem}
+.ph-title em{color:var(--goldl);font-style:normal}
+.ph-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.55);max-width:540px;line-height:1.8}
+
+.w{max-width:1200px;margin:0 auto;padding:0 4rem}
+.sec{padding:6rem 0}
+.sec-alt{background:var(--gray50)}
+.sec-eye{font-family:var(--f-ui);font-weight:700;font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.55rem}
+.sec-eye::before,.sec-eye::after{content:'';width:22px;height:1px;background:rgba(200,32,31,.4)}
+.sec-eye.left{justify-content:flex-start}
+.sec-eye.left::before,.sec-eye.left::after{display:none}
+.sec-ttl{font-family:var(--f-display);font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:.95;letter-spacing:.03em;color:var(--navy)}
+.sec-ttl em{color:var(--red);font-style:normal}
+.sec-rule{width:44px;height:2.5px;background:linear-gradient(90deg,var(--navy2),var(--red));border-radius:2px;margin:.9rem auto 0}
+.sec-rule.left{margin:.9rem 0 0}
+.sec-sub{font-size:.9rem;font-weight:300;color:var(--gray600);line-height:1.8;max-width:540px;margin:1rem auto 0}
+.sec-head{text-align:center;margin-bottom:3rem}
+.sec-head.left{text-align:left}
+
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.quick-card{background:#fff;border:1.5px solid var(--gray100);border-radius:12px;padding:1.8rem 1.4rem;text-align:center;transition:border-color .2s,box-shadow .2s,transform .2s;text-decoration:none;display:block}
+.quick-card:hover{border-color:var(--navy2);box-shadow:0 10px 32px rgba(26,58,143,.1);transform:translateY(-4px)}
+.quick-icon{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 1rem}
+.quick-icon.green{background:rgba(37,211,102,.12)}
+.quick-icon.blue{background:#EEF2FF}
+.quick-icon.red{background:#FFF0F0}
+.quick-icon.gold{background:#FFF8EC}
+.quick-name{font-family:var(--f-display);font-size:1.3rem;letter-spacing:.04em;color:var(--navy);margin-bottom:.3rem}
+.quick-desc{font-size:.78rem;color:var(--gray600);line-height:1.6}
+
+.contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:start}
+.form-card{background:#fff;border:1.5px solid var(--gray100);border-radius:16px;padding:2.6rem;box-shadow:0 8px 32px rgba(11,31,75,.06)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem}
+.field-label{font-family:var(--f-ui);font-weight:700;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray400)}
+.field-input,.field-select,.field-textarea{border:1.5px solid var(--gray200);border-radius:7px;padding:.8rem 1rem;font-size:.9rem;color:var(--gray900);background:var(--gray50);font-family:var(--f-body);width:100%;transition:border-color .2s,box-shadow .2s;appearance:none}
+.field-input:focus,.field-select:focus,.field-textarea:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(26,58,143,.1);outline:none}
+.field-textarea{resize:vertical;min-height:120px}
+.btn-submit{width:100%;background:var(--red);color:#fff;padding:1rem;font-family:var(--f-ui);font-weight:800;font-size:.88rem;letter-spacing:.12em;text-transform:uppercase;border-radius:7px;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 6px 20px rgba(200,32,31,.25);display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.5rem}
+.btn-submit:hover{background:var(--red2);transform:translateY(-2px)}
+.form-success{display:none;text-align:center;padding:2rem 1rem}
+.form-success.show{display:block}
+.fs-icon{width:60px;height:60px;border-radius:50%;background:rgba(16,184,122,.12);border:2px solid #0A6B3A;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#0A6B3A}
+.fs-title{font-family:var(--f-display);font-size:1.7rem;color:var(--navy);margin-bottom:.4rem}
+.fs-desc{font-size:.85rem;color:var(--gray600);line-height:1.6}
+
+.info-block{margin-bottom:2rem}
+.info-block:last-child{margin-bottom:0}
+.info-block-title{font-family:var(--f-ui);font-weight:700;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray400);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--gray100)}
+.info-item{display:flex;align-items:flex-start;gap:.85rem;margin-bottom:1rem}
+.info-item:last-child{margin-bottom:0}
+.info-icon{width:38px;height:38px;border-radius:8px;background:var(--gray50);border:1px solid var(--gray100);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.info-text-name{font-size:.86rem;font-weight:600;color:var(--navy);margin-bottom:.1rem}
+.info-text-desc{font-size:.78rem;color:var(--gray600);line-height:1.55}
+
+.term-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.term-card{background:#fff;border:1.5px solid var(--gray100);border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s}
+.term-card:hover{border-color:var(--gray200);box-shadow:0 14px 40px rgba(11,31,75,.1);transform:translateY(-4px)}
+.term-img{height:160px;overflow:hidden;position:relative}
+.term-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.term-card:hover .term-img img{transform:scale(1.06)}
+.term-badge{position:absolute;top:.8rem;right:.8rem;background:var(--red);color:#fff;font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .6rem;border-radius:3px;z-index:2}
+.term-body{padding:1.4rem}
+.term-name{font-family:var(--f-display);font-size:1.5rem;letter-spacing:.03em;color:var(--navy);margin-bottom:.5rem}
+.term-addr{font-size:.78rem;color:var(--gray600);display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem;line-height:1.5}
+.term-hours{font-size:.78rem;color:var(--gray600);display:flex;align-items:center;gap:.5rem}
+
+.map-wrap{border-radius:16px;overflow:hidden;border:1.5px solid var(--gray100);height:380px;position:relative;background:var(--gray50)}
+.map-wrap iframe{width:100%;height:100%;border:0}
+
+.faq-mini{display:flex;flex-direction:column;gap:.7rem}
+.faq-mini-item{background:#fff;border:1.5px solid var(--gray100);border-radius:10px;overflow:hidden}
+.faq-mini-q{padding:1rem 1.3rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:.86rem;font-weight:600;color:var(--navy)}
+.faq-mini-icon{transition:transform .25s;color:var(--red);flex-shrink:0}
+.faq-mini-item.open .faq-mini-icon{transform:rotate(45deg)}
+.faq-mini-a{padding:0 1.3rem;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.faq-mini-item.open .faq-mini-a{max-height:200px;padding:0 1.3rem 1.2rem}
+.faq-mini-a p{font-size:.8rem;color:var(--gray600);line-height:1.7}
+
+footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255,255,.07)}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-brand{font-family:var(--f-display);font-size:2rem;letter-spacing:.08em;color:#fff;margin-bottom:.6rem}
+.ft-brand em{color:var(--red);font-style:normal}
+.ft-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.75;max-width:250px;margin-bottom:1.6rem}
+.ft-socs{display:flex;gap:.5rem}
+.ft-soc{width:35px;height:35px;border-radius:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-family:var(--f-ui);font-weight:700;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.ft-soc:hover{background:var(--red);border-color:var(--red);color:#fff}
+.ft-col-head{font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem;padding-bottom:.55rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.ft-links{display:flex;flex-direction:column;gap:.5rem}
+.ft-links a{font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s,gap .2s}
+.ft-links a:hover{color:rgba(255,255,255,.85);gap:.7rem}
+.ft-links a::before{content:'›';color:var(--red);font-size:1.1rem;line-height:1;flex-shrink:0}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;font-size:.74rem;color:rgba(255,255,255,.18);flex-wrap:wrap;gap:.5rem}
+
+#waf{position:fixed;bottom:2rem;right:2rem;z-index:90;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 22px rgba(37,211,102,.4);transition:transform .2s}
+#waf:hover{transform:scale(1.1) translateY(-3px)}
+#waf svg{width:27px;height:27px;fill:#fff}
+
+.rv{opacity:0;transform:translateY(32px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rl{opacity:0;transform:translateX(-36px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rr{opacity:0;transform:translateX(36px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rv.on,.rl.on,.rr.on{opacity:1;transform:none}
+.d1{transition-delay:.09s}.d2{transition-delay:.18s}.d3{transition-delay:.27s}.d4{transition-delay:.36s}.d5{transition-delay:.45s}
+
+@media(max-width:1024px){
+  #navbar{padding:1rem 2rem}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .w{padding:0 2rem}
+  .ph-inner{padding:0 2rem}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr;gap:2rem}
+  .term-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .w{padding:0 1.2rem}
+  .ph-inner{padding:0 1.2rem}
+  .quick-grid,.term-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .sec{padding:4rem 0}
+  .page-hero{padding:8rem 0 5rem}
+  .form-card{padding:1.6rem}
+}
+</style>
+</head>
+<body>
+
+<div id="sp"></div>
+
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v13h4v-6h8v6h4V7L12 2z"/></svg></div>
+    <div><span class="nav-logo-name">ANTEZANA</span><span class="nav-logo-sub">Transporte &amp; Turismo</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="destinos.html">Destinos</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="promociones.html">Promociones</a>
+    <a href="contacto.html" class="on">Contacto</a>
+    <a href="reservas.html" class="nav-cta">Reservar</a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="nav-mobile">
+  <button id="nmc" aria-label="Cerrar">✕</button>
+  <a href="../index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="destinos.html">Destinos</a>
+  <a href="paquetes.html">Paquetes</a>
+  <a href="experiencias.html">Experiencias</a>
+  <a href="promociones.html">Promociones</a>
+  <a href="reservas.html">Reservas</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <div class="ph-breadcrumb">
+      <a href="../index.html">Inicio</a><span style="color:rgba(255,255,255,.2)">/</span>
+      <span style="color:rgba(255,255,255,.65)">Contacto</span>
+    </div>
+    <div class="ph-eye">Estamos para ayudarte</div>
+    <h1 class="ph-title">Hablemos de tu<br>proximo <em>viaje</em></h1>
+    <p class="ph-sub">Escribenos, llamanos o visita uno de nuestros terminales. Nuestro equipo te responde rapido.</p>
+  </div>
+</div>
+
+<!-- CONTACTO RAPIDO -->
+<section class="sec" style="padding-bottom:3rem">
+  <div class="w">
+    <div class="quick-grid rv">
+      <a href="https://wa.me/51999999999" target="_blank" class="quick-card">
+        <div class="quick-icon green">💬</div>
+        <div class="quick-name">WhatsApp</div>
+        <div class="quick-desc">Respuesta inmediata, 24 horas</div>
+      </a>
+      <a href="tel:+51999999999" class="quick-card">
+        <div class="quick-icon blue">📞</div>
+        <div class="quick-name">Llamanos</div>
+        <div class="quick-desc">+51 999 999 999</div>
+      </a>
+      <a href="mailto:contacto@antezana.com.pe" class="quick-card">
+        <div class="quick-icon red">✉️</div>
+        <div class="quick-name">Email</div>
+        <div class="quick-desc">contacto@antezana.com.pe</div>
+      </a>
+      <div class="quick-card" style="cursor:default">
+        <div class="quick-icon gold">⏰</div>
+        <div class="quick-name">Horario</div>
+        <div class="quick-desc">5:00 am - 11:00 pm todos los dias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO + INFO -->
+<section class="sec sec-alt">
+  <div class="w">
+    <div class="contact-grid">
+
+      <div class="rl">
+        <div class="form-card">
+          <div id="form-default">
+            <div class="sec-eye left" style="justify-content:flex-start">Escribenos</div>
+            <h2 class="sec-ttl" style="font-size:2.2rem;margin:.4rem 0 1.6rem">Envianos un mensaje</h2>
+            <form id="contact-form">
+              <div class="form-row">
+                <div class="field">
+                  <label class="field-label">Nombre completo</label>
+                  <input type="text" class="field-input" placeholder="Tu nombre" required/>
+                </div>
+                <div class="field">
+                  <label class="field-label">Telefono</label>
+                  <input type="tel" class="field-input" placeholder="+51 999 999 999" required/>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label">Correo electronico</label>
+                <input type="email" class="field-input" placeholder="correo@ejemplo.com" required/>
+              </div>
+              <div class="field">
+                <label class="field-label">Motivo de consulta</label>
+                <select class="field-select" required>
+                  <option value="">Selecciona una opcion...</option>
+                  <option>Consulta sobre pasajes</option>
+                  <option>Antezana Cargo / Encomiendas</option>
+                  <option>Paquete turistico personalizado</option>
+                  <option>Reclamo o sugerencia</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field-label">Mensaje</label>
+                <textarea class="field-textarea" placeholder="Cuentanos en que te podemos ayudar..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit">
+                Enviar mensaje
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </form>
+          </div>
+          <div class="form-success" id="form-success">
+            <div class="fs-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="fs-title">¡Mensaje enviado!</div>
+            <p class="fs-desc">Gracias por escribirnos. Nuestro equipo se pondra en contacto contigo a la brevedad posible.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rr">
+        <div class="info-block">
+          <div class="info-block-title">Informacion de contacto</div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div><div class="info-text-name">+51 999 999 999</div><div class="info-text-desc">Linea principal, atencion al cliente</div></div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">💬</div>
+            <div><div class="info-text-name">WhatsApp 24h</div><div class="info-text-desc">Respuesta inmediata todos los dias</div></div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div><div class="info-text-name">contacto@antezana.com.pe</div><div class="info-text-desc">Para consultas formales y reclamos</div></div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-block-title">Horario de atencion</div>
+          <div class="info-item">
+            <div class="info-icon">⏰</div>
+            <div><div class="info-text-name">5:00 am - 11:00 pm</div><div class="info-text-desc">Todos los dias del año, sin excepcion</div></div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🎫</div>
+            <div><div class="info-text-name">Venta de pasajes</div><div class="info-text-desc">Disponible en terminal y por WhatsApp</div></div>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-block-title">Redes sociales</div>
+          <div style="display:flex;gap:.6rem">
+            <a href="#" style="width:38px;height:38px;border-radius:8px;background:var(--gray50);border:1px solid var(--gray100);display:flex;align-items:center;justify-content:center;font-family:var(--f-ui);font-weight:700;font-size:.7rem;color:var(--gray600);transition:background .2s,color .2s" onmouseover="this.style.background='var(--red)';this.style.color='#fff'" onmouseout="this.style.background='var(--gray50)';this.style.color='var(--gray600)'">f</a>
+            <a href="#" style="width:38px;height:38px;border-radius:8px;background:var(--gray50);border:1px solid var(--gray100);display:flex;align-items:center;justify-content:center;font-family:var(--f-ui);font-weight:700;font-size:.7rem;color:var(--gray600);transition:background .2s,color .2s" onmouseover="this.style.background='var(--red)';this.style.color='#fff'" onmouseout="this.style.background='var(--gray50)';this.style.color='var(--gray600)'">ig</a>
+            <a href="#" style="width:38px;height:38px;border-radius:8px;background:var(--gray50);border:1px solid var(--gray100);display:flex;align-items:center;justify-content:center;font-family:var(--f-ui);font-weight:700;font-size:.7rem;color:var(--gray600);transition:background .2s,color .2s" onmouseover="this.style.background='var(--red)';this.style.color='#fff'" onmouseout="this.style.background='var(--gray50)';this.style.color='var(--gray600)'">tk</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TERMINALES -->
+<section class="sec">
+  <div class="w">
+    <div class="sec-head rv">
+      <div class="sec-eye">Nuestras agencias</div>
+      <h2 class="sec-ttl">Visita un <em>terminal</em></h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="term-grid">
+      <div class="term-card rv">
+        <div class="term-img">
+          <img src="https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=500&q=80" alt="Terminal Lima"/>
+          <div class="term-badge">Principal</div>
+        </div>
+        <div class="term-body">
+          <div class="term-name">Lima</div>
+          <div class="term-addr">📍 Av. Carlos Zavala 145, La Victoria</div>
+          <div class="term-hours">⏰ 5:00 am - 11:00 pm</div>
+        </div>
+      </div>
+      <div class="term-card rv d1">
+        <div class="term-img">
+          <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=500&q=80" alt="Terminal Ayacucho"/>
+          <div class="term-badge">Central</div>
+        </div>
+        <div class="term-body">
+          <div class="term-name">Ayacucho</div>
+          <div class="term-addr">📍 Jr. Manco Capac 280, Huamanga</div>
+          <div class="term-hours">⏰ 5:00 am - 11:00 pm</div>
+        </div>
+      </div>
+      <div class="term-card rv d2">
+        <div class="term-img">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&q=80" alt="Terminal Huanta"/>
+          <div class="term-badge">Local</div>
+        </div>
+        <div class="term-body">
+          <div class="term-name">Huanta</div>
+          <div class="term-addr">📍 Jr. 28 de Julio 510, Huanta</div>
+          <div class="term-hours">⏰ 5:00 am - 9:00 pm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA + FAQ MINI -->
+<section class="sec sec-alt">
+  <div class="w">
+    <div class="contact-grid">
+      <div class="rl">
+        <div class="sec-eye left" style="justify-content:flex-start">Ubicacion</div>
+        <h2 class="sec-ttl" style="font-size:2.2rem;margin:.4rem 0 1.4rem">Encuentranos en el mapa</h2>
+        <div class="map-wrap">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-74.25,-13.18,-74.20,-13.14&layer=mapnik&marker=-13.16,-74.22" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="rr">
+        <div class="sec-eye left" style="justify-content:flex-start">Dudas rapidas</div>
+        <h2 class="sec-ttl" style="font-size:2.2rem;margin:.4rem 0 1.4rem">Preguntas frecuentes</h2>
+        <div class="faq-mini" id="faq-mini">
+          <div class="faq-mini-item">
+            <div class="faq-mini-q">¿Necesito reservar con anticipacion? <span class="faq-mini-icon">+</span></div>
+            <div class="faq-mini-a"><p>Recomendamos reservar con al menos 1 dia de anticipacion, especialmente en fechas festivas o fines de semana largo.</p></div>
+          </div>
+          <div class="faq-mini-item">
+            <div class="faq-mini-q">¿Puedo cambiar la fecha de mi pasaje? <span class="faq-mini-icon">+</span></div>
+            <div class="faq-mini-a"><p>Si, puedes reprogramar tu viaje hasta 2 horas antes de la salida sin costo adicional, sujeto a disponibilidad.</p></div>
+          </div>
+          <div class="faq-mini-item">
+            <div class="faq-mini-q">¿Como envio una encomienda? <span class="faq-mini-icon">+</span></div>
+            <div class="faq-mini-a"><p>Acercate a cualquiera de nuestros terminales con tu paquete. Te daremos un codigo de seguimiento al instante.</p></div>
+          </div>
+          <div class="faq-mini-item">
+            <div class="faq-mini-q">¿Que metodos de pago aceptan? <span class="faq-mini-icon">+</span></div>
+            <div class="faq-mini-a"><p>Aceptamos efectivo, tarjetas de debito/credito y transferencias bancarias en todos nuestros terminales.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="w">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand">ANTE<em>ZANA</em></div>
+        <p class="ft-desc">Mas de 20 años conectando el Peru con seguridad, puntualidad y el mejor servicio de transporte interprovincial.</p>
+        <div class="ft-socs">
+          <a href="#" class="ft-soc">f</a><a href="#" class="ft-soc">ig</a><a href="#" class="ft-soc">tk</a>
+          <a href="https://wa.me/51999999999" target="_blank" rel="noopener" class="ft-soc" style="background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.2)">wa</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-head">Navegacion</div>
+        <div class="ft-links">
+          <a href="../index.html">Inicio</a><a href="nosotros.html">Nosotros</a>
+          <a href="destinos.html">Destinos</a><a href="paquetes.html">Paquetes</a>
+          <a href="experiencias.html">Experiencias</a><a href="blog.html">Blog</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-head">Servicios</div>
+        <div class="ft-links">
+          <a href="reservas.html">Clase Dorado King</a><a href="reservas.html">Clase Comercial</a>
+          <a href="reservas.html">Clase Economico</a><a href="contacto.html">Antezana Cargo</a>
+          <a href="promociones.html">Promociones</a><a href="faq.html">Preguntas Frecuentes</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-head">Contacto</div>
+        <div class="ft-links">
+          <a href="tel:+51999999999">📞 +51 999 999 999</a>
+          <a href="https://wa.me/51999999999" target="_blank">💬 WhatsApp 24h</a>
+          <a href="#">📍 Terminal Lima · La Victoria</a>
+          <a href="#">📍 Terminal Ayacucho · Huamanga</a>
+          <a href="#">📍 Terminal Huanta</a>
+          <a href="contacto.html" style="color:var(--goldl)">⏰ Atencion: 5am - 11pm</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© <span id="fty"></span> Empresa de Transportes Antezana S.A.C. — Huanta, Ayacucho, Peru</span>
+      <span>Servicio interprovincial autorizado por el MTC</span>
+    </div>
+  </div>
+</footer>
+
+<a id="waf" href="https://wa.me/51999999999?text=Hola%2C%20quisiera%20informacion%20sobre%20sus%20servicios." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+'use strict';
+document.getElementById('fty').textContent = new Date().getFullYear();
+
+const sp = document.getElementById('sp');
+window.addEventListener('scroll', () => {
+  sp.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+}, { passive: true });
+
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+const burger = document.getElementById('nav-burger');
+const mob = document.getElementById('nav-mobile');
+const nmc = document.getElementById('nmc');
+const openM = () => { mob.classList.add('open'); document.body.style.overflow = 'hidden'; };
+const closeM = () => { mob.classList.remove('open'); document.body.style.overflow = ''; };
+if (burger) burger.addEventListener('click', () => mob.classList.contains('open') ? closeM() : openM());
+if (nmc) nmc.addEventListener('click', closeM);
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', closeM));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); });
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv, .rl, .rr').forEach(el => obs.observe(el));
+
+// FORMULARIO
+const form = document.getElementById('contact-form');
+const formDefault = document.getElementById('form-default');
+const formSuccess = document.getElementById('form-success');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    formDefault.style.display = 'none';
+    formSuccess.classList.add('show');
+  });
+}
+
+// FAQ MINI ACORDEON
+document.querySelectorAll('.faq-mini-item').forEach(item => {
+  item.querySelector('.faq-mini-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-mini-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
