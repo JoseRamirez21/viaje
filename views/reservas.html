@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Reserva tu pasaje Antezana - Busca rutas, horarios y reserva en linea de forma rapida y segura."/>
+<title>Reservas - Antezana Transporte & Turismo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C8201F;--red2:#9A1515;--red-glow:rgba(200,32,31,.28);
+  --navy:#0B1F4B;--navy2:#1A3A8F;--navy3:#2251C5;
+  --white:#FFFFFF;--gray50:#F8F9FB;--gray100:#EEF2F8;--gray200:#D8E0EF;
+  --gray400:#9AAAC4;--gray600:#5A6A88;--gray800:#2C3A54;--gray900:#0D1A30;
+  --gold:#C4973A;--goldl:#E8BA5E;--green:#0A6B3A;--greenl:#4eda9b;
+  --f-display:'Bebas Neue',sans-serif;--f-ui:'Barlow Condensed',sans-serif;--f-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:#fff;color:var(--gray900);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button,input,select,textarea{cursor:pointer;font-family:inherit;border:none;background:none}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:99px}
+::selection{background:var(--red);color:#fff}
+#sp{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--navy2),var(--red));z-index:300;transition:width .1s linear;width:0}
+
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray100);box-shadow:0 2px 24px rgba(11,31,75,.07);transition:padding .3s ease}
+#navbar.scrolled{padding:.8rem 4rem}
+.nav-logo{display:flex;align-items:center;gap:.7rem}
+.nav-logo-mark{width:40px;height:40px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(200,32,31,.3);transition:transform .2s}
+.nav-logo-mark:hover{transform:scale(1.08) rotate(-3deg)}
+.nav-logo-mark svg{width:22px;height:22px;fill:#fff}
+.nav-logo-name{font-family:var(--f-display);font-size:1.45rem;letter-spacing:.1em;color:var(--navy);line-height:1}
+.nav-logo-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);display:block;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:.1rem}
+.nav-links a{font-family:var(--f-ui);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray600);padding:.5rem .85rem;border-radius:4px;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:.85rem;width:0;height:1.5px;background:var(--red);transition:width .3s cubic-bezier(.16,1,.3,1);border-radius:1px}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a:hover::after,.nav-links a.on::after{width:calc(100% - 1.7rem)}
+.nav-links a.on{color:var(--navy2)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.3rem!important;border-radius:4px!important;font-weight:800!important;box-shadow:0 4px 14px rgba(200,32,31,.3)}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--red2)!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;padding:.3rem}
+.nav-burger span{display:block;width:22px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .3s}
+#nav-mobile{display:none;position:fixed;inset:0;z-index:150;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+#nav-mobile.open{display:flex}
+#nav-mobile a{font-family:var(--f-display);font-size:3rem;letter-spacing:.06em;color:var(--gray400);transition:color .2s}
+#nav-mobile a:hover{color:var(--red)}
+#nmc{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--gray400);cursor:pointer;font-family:var(--f-display)}
+
+.page-hero{background:var(--navy);padding:9rem 0 4.5rem;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80') center/cover no-repeat;opacity:.14}
+.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to top,#fff,transparent)}
+.ph-inner{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 4rem;text-align:center}
+.ph-breadcrumb{display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.2rem}
+.ph-breadcrumb a{color:rgba(255,255,255,.35);transition:color .2s}
+.ph-breadcrumb a:hover{color:rgba(255,255,255,.7)}
+.ph-eye{font-family:var(--f-ui);font-weight:700;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-bottom:.7rem;display:flex;align-items:center;justify-content:center;gap:.55rem}
+.ph-title{font-family:var(--f-display);font-size:clamp(2.8rem,6vw,5.2rem);letter-spacing:.03em;color:#fff;line-height:.95;margin-bottom:1rem}
+.ph-title em{color:var(--goldl);font-style:normal}
+.ph-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.55);max-width:480px;margin:0 auto;line-height:1.8}
+
+.w{max-width:1000px;margin:0 auto;padding:0 4rem}
+.sec{padding:3rem 0 6rem}
+
+/* WIZARD STEPS */
+.steps-bar{display:flex;align-items:center;justify-content:center;margin-bottom:3rem}
+.step-item{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.step-circle{width:38px;height:38px;border-radius:50%;background:var(--gray50);border:2px solid var(--gray200);display:flex;align-items:center;justify-content:center;font-family:var(--f-ui);font-weight:700;font-size:.9rem;color:var(--gray400);transition:all .3s}
+.step-item.active .step-circle{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 16px rgba(200,32,31,.3)}
+.step-item.done .step-circle{background:rgba(10,107,58,.1);border-color:var(--green);color:var(--green)}
+.step-label{font-family:var(--f-ui);font-weight:700;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray400)}
+.step-item.active .step-label{color:var(--navy)}
+.step-line{flex:1;height:2px;background:var(--gray200);min-width:3rem;max-width:6rem;margin:0 .6rem;margin-bottom:1.3rem}
+
+/* BUSCAR FORM */
+.search-card{background:#fff;border:1.5px solid var(--gray100);border-radius:18px;padding:2.5rem;box-shadow:0 12px 40px rgba(11,31,75,.08)}
+.bk-title{font-family:var(--f-display);font-size:2rem;letter-spacing:.03em;color:var(--navy);text-align:center;margin-bottom:.4rem}
+.bk-sub{font-size:.85rem;color:var(--gray600);text-align:center;margin-bottom:2rem}
+.bk-form-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:end;margin-bottom:1.2rem}
+.field{display:flex;flex-direction:column;gap:.4rem}
+.field-label{font-family:var(--f-ui);font-weight:700;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray400)}
+.field-select,.field-input{border:1.5px solid var(--gray200);border-radius:7px;padding:.85rem 1rem;font-size:.92rem;color:var(--gray900);background:var(--gray50);font-family:var(--f-body);width:100%;transition:border-color .2s,box-shadow .2s;appearance:none}
+.field-select:focus,.field-input:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(26,58,143,.1);outline:none}
+.swap-btn{width:42px;height:42px;border-radius:50%;background:var(--gray50);border:1.5px solid var(--gray200);color:var(--gray600);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);flex-shrink:0}
+.swap-btn:hover{background:var(--red);border-color:var(--red);color:#fff;transform:rotate(180deg)}
+.bk-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.6rem}
+.counter-box{display:flex;align-items:center;gap:1rem;background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:.7rem 1rem}
+.cnt-btn{width:26px;height:26px;border-radius:50%;background:#fff;border:1.5px solid var(--gray200);font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cnt-btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.cnt-val{font-family:var(--f-display);font-size:1.4rem;min-width:24px;text-align:center}
+.btn-search-big{width:100%;background:var(--red);color:#fff;padding:1rem;font-family:var(--f-ui);font-weight:800;font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;border-radius:8px;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 8px 24px rgba(200,32,31,.3);display:flex;align-items:center;justify-content:center;gap:.6rem}
+.btn-search-big:hover{background:var(--red2);transform:translateY(-2px)}
+
+/* RESULTADOS */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.6rem;flex-wrap:wrap;gap:1rem}
+.back-btn{display:flex;align-items:center;gap:.4rem;font-family:var(--f-ui);font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray600);background:var(--gray50);border:1px solid var(--gray200);padding:.5rem 1rem;border-radius:6px;cursor:pointer;transition:all .2s}
+.back-btn:hover{background:var(--gray100);color:var(--navy)}
+.route-display{display:flex;align-items:center;gap:.8rem;text-align:center}
+.route-city{font-family:var(--f-display);font-size:1.5rem;color:var(--navy)}
+.route-arrow{display:flex;flex-direction:column;align-items:center;gap:.15rem;color:var(--gray400);font-size:.68rem}
+.results-count{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gray400)}
+
+.horario-card{display:flex;align-items:center;gap:1.4rem;padding:1.2rem 1.6rem;background:#fff;border:1.5px solid var(--gray100);border-radius:12px;margin-bottom:.8rem;transition:all .25s}
+.horario-card:hover{border-color:var(--navy2);box-shadow:0 8px 28px rgba(26,58,143,.1);transform:translateX(4px)}
+.horario-card.agotado{opacity:.45;pointer-events:none}
+.hor-hora{font-family:var(--f-display);font-size:2rem;color:var(--navy);min-width:70px;line-height:1}
+.hor-info{flex:1}
+.hor-badges{display:flex;gap:.5rem;margin-bottom:.4rem;flex-wrap:wrap}
+.badge{display:inline-block;font-family:var(--f-ui);font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem .65rem;border-radius:3px}
+.badge-gold{background:#FFF8EC;color:#8A5E00}
+.badge-blue{background:#EEF2FF;color:var(--navy2)}
+.badge-green{background:#EDFBF4;color:var(--green)}
+.hor-feats{font-size:.76rem;color:var(--gray600);margin-bottom:.2rem}
+.hor-disp{font-size:.72rem;color:var(--gray400)}
+.hor-urgente{font-size:.72rem;color:#B45309;font-weight:600}
+.hor-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+.hor-price{display:flex;align-items:baseline;gap:.2rem}
+.hor-price-cur{font-family:var(--f-ui);font-size:.78rem;color:var(--gray400)}
+.hor-price-val{font-family:var(--f-display);font-size:1.7rem;color:var(--red);line-height:1}
+.hor-price-pax{font-size:.65rem;color:var(--gray400)}
+.btn-select{font-family:var(--f-ui);font-weight:800;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;background:var(--navy2);color:#fff;padding:.6rem 1.3rem;border-radius:6px;cursor:pointer;transition:background .15s,transform .15s}
+.btn-select:hover{background:var(--navy);transform:translateY(-2px)}
+.btn-select:disabled{background:var(--gray400);cursor:not-allowed}
+
+.no-results{text-align:center;padding:4rem 1rem}
+.no-icon{font-size:3.2rem;margin-bottom:1rem}
+.no-results h3{font-family:var(--f-display);font-size:1.8rem;color:var(--navy);margin-bottom:.5rem}
+.no-results p{color:var(--gray600);font-size:.88rem;margin-bottom:1.4rem}
+
+/* PASAJERO */
+.summary-card{background:rgba(200,32,31,.05);border:1.5px solid rgba(200,32,31,.18);border-radius:14px;padding:1.4rem 1.8rem;display:flex;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
+.sum-route{display:flex;align-items:center;gap:.6rem;font-family:var(--f-display);font-size:1.4rem;color:var(--navy)}
+.sum-details{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1rem;font-size:.82rem;color:var(--gray600)}
+.sum-price{margin-left:auto;font-family:var(--f-display);font-size:1.6rem;color:var(--red)}
+.section-label{font-family:var(--f-ui);font-weight:700;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray400);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--gray100)}
+.pg-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.5rem}
+.span2{grid-column:span 2}
+.multi-note{font-size:.78rem;color:var(--gray600);background:var(--gray50);border:1px solid var(--gray100);border-radius:7px;padding:.8rem 1rem;margin-top:.6rem}
+.equip-info{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.8rem}
+.equip-item{display:flex;gap:.6rem;font-size:.85rem;color:var(--gray600);align-items:flex-start}
+
+/* TICKET CONFIRM */
+.confirm-icon{width:72px;height:72px;background:rgba(10,107,58,.1);border:2px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;color:var(--green)}
+.confirm-title{font-family:var(--f-display);font-size:2.2rem;color:var(--navy);text-align:center;margin-bottom:.4rem}
+.confirm-sub{color:var(--gray600);font-size:.88rem;text-align:center;margin-bottom:2rem}
+.ticket{background:#fff;border:1.5px solid var(--gray100);border-radius:16px;overflow:hidden;max-width:540px;margin:0 auto 2rem;box-shadow:0 16px 48px rgba(11,31,75,.12)}
+.ticket-header{background:var(--navy);padding:1.1rem 1.6rem;display:flex;justify-content:space-between;align-items:center}
+.ticket-logo{font-family:var(--f-display);font-size:1.5rem;letter-spacing:.1em;color:#fff}
+.ticket-logo em{color:var(--red);font-style:normal}
+.ticket-code{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.18em;color:rgba(255,255,255,.6)}
+.ticket-route{padding:1.6rem;display:flex;align-items:center;gap:1rem;border-bottom:1px dashed var(--gray200)}
+.tk-city{display:flex;flex-direction:column;gap:.2rem;flex:1}
+.tk-city:last-child{text-align:right}
+.tk-city-name{font-family:var(--f-display);font-size:1.7rem;color:var(--navy);line-height:1}
+.tk-city-hora{font-family:var(--f-ui);font-size:.68rem;letter-spacing:.14em;color:var(--gray400)}
+.tk-line{flex:1;display:flex;align-items:center;gap:.2rem}
+.tk-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0}
+.tk-bar{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--gray200) 0,var(--gray200) 6px,transparent 6px,transparent 12px)}
+.ticket-details{padding:1rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.tk-detail{display:flex;flex-direction:column;gap:.1rem}
+.tk-dlabel{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gray400)}
+.tk-dvalue{font-size:.86rem;color:var(--gray800)}
+.tk-total{font-family:var(--f-display);font-size:1.5rem;color:var(--red)}
+.ticket-footer{padding:.85rem 1.6rem;background:var(--gray50);border-top:1px solid var(--gray100);display:flex;justify-content:space-between;font-size:.72rem;color:var(--gray400);flex-wrap:wrap;gap:.4rem}
+.confirm-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* SUCCESS */
+.success-block{text-align:center;padding:1rem 0}
+.success-anim{font-size:3.8rem;margin-bottom:1rem;animation:floatY 3s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.success-title{font-family:var(--f-display);font-size:2.4rem;color:var(--navy);margin-bottom:.6rem}
+.success-sub{color:var(--gray600);font-size:.9rem;max-width:460px;margin:0 auto 2rem;line-height:1.75}
+.success-tips{display:flex;flex-direction:column;gap:.6rem;max-width:380px;margin:0 auto 2.2rem;text-align:left}
+.tip-item{display:flex;gap:.7rem;font-size:.84rem;color:var(--gray600);align-items:flex-start}
+
+.btn-r{display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:#fff;padding:.85rem 2rem;font-family:var(--f-ui);font-weight:800;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border-radius:7px;cursor:pointer;transition:background .2s,transform .2s;box-shadow:0 6px 20px rgba(200,32,31,.25)}
+.btn-r:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--navy2);padding:.85rem 2rem;font-family:var(--f-ui);font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border-radius:7px;border:1.5px solid var(--navy2);cursor:pointer;transition:all .2s}
+.btn-o:hover{background:var(--navy2);color:#fff;transform:translateY(-2px)}
+
+footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255,255,.07)}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.07);max-width:1200px;margin:0 auto;padding-left:4rem;padding-right:4rem}
+.ft-brand{font-family:var(--f-display);font-size:2rem;letter-spacing:.08em;color:#fff;margin-bottom:.6rem}
+.ft-brand em{color:var(--red);font-style:normal}
+.ft-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.75;max-width:250px;margin-bottom:1.6rem}
+.ft-socs{display:flex;gap:.5rem}
+.ft-soc{width:35px;height:35px;border-radius:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-family:var(--f-ui);font-weight:700;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.ft-soc:hover{background:var(--red);border-color:var(--red);color:#fff}
+.ft-col-head{font-family:var(--f-ui);font-weight:700;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem;padding-bottom:.55rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.ft-links{display:flex;flex-direction:column;gap:.5rem}
+.ft-links a{font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s,gap .2s}
+.ft-links a:hover{color:rgba(255,255,255,.85);gap:.7rem}
+.ft-links a::before{content:'›';color:var(--red);font-size:1.1rem;line-height:1;flex-shrink:0}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 4rem;font-size:.74rem;color:rgba(255,255,255,.18);flex-wrap:wrap;gap:.5rem;max-width:1200px;margin:0 auto}
+
+#waf{position:fixed;bottom:2rem;right:2rem;z-index:90;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 22px rgba(37,211,102,.4);transition:transform .2s}
+#waf:hover{transform:scale(1.1) translateY(-3px)}
+#waf svg{width:27px;height:27px;fill:#fff}
+
+@media(max-width:1024px){
+  #navbar{padding:1rem 2rem}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .w{padding:0 2rem}
+  .ph-inner{padding:0 2rem}
+  .ft-grid,.ft-bottom{padding-left:2rem;padding-right:2rem}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+}
+@media(max-width:640px){
+  .w{padding:0 1.2rem}
+  .ph-inner{padding:0 1.2rem}
+  .search-card{padding:1.6rem}
+  .bk-form-grid{grid-template-columns:1fr}
+  .swap-btn{display:none}
+  .bk-row2{grid-template-columns:1fr}
+  .horario-card{flex-wrap:wrap}
+  .hor-right{width:100%;flex-direction:row;align-items:center;justify-content:space-between}
+  .pg-grid{grid-template-columns:1fr}
+  .span2{grid-column:span 1}
+  .ticket-details{grid-template-columns:1fr}
+  .step-line{min-width:1.2rem}
+  .step-label{display:none}
+  .ft-grid{grid-template-columns:1fr;padding-left:1.2rem;padding-right:1.2rem}
+  .ft-bottom{padding-left:1.2rem;padding-right:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<div id="sp"></div>
+
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v13h4v-6h8v6h4V7L12 2z"/></svg></div>
+    <div><span class="nav-logo-name">ANTEZANA</span><span class="nav-logo-sub">Transporte &amp; Turismo</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="destinos.html">Destinos</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="promociones.html">Promociones</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="reservas.html" class="nav-cta on">Reservar</a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="nav-mobile">
+  <button id="nmc" aria-label="Cerrar">✕</button>
+  <a href="../index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="destinos.html">Destinos</a>
+  <a href="paquetes.html">Paquetes</a>
+  <a href="experiencias.html">Experiencias</a>
+  <a href="promociones.html">Promociones</a>
+  <a href="reservas.html">Reservas</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <div class="ph-breadcrumb">
+      <a href="../index.html">Inicio</a><span style="color:rgba(255,255,255,.2)">/</span>
+      <span style="color:rgba(255,255,255,.65)">Reservas</span>
+    </div>
+    <div class="ph-eye">Reserva en linea</div>
+    <h1 class="ph-title">Tu viaje empieza<br><em>aqui</em></h1>
+    <p class="ph-sub">Busca tu ruta, elige el horario y reserva tu pasaje en menos de 2 minutos.</p>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="w">
+    <div class="steps-bar" id="steps-bar"></div>
+    <div id="booking-body"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand">ANTE<em>ZANA</em></div>
+      <p class="ft-desc">Mas de 20 años conectando el Peru con seguridad, puntualidad y el mejor servicio de transporte interprovincial.</p>
+      <div class="ft-socs">
+        <a href="#" class="ft-soc">f</a><a href="#" class="ft-soc">ig</a><a href="#" class="ft-soc">tk</a>
+        <a href="https://wa.me/51999999999" target="_blank" rel="noopener" class="ft-soc" style="background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.2)">wa</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-head">Navegacion</div>
+      <div class="ft-links">
+        <a href="../index.html">Inicio</a><a href="nosotros.html">Nosotros</a>
+        <a href="destinos.html">Destinos</a><a href="paquetes.html">Paquetes</a>
+        <a href="experiencias.html">Experiencias</a><a href="blog.html">Blog</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-head">Servicios</div>
+      <div class="ft-links">
+        <a href="reservas.html">Clase Dorado King</a><a href="reservas.html">Clase Comercial</a>
+        <a href="reservas.html">Clase Economico</a><a href="contacto.html">Antezana Cargo</a>
+        <a href="promociones.html">Promociones</a><a href="faq.html">Preguntas Frecuentes</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-head">Contacto</div>
+      <div class="ft-links">
+        <a href="tel:+51999999999">📞 +51 999 999 999</a>
+        <a href="https://wa.me/51999999999" target="_blank">💬 WhatsApp 24h</a>
+        <a href="#">📍 Terminal Lima · La Victoria</a>
+        <a href="#">📍 Terminal Ayacucho · Huamanga</a>
+        <a href="#">📍 Terminal Huanta</a>
+        <a href="contacto.html" style="color:var(--goldl)">⏰ Atencion: 5am - 11pm</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© <span id="fty"></span> Empresa de Transportes Antezana S.A.C. — Huanta, Ayacucho, Peru</span>
+    <span>Servicio interprovincial autorizado por el MTC</span>
+  </div>
+</footer>
+
+<a id="waf" href="https://wa.me/51999999999?text=Hola%2C%20quisiera%20informacion%20sobre%20sus%20servicios." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+'use strict';
+document.getElementById('fty').textContent = new Date().getFullYear();
+
+const sp = document.getElementById('sp');
+window.addEventListener('scroll', () => {
+  sp.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+}, { passive: true });
+
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+const burger = document.getElementById('nav-burger');
+const mob = document.getElementById('nav-mobile');
+const nmc = document.getElementById('nmc');
+const openM = () => { mob.classList.add('open'); document.body.style.overflow = 'hidden'; };
+const closeM = () => { mob.classList.remove('open'); document.body.style.overflow = ''; };
+if (burger) burger.addEventListener('click', () => mob.classList.contains('open') ? closeM() : openM());
+if (nmc) nmc.addEventListener('click', closeM);
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', closeM));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); });
+
+/* ===== DATOS DE RUTAS REALES ANTEZANA ===== */
+const RUTAS = [
+  { id:'LIM-AYA', origen:'Lima', destino:'Ayacucho', duracion:'8h 30min', distancia:'568 km',
+    horarios:[
+      {hora:'07:00',tipo:'Dorado King',precio:75,disponibles:12},
+      {hora:'14:00',tipo:'Comercial',precio:50,disponibles:25},
+      {hora:'21:00',tipo:'Economico',precio:35,disponibles:30},
+      {hora:'22:30',tipo:'Dorado King',precio:80,disponibles:8},
+    ]},
+  { id:'LIM-HTA', origen:'Lima', destino:'Huanta', duracion:'9h 00min', distancia:'590 km',
+    horarios:[
+      {hora:'07:00',tipo:'Comercial',precio:55,disponibles:18},
+      {hora:'21:30',tipo:'Economico',precio:38,disponibles:32},
+    ]},
+  { id:'LIM-HYO', origen:'Lima', destino:'Huancayo', duracion:'6h 30min', distancia:'298 km',
+    horarios:[
+      {hora:'06:00',tipo:'Dorado King',precio:60,disponibles:15},
+      {hora:'12:00',tipo:'Comercial',precio:42,disponibles:22},
+      {hora:'22:00',tipo:'Economico',precio:30,disponibles:35},
+    ]},
+  { id:'LIM-ICA', origen:'Lima', destino:'Ica', duracion:'4h 00min', distancia:'302 km',
+    horarios:[
+      {hora:'08:00',tipo:'Comercial',precio:38,disponibles:20},
+      {hora:'15:00',tipo:'Economico',precio:28,disponibles:38},
+    ]},
+  { id:'LIM-PMP', origen:'Lima', destino:'Pampas', duracion:'7h 00min', distancia:'390 km',
+    horarios:[{hora:'20:00',tipo:'Economico',precio:45,disponibles:28}]},
+  { id:'AYA-LIM', origen:'Ayacucho', destino:'Lima', duracion:'8h 30min', distancia:'568 km',
+    horarios:[
+      {hora:'06:30',tipo:'Dorado King',precio:75,disponibles:10},
+      {hora:'13:00',tipo:'Comercial',precio:50,disponibles:20},
+      {hora:'20:00',tipo:'Economico',precio:35,disponibles:28},
+      {hora:'21:30',tipo:'Dorado King',precio:80,disponibles:6},
+    ]},
+  { id:'AYA-HTA', origen:'Ayacucho', destino:'Huanta', duracion:'1h 00min', distancia:'47 km',
+    horarios:[
+      {hora:'07:00',tipo:'Economico',precio:8,disponibles:30},
+      {hora:'10:00',tipo:'Economico',precio:8,disponibles:35},
+      {hora:'14:00',tipo:'Economico',precio:8,disponibles:40},
+      {hora:'17:30',tipo:'Economico',precio:8,disponibles:38},
+    ]},
+  { id:'AYA-HYO', origen:'Ayacucho', destino:'Huancayo', duracion:'5h 00min', distancia:'320 km',
+    horarios:[
+      {hora:'08:00',tipo:'Comercial',precio:35,disponibles:18},
+      {hora:'20:00',tipo:'Economico',precio:25,disponibles:30},
+    ]},
+  { id:'HTA-LIM', origen:'Huanta', destino:'Lima', duracion:'9h 00min', distancia:'590 km',
+    horarios:[
+      {hora:'06:00',tipo:'Comercial',precio:55,disponibles:15},
+      {hora:'20:30',tipo:'Economico',precio:40,disponibles:25},
+    ]},
+  { id:'HTA-AYA', origen:'Huanta', destino:'Ayacucho', duracion:'1h 00min', distancia:'47 km',
+    horarios:[
+      {hora:'06:00',tipo:'Economico',precio:8,disponibles:35},
+      {hora:'09:00',tipo:'Economico',precio:8,disponibles:40},
+      {hora:'13:00',tipo:'Economico',precio:8,disponibles:38},
+      {hora:'16:00',tipo:'Economico',precio:8,disponibles:42},
+    ]},
+  { id:'HYO-LIM', origen:'Huancayo', destino:'Lima', duracion:'6h 30min', distancia:'298 km',
+    horarios:[
+      {hora:'07:00',tipo:'Dorado King',precio:60,disponibles:14},
+      {hora:'14:00',tipo:'Comercial',precio:42,disponibles:20},
+      {hora:'22:00',tipo:'Economico',precio:30,disponibles:32},
+    ]},
+  { id:'HYO-AYA', origen:'Huancayo', destino:'Ayacucho', duracion:'5h 00min', distancia:'320 km',
+    horarios:[
+      {hora:'07:00',tipo:'Comercial',precio:35,disponibles:15},
+      {hora:'21:00',tipo:'Economico',precio:25,disponibles:28},
+    ]},
+];
+const CIUDADES = ['Lima','Ayacucho','Huanta','Huancayo','Ica','Pampas'];
+const TIPO_BADGE = { 'Dorado King':'badge-gold', 'Comercial':'badge-blue', 'Economico':'badge-green' };
+
+class BookingFlow {
+  constructor(rootId, stepsId){
+    this.root = document.getElementById(rootId);
+    this.stepsEl = document.getElementById(stepsId);
+    this.step = 1;
+    this.ruta = null;
+    this.hor = null;
+    this.pax = 1;
+    this.form = {};
+    this.renderSteps();
+    this.renderSearch();
+  }
+
+  renderSteps(){
+    const steps = [{n:1,l:'Buscar'},{n:2,l:'Horarios'},{n:3,l:'Pasajero'},{n:4,l:'Confirmar'}];
+    this.stepsEl.innerHTML = steps.map((s,i)=>`
+      <div class="step-item ${this.step===s.n?'active':''} ${this.step>s.n?'done':''}">
+        <div class="step-circle">${this.step>s.n?'✓':s.n}</div>
+        <span class="step-label">${s.l}</span>
+      </div>
+      ${i<steps.length-1?'<div class="step-line"></div>':''}
+    `).join('');
+  }
+
+  renderSearch(){
+    this.step = 1;
+    this.renderSteps();
+    const today = new Date().toISOString().split('T')[0];
+    this.root.innerHTML = `
+      <div class="search-card">
+        <div class="bk-title">Encuentra tu viaje</div>
+        <div class="bk-sub">Selecciona tu ruta y fecha para ver los horarios disponibles</div>
+        <form id="search-form">
+          <div class="bk-form-grid">
+            <div class="field">
+              <label class="field-label">📍 Origen</label>
+              <select class="field-select" id="f-origen" required>
+                <option value="">Selecciona origen...</option>
+                ${CIUDADES.map(c=>`<option>${c}</option>`).join('')}
+              </select>
+            </div>
+            <button type="button" class="swap-btn" id="swap-btn" title="Intercambiar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4"/><path d="M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+            </button>
+            <div class="field">
+              <label class="field-label">🏁 Destino</label>
+              <select class="field-select" id="f-destino" required>
+                <option value="">Selecciona destino...</option>
+                ${CIUDADES.map(c=>`<option>${c}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+          <div class="bk-row2">
+            <div class="field">
+              <label class="field-label">📅 Fecha de viaje</label>
+              <input type="date" class="field-input" id="f-fecha" min="${today}" value="${today}" required/>
+            </div>
+            <div class="field">
+              <label class="field-label">👤 Pasajeros</label>
+              <div class="counter-box">
+                <button type="button" class="cnt-btn" id="cnt-minus">−</button>
+                <span class="cnt-val" id="cnt-val">1</span>
+                <button type="button" class="cnt-btn" id="cnt-plus">+</button>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-search-big">
+            Buscar horarios disponibles
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </form>
+      </div>`;
+
+    document.getElementById('swap-btn').addEventListener('click', () => {
+      const o = document.getElementById('f-origen'), d = document.getElementById('f-destino');
+      const tmp = o.value; o.value = d.value; d.value = tmp;
+    });
+    document.getElementById('cnt-minus').addEventListener('click', () => {
+      if (this.pax > 1) { this.pax--; document.getElementById('cnt-val').textContent = this.pax; }
+    });
+    document.getElementById('cnt-plus').addEventListener('click', () => {
+      if (this.pax < 8) { this.pax++; document.getElementById('cnt-val').textContent = this.pax; }
+    });
+    document.getElementById('search-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const origen = document.getElementById('f-origen').value;
+      const destino = document.getElementById('f-destino').value;
+      if (!origen || !destino) return;
+      if (origen === destino) return;
+      this.ruta = RUTAS.find(r => r.origen === origen && r.destino === destino) || null;
+      this.renderResults();
+    });
+  }
+
+  renderResults(){
+    this.step = 2;
+    this.renderSteps();
+    if (!this.ruta) {
+      this.root.innerHTML = `
+        <div class="no-results">
+          <div class="no-icon">🚌</div>
+          <h3>No encontramos resultados</h3>
+          <p>No hay viajes directos disponibles para esta ruta. Prueba con otras ciudades.</p>
+          <button class="btn-o" id="back-search">← Volver a buscar</button>
+        </div>`;
+      document.getElementById('back-search').addEventListener('click', () => this.renderSearch());
+      return;
+    }
+    const r = this.ruta;
+    this.root.innerHTML = `
+      <div class="results-header">
+        <button class="back-btn" id="back-search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Volver
+        </button>
+        <div class="route-display">
+          <span class="route-city">${r.origen}</span>
+          <div class="route-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span>${r.duracion} · ${r.distancia}</span>
+          </div>
+          <span class="route-city">${r.destino}</span>
+        </div>
+        <span class="results-count">${r.horarios.length} horarios</span>
+      </div>
+      <div id="horarios-list">
+        ${r.horarios.map((h,i)=>this.buildHorarioCard(h,i)).join('')}
+      </div>`;
+    document.getElementById('back-search').addEventListener('click', () => this.renderSearch());
+    document.querySelectorAll('.btn-select').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.idx);
+        this.hor = this.ruta.horarios[idx];
+        this.renderPassenger();
+      });
+    });
+  }
+
+  buildHorarioCard(h, i){
+    const badge = TIPO_BADGE[h.tipo] || 'badge-green';
+    const agotado = h.disponibles === 0;
+    const pocos = h.disponibles <= 5 && h.disponibles > 0;
+    const total = h.precio * this.pax;
+    return `
+      <div class="horario-card ${agotado?'agotado':''}">
+        <div class="hor-hora">${h.hora}</div>
+        <div class="hor-info">
+          <div class="hor-badges"><span class="badge ${badge}">${h.tipo}</span></div>
+          <div class="hor-feats">${h.tipo==='Dorado King'?'🛋️ Asiento premium · 📶 Wi-Fi':h.tipo==='Comercial'?'💺 Asiento cómodo · ❄️ A/C':'✅ Puntual y seguro'}</div>
+          ${pocos ? `<div class="hor-urgente">⚡ Solo ${h.disponibles} asientos libres</div>` : `<div class="hor-disp">${h.disponibles} asientos disponibles</div>`}
+        </div>
+        <div class="hor-right">
+          <div class="hor-price"><span class="hor-price-cur">S/</span><span class="hor-price-val">${h.precio}</span></div>
+          ${this.pax>1?`<div class="hor-price-pax">Total: S/ ${total}</div>`:'<div class="hor-price-pax">por pasajero</div>'}
+          <button class="btn-select" data-idx="${i}" ${agotado?'disabled':''}>${agotado?'Agotado':'Seleccionar'}</button>
+        </div>
+      </div>`;
+  }
+
+  renderPassenger(){
+    this.step = 3;
+    this.renderSteps();
+    const h = this.hor, r = this.ruta;
+    const badge = TIPO_BADGE[h.tipo] || 'badge-green';
+    this.root.innerHTML = `
+      <button class="back-btn" id="back-results" style="margin-bottom:1.5rem">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver a horarios
+      </button>
+      <div class="summary-card">
+        <div class="sum-route">${r.origen} → ${r.destino}</div>
+        <div class="sum-details">
+          <span class="badge ${badge}">${h.tipo}</span>
+          <span>🕐 ${h.hora}</span><span>⏱ ${r.duracion}</span>
+          <span>👤 ${this.pax} pasajero${this.pax>1?'s':''}</span>
+        </div>
+        <div class="sum-price">S/ ${h.precio*this.pax}</div>
+      </div>
+      <form id="passenger-form">
+        <div class="section-label">Datos del pasajero principal</div>
+        <div class="pg-grid">
+          <div class="field"><label class="field-label">Nombres *</label><input type="text" class="field-input" id="pg-nombres" required/></div>
+          <div class="field"><label class="field-label">Apellidos *</label><input type="text" class="field-input" id="pg-apellidos" required/></div>
+          <div class="field"><label class="field-label">DNI / Pasaporte *</label><input type="text" class="field-input" id="pg-doc" maxlength="12" required/></div>
+          <div class="field"><label class="field-label">Celular *</label><input type="tel" class="field-input" id="pg-cel" placeholder="+51 999 999 999" required/></div>
+          <div class="field span2"><label class="field-label">Correo electronico *</label><input type="email" class="field-input" id="pg-email" required/></div>
+        </div>
+        ${this.pax>1?`<div class="multi-note">ℹ️ Los datos de pasajeros adicionales se completaran en el terminal al abordar.</div>`:''}
+        <div class="section-label" style="margin-top:2rem">Equipaje</div>
+        <div class="equip-info">
+          <div class="equip-item">✅ <span>20 kg de equipaje en bodega incluido</span></div>
+          <div class="equip-item">✅ <span>10 kg de equipaje de mano incluido</span></div>
+          <div class="equip-item">ℹ️ <span>Equipaje adicional: S/ 5 por kg extra</span></div>
+        </div>
+        <button type="submit" class="btn-search-big" style="margin-top:1.5rem">Continuar al pago →</button>
+      </form>`;
+    document.getElementById('back-results').addEventListener('click', () => this.renderResults());
+    document.getElementById('passenger-form').addEventListener('submit', e => {
+      e.preventDefault();
+      this.form = {
+        nombres: document.getElementById('pg-nombres').value,
+        apellidos: document.getElementById('pg-apellidos').value,
+        doc: document.getElementById('pg-doc').value,
+        cel: document.getElementById('pg-cel').value,
+        email: document.getElementById('pg-email').value,
+      };
+      this.renderConfirm();
+    });
+  }
+
+  renderConfirm(){
+    this.step = 4;
+    this.renderSteps();
+    const h = this.hor, r = this.ruta, f = this.form;
+    const badge = TIPO_BADGE[h.tipo] || 'badge-green';
+    const total = h.precio * this.pax;
+    const code = 'ANT-' + Date.now().toString().slice(-6).toUpperCase();
+    this.lastCode = code;
+    this.root.innerHTML = `
+      <div class="confirm-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div class="confirm-title">¡Reserva casi lista!</div>
+      <div class="confirm-sub">Revisa el resumen y confirma tu reserva.</div>
+      <div class="ticket">
+        <div class="ticket-header"><span class="ticket-logo">ANTE<em>ZANA</em></span><span class="ticket-code">${code}</span></div>
+        <div class="ticket-route">
+          <div class="tk-city"><span class="tk-city-name">${r.origen}</span><span class="tk-city-hora">${h.hora}</span></div>
+          <div class="tk-line"><div class="tk-dot"></div><div class="tk-bar"></div><div class="tk-dot"></div></div>
+          <div class="tk-city"><span class="tk-city-name">${r.destino}</span><span class="tk-city-hora">~${r.duracion}</span></div>
+        </div>
+        <div class="ticket-details">
+          <div class="tk-detail"><span class="tk-dlabel">Pasajero</span><span class="tk-dvalue">${f.nombres||'—'} ${f.apellidos||''}</span></div>
+          <div class="tk-detail"><span class="tk-dlabel">Documento</span><span class="tk-dvalue">${f.doc||'—'}</span></div>
+          <div class="tk-detail"><span class="tk-dlabel">Clase</span><span class="tk-dvalue"><span class="badge ${badge}">${h.tipo}</span></span></div>
+          <div class="tk-detail"><span class="tk-dlabel">Pasajeros</span><span class="tk-dvalue">${this.pax}</span></div>
+          <div class="tk-detail"><span class="tk-dlabel">Distancia</span><span class="tk-dvalue">${r.distancia}</span></div>
+          <div class="tk-detail"><span class="tk-dlabel">Total a pagar</span><span class="tk-dvalue tk-total">S/ ${total}</span></div>
+        </div>
+        <div class="ticket-footer"><span>⚠️ El pago se realiza en terminal</span><span>📞 Llega 30 min antes</span></div>
+      </div>
+      <div class="confirm-actions">
+        <button class="btn-r" id="btn-confirmar">✅ Confirmar reserva</button>
+        <button class="btn-o" id="back-passenger">Editar datos</button>
+      </div>`;
+    document.getElementById('back-passenger').addEventListener('click', () => this.renderPassenger());
+    document.getElementById('btn-confirmar').addEventListener('click', () => this.renderSuccess());
+  }
+
+  renderSuccess(){
+    this.step = 5;
+    this.renderSteps();
+    this.root.innerHTML = `
+      <div class="success-block">
+        <div class="success-anim">🎉</div>
+        <div class="success-title">¡Reserva confirmada!</div>
+        <p class="success-sub">Hemos registrado tu reserva con codigo <strong>${this.lastCode}</strong>. Preséntate en el terminal con tu DNI al menos <strong>30 minutos</strong> antes de la hora de salida.</p>
+        <div class="success-tips">
+          <div class="tip-item">📋 <span>Lleva tu DNI o documento de identidad</span></div>
+          <div class="tip-item">🧳 <span>Maximo 20 kg en bodega y 10 kg de mano</span></div>
+          <div class="tip-item">🚫 <span>No se permiten objetos peligrosos o ilegales</span></div>
+          <div class="tip-item">📞 <span>Consultas: WhatsApp o llamada al terminal</span></div>
+        </div>
+        <button class="btn-r" id="nueva-reserva">Hacer otra reserva</button>
+      </div>`;
+    document.getElementById('nueva-reserva').addEventListener('click', () => this.renderSearch());
+  }
+}
+
+new BookingFlow('booking-body', 'steps-bar');
+</script>
+</body>
+</html>
