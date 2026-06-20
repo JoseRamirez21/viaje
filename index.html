@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="description" content="Empresa de Transportes Antezana — Viajes seguros, puntuales y cómodos a Lima, Ayacucho, Huanta, Huancayo, Ica y más destinos del Perú."/>
 <title>Antezana — Transporte & Turismo Premium</title>
+<link rel="icon" type="image/png" href="assets/img/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
@@ -36,6 +37,7 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 
 /* LOADER */
 #loader{position:fixed;inset:0;z-index:9999;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem}
+.ld-logo-img{width:84px;height:84px;object-fit:contain;animation:fadeIn .6s ease forwards;opacity:0}
 .ld-logo{font-family:var(--f-display);font-size:clamp(4rem,12vw,7rem);letter-spacing:.08em;color:var(--navy);line-height:1}
 .ld-logo em{color:var(--red);font-style:normal}
 .ld-sub{font-family:var(--f-ui);font-weight:700;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gray400)}
@@ -53,9 +55,9 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 #navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all .35s ease}
 #navbar.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:.8rem 4rem;border-bottom:1px solid var(--gray100);box-shadow:0 2px 24px rgba(11,31,75,.08)}
 .nav-logo{display:flex;align-items:center;gap:.7rem}
-.nav-logo-mark{width:40px;height:40px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(200,32,31,.3);transition:transform .2s}
-.nav-logo-mark:hover{transform:scale(1.08) rotate(-3deg)}
-.nav-logo-mark svg{width:22px;height:22px;fill:#fff}
+.nav-logo-mark{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .2s}
+.nav-logo-mark:hover{transform:scale(1.08)}
+.nav-logo-mark img{width:100%;height:100%;object-fit:contain}
 .nav-logo-name{font-family:var(--f-display);font-size:1.45rem;letter-spacing:.1em;color:var(--navy);line-height:1}
 .nav-logo-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);display:block;margin-top:1px}
 /* links color cambia según si el fondo es blanco (scrolled) o transparente (hero) */
@@ -340,6 +342,7 @@ footer{background:var(--navy);padding:5rem 0 0}
 
 <!-- LOADER -->
 <div id="loader">
+  <img src="assets/img/logo.png" alt="Logo Antezana" class="ld-logo-img"/>
   <div class="ld-logo">ANTE<em>ZANA</em></div>
   <div class="ld-sub">Transporte &amp; Turismo Premium</div>
   <div class="ld-bar"><div class="ld-fill"></div></div>
@@ -353,7 +356,7 @@ footer{background:var(--navy);padding:5rem 0 0}
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     <div class="nav-logo-mark">
-      <svg viewBox="0 0 24 24"><path d="M12 2L4 7v13h4v-6h8v6h4V7L12 2z"/></svg>
+      <img src="assets/img/logo.png" alt="Logo Antezana"/>
     </div>
     <div>
       <span class="nav-logo-name">ANTEZANA</span>
@@ -365,7 +368,6 @@ footer{background:var(--navy);padding:5rem 0 0}
     <a href="views/nosotros.html">Nosotros</a>
     <a href="views/destinos.html">Destinos</a>
     <a href="views/paquetes.html">Paquetes</a>
-    <a href="views/experiencias.html">Experiencias</a>
     <a href="views/promociones.html">Promociones</a>
     <a href="views/contacto.html">Contacto</a>
     <a href="views/reservas.html" class="nav-cta">Reservar</a>
@@ -688,8 +690,8 @@ footer{background:var(--navy);padding:5rem 0 0}
       <div>
         <div class="ft-col-head">Servicios</div>
         <div class="ft-links">
-          <a href="views/reservas.html">Clase Dorado King</a><a href="views/reservas.html">Clase Comercial</a>
-          <a href="views/reservas.html">Clase Económico</a><a href="views/contacto.html">Antezana Cargo</a>
+          <a href="views/reservas.html?clase=dorado">Clase Dorado King</a><a href="views/reservas.html?clase=comercial">Clase Comercial</a>
+          <a href="views/reservas.html?clase=economico">Clase Económico</a><a href="views/reservas.html?clase=cargo">Antezana Cargo</a>
           <a href="views/promociones.html">Promociones</a><a href="views/faq.html">Preguntas Frecuentes</a>
         </div>
       </div>

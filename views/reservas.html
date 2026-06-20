@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="description" content="Reserva tu pasaje Antezana - Busca rutas, horarios y reserva en linea de forma rapida y segura."/>
 <title>Reservas - Antezana Transporte & Turismo</title>
+<link rel="icon" type="image/png" href="../assets/img/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
@@ -32,9 +33,9 @@ button,input,select,textarea{cursor:pointer;font-family:inherit;border:none;back
 #navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray100);box-shadow:0 2px 24px rgba(11,31,75,.07);transition:padding .3s ease}
 #navbar.scrolled{padding:.8rem 4rem}
 .nav-logo{display:flex;align-items:center;gap:.7rem}
-.nav-logo-mark{width:40px;height:40px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(200,32,31,.3);transition:transform .2s}
-.nav-logo-mark:hover{transform:scale(1.08) rotate(-3deg)}
-.nav-logo-mark svg{width:22px;height:22px;fill:#fff}
+.nav-logo-mark{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .2s}
+.nav-logo-mark:hover{transform:scale(1.08)}
+.nav-logo-mark img{width:100%;height:100%;object-fit:contain}
 .nav-logo-name{font-family:var(--f-display);font-size:1.45rem;letter-spacing:.1em;color:var(--navy);line-height:1}
 .nav-logo-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);display:block;margin-top:1px}
 .nav-links{display:flex;align-items:center;gap:.1rem}
@@ -238,7 +239,7 @@ footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255
 
 <nav id="navbar">
   <a href="../index.html" class="nav-logo">
-    <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v13h4v-6h8v6h4V7L12 2z"/></svg></div>
+    <div class="nav-logo-mark"><img src="../assets/img/logo.png" alt="Logo Antezana"/></div>
     <div><span class="nav-logo-name">ANTEZANA</span><span class="nav-logo-sub">Transporte &amp; Turismo</span></div>
   </a>
   <div class="nav-links">
@@ -305,8 +306,8 @@ footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255
     <div>
       <div class="ft-col-head">Servicios</div>
       <div class="ft-links">
-        <a href="reservas.html">Clase Dorado King</a><a href="reservas.html">Clase Comercial</a>
-        <a href="reservas.html">Clase Economico</a><a href="contacto.html">Antezana Cargo</a>
+        <a href="reservas.html?clase=dorado">Clase Dorado King</a><a href="reservas.html?clase=comercial">Clase Comercial</a>
+        <a href="reservas.html?clase=economico">Clase Economico</a><a href="reservas.html?clase=cargo">Antezana Cargo</a>
         <a href="promociones.html">Promociones</a><a href="faq.html">Preguntas Frecuentes</a>
       </div>
     </div>
@@ -436,8 +437,19 @@ class BookingFlow {
     this.hor = null;
     this.pax = 1;
     this.form = {};
+
+    // Leer clase preseleccionada desde la URL (?clase=dorado | comercial | economico | cargo)
+    const params = new URLSearchParams(window.location.search);
+    this.claseFiltro = params.get('clase');
+
     this.renderSteps();
     this.renderSearch();
+  }
+
+  /* Mapea el parametro de la URL al nombre real de la clase */
+  _claseLabel(){
+    const map = { dorado:'Dorado King', comercial:'Comercial', economico:'Economico' };
+    return map[this.claseFiltro] || null;
   }
 
   renderSteps(){
@@ -454,11 +466,33 @@ class BookingFlow {
   renderSearch(){
     this.step = 1;
     this.renderSteps();
+
+    // Caso especial: Antezana Cargo no se reserva aqui, se redirige a Contacto
+    if (this.claseFiltro === 'cargo') {
+      this.root.innerHTML = `
+        <div class="no-results">
+          <div class="no-icon">📦</div>
+          <h3>Antezana Cargo</h3>
+          <p>El envio de encomiendas no se reserva en linea. Contactanos para cotizar tu envio o acercate a cualquiera de nuestros terminales.</p>
+          <a href="contacto.html" class="btn-r" style="text-decoration:none">Ir a Contacto →</a>
+        </div>`;
+      return;
+    }
+
     const today = new Date().toISOString().split('T')[0];
+    const claseLabel = this._claseLabel();
+    const claseBanner = claseLabel ? `
+      <div style="background:rgba(200,32,31,.07);border:1.5px solid rgba(200,32,31,.2);border-radius:10px;padding:.9rem 1.2rem;margin-bottom:1.6rem;display:flex;align-items:center;gap:.7rem;">
+        <span style="font-size:1.1rem">✓</span>
+        <span style="font-size:.85rem;color:var(--navy);font-weight:600">
+          Buscando viajes en clase <span style="color:var(--red)">${claseLabel}</span>
+        </span>
+      </div>` : '';
     this.root.innerHTML = `
       <div class="search-card">
         <div class="bk-title">Encuentra tu viaje</div>
         <div class="bk-sub">Selecciona tu ruta y fecha para ver los horarios disponibles</div>
+        ${claseBanner}
         <form id="search-form">
           <div class="bk-form-grid">
             <div class="field">
@@ -550,19 +584,27 @@ class BookingFlow {
           </div>
           <span class="route-city">${r.destino}</span>
         </div>
-        <span class="results-count">${r.horarios.length} horarios</span>
+        <span class="results-count">${this._horariosFiltrados(r).length} horarios</span>
       </div>
       <div id="horarios-list">
-        ${r.horarios.map((h,i)=>this.buildHorarioCard(h,i)).join('')}
+        ${this._horariosFiltrados(r).map((h,i)=>this.buildHorarioCard(h,i)).join('')}
       </div>`;
     document.getElementById('back-search').addEventListener('click', () => this.renderSearch());
     document.querySelectorAll('.btn-select').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = parseInt(btn.dataset.idx);
-        this.hor = this.ruta.horarios[idx];
+        this.hor = this._horariosFiltrados(this.ruta)[idx];
         this.renderPassenger();
       });
     });
+  }
+
+  /* Devuelve los horarios de la ruta, filtrados por clase si viene de la URL */
+  _horariosFiltrados(r){
+    const claseLabel = this._claseLabel();
+    if (!claseLabel) return r.horarios;
+    const filtrados = r.horarios.filter(h => h.tipo === claseLabel);
+    return filtrados.length ? filtrados : r.horarios;
   }
 
   buildHorarioCard(h, i){
@@ -667,11 +709,45 @@ class BookingFlow {
         <div class="ticket-footer"><span>⚠️ El pago se realiza en terminal</span><span>📞 Llega 30 min antes</span></div>
       </div>
       <div class="confirm-actions">
-        <button class="btn-r" id="btn-confirmar">✅ Confirmar reserva</button>
+        <button class="btn-r" id="btn-confirmar">💬 Confirmar por WhatsApp</button>
         <button class="btn-o" id="back-passenger">Editar datos</button>
       </div>`;
     document.getElementById('back-passenger').addEventListener('click', () => this.renderPassenger());
-    document.getElementById('btn-confirmar').addEventListener('click', () => this.renderSuccess());
+    document.getElementById('btn-confirmar').addEventListener('click', () => {
+      this._enviarReservaWhatsApp();
+      this.renderSuccess();
+    });
+  }
+
+  /* Construye el mensaje de WhatsApp con todos los datos de la reserva y lo abre */
+  _enviarReservaWhatsApp(){
+    const h = this.hor, r = this.ruta, f = this.form;
+    const total = h.precio * this.pax;
+    const code = this.lastCode;
+
+    const mensaje =
+`Hola, quiero confirmar mi reserva 🎫
+
+*Código:* ${code}
+*Ruta:* ${r.origen} → ${r.destino}
+*Hora de salida:* ${h.hora}
+*Clase:* ${h.tipo}
+*Duración:* ${r.duracion}
+*Pasajeros:* ${this.pax}
+
+*Datos del pasajero:*
+Nombre: ${f.nombres || '—'} ${f.apellidos || ''}
+DNI: ${f.doc || '—'}
+Celular: ${f.cel || '—'}
+Email: ${f.email || '—'}
+
+*Total a pagar:* S/ ${total}
+
+Quedo a la espera de la confirmación. ¡Gracias!`;
+
+    const PHONE = '51999999999'; // actualizar con el numero real de Antezana
+    const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
   }
 
   renderSuccess(){
@@ -680,8 +756,8 @@ class BookingFlow {
     this.root.innerHTML = `
       <div class="success-block">
         <div class="success-anim">🎉</div>
-        <div class="success-title">¡Reserva confirmada!</div>
-        <p class="success-sub">Hemos registrado tu reserva con codigo <strong>${this.lastCode}</strong>. Preséntate en el terminal con tu DNI al menos <strong>30 minutos</strong> antes de la hora de salida.</p>
+        <div class="success-title">¡Te llevamos a WhatsApp!</div>
+        <p class="success-sub">Tu reserva con código <strong>${this.lastCode}</strong> se abrió en WhatsApp. Envía el mensaje para que nuestro equipo confirme tu pasaje. Si no se abrió automáticamente, <a href="#" id="reabrir-wa" style="color:var(--red);font-weight:600">haz clic aquí</a>.</p>
         <div class="success-tips">
           <div class="tip-item">📋 <span>Lleva tu DNI o documento de identidad</span></div>
           <div class="tip-item">🧳 <span>Maximo 20 kg en bodega y 10 kg de mano</span></div>
@@ -691,6 +767,13 @@ class BookingFlow {
         <button class="btn-r" id="nueva-reserva">Hacer otra reserva</button>
       </div>`;
     document.getElementById('nueva-reserva').addEventListener('click', () => this.renderSearch());
+    const reabrirWa = document.getElementById('reabrir-wa');
+    if (reabrirWa) {
+      reabrirWa.addEventListener('click', e => {
+        e.preventDefault();
+        this._enviarReservaWhatsApp();
+      });
+    }
   }
 }
 

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="description" content="Contacto Antezana — Escribenos, llamanos o visita nuestros terminales en Lima, Ayacucho y Huanta."/>
 <title>Contacto - Antezana Transporte & Turismo</title>
+<link rel="icon" type="image/png" href="../assets/img/logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
@@ -32,9 +33,9 @@ button,input,select,textarea{cursor:pointer;font-family:inherit;border:none;back
 #navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray100);box-shadow:0 2px 24px rgba(11,31,75,.07);transition:padding .3s ease}
 #navbar.scrolled{padding:.8rem 4rem}
 .nav-logo{display:flex;align-items:center;gap:.7rem}
-.nav-logo-mark{width:40px;height:40px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(200,32,31,.3);transition:transform .2s}
-.nav-logo-mark:hover{transform:scale(1.08) rotate(-3deg)}
-.nav-logo-mark svg{width:22px;height:22px;fill:#fff}
+.nav-logo-mark{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .2s}
+.nav-logo-mark:hover{transform:scale(1.08)}
+.nav-logo-mark img{width:100%;height:100%;object-fit:contain}
 .nav-logo-name{font-family:var(--f-display);font-size:1.45rem;letter-spacing:.1em;color:var(--navy);line-height:1}
 .nav-logo-sub{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray400);display:block;margin-top:1px}
 .nav-links{display:flex;align-items:center;gap:.1rem}
@@ -196,7 +197,7 @@ footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255
 
 <nav id="navbar">
   <a href="../index.html" class="nav-logo">
-    <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v13h4v-6h8v6h4V7L12 2z"/></svg></div>
+    <div class="nav-logo-mark"><img src="../assets/img/logo.png" alt="Logo Antezana"/></div>
     <div><span class="nav-logo-name">ANTEZANA</span><span class="nav-logo-sub">Transporte &amp; Turismo</span></div>
   </a>
   <div class="nav-links">
@@ -277,20 +278,20 @@ footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255
               <div class="form-row">
                 <div class="field">
                   <label class="field-label">Nombre completo</label>
-                  <input type="text" class="field-input" placeholder="Tu nombre" required/>
+                  <input type="text" class="field-input" id="ct-nombre" placeholder="Tu nombre" required/>
                 </div>
                 <div class="field">
                   <label class="field-label">Telefono</label>
-                  <input type="tel" class="field-input" placeholder="+51 999 999 999" required/>
+                  <input type="tel" class="field-input" id="ct-tel" placeholder="+51 999 999 999" required/>
                 </div>
               </div>
               <div class="field">
                 <label class="field-label">Correo electronico</label>
-                <input type="email" class="field-input" placeholder="correo@ejemplo.com" required/>
+                <input type="email" class="field-input" id="ct-email" placeholder="correo@ejemplo.com" required/>
               </div>
               <div class="field">
                 <label class="field-label">Motivo de consulta</label>
-                <select class="field-select" required>
+                <select class="field-select" id="ct-motivo" required>
                   <option value="">Selecciona una opcion...</option>
                   <option>Consulta sobre pasajes</option>
                   <option>Antezana Cargo / Encomiendas</option>
@@ -301,18 +302,18 @@ footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255
               </div>
               <div class="field">
                 <label class="field-label">Mensaje</label>
-                <textarea class="field-textarea" placeholder="Cuentanos en que te podemos ayudar..." required></textarea>
+                <textarea class="field-textarea" id="ct-mensaje" placeholder="Cuentanos en que te podemos ayudar..." required></textarea>
               </div>
               <button type="submit" class="btn-submit">
-                Enviar mensaje
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Enviar por WhatsApp
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 11.94 4a8.94 8.94 0 0 0-7.74 13.4L3 21l3.7-1.15a8.9 8.9 0 0 0 4.26 1.08h.01a8.93 8.93 0 0 0 6.32-15.2zm-5.66 13.7h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.87.86-2.73-.18-.28a7.42 7.42 0 0 1 11.5-9.2 7.4 7.4 0 0 1-5.33 12.5z"/></svg>
               </button>
             </form>
           </div>
           <div class="form-success" id="form-success">
             <div class="fs-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <div class="fs-title">¡Mensaje enviado!</div>
-            <p class="fs-desc">Gracias por escribirnos. Nuestro equipo se pondra en contacto contigo a la brevedad posible.</p>
+            <div class="fs-title">¡Te llevamos a WhatsApp!</div>
+            <p class="fs-desc">Tu mensaje se abrio en WhatsApp con todos los datos. Solo confirma el envio y nuestro equipo te respondera a la brevedad. Si no se abrio, <a href="#" id="reabrir-wa-ct" style="color:var(--red);font-weight:600">haz clic aqui</a>.</p>
           </div>
         </div>
       </div>
@@ -463,8 +464,8 @@ footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255
       <div>
         <div class="ft-col-head">Servicios</div>
         <div class="ft-links">
-          <a href="reservas.html">Clase Dorado King</a><a href="reservas.html">Clase Comercial</a>
-          <a href="reservas.html">Clase Economico</a><a href="contacto.html">Antezana Cargo</a>
+          <a href="reservas.html?clase=dorado">Clase Dorado King</a><a href="reservas.html?clase=comercial">Clase Comercial</a>
+          <a href="reservas.html?clase=economico">Clase Economico</a><a href="reservas.html?clase=cargo">Antezana Cargo</a>
           <a href="promociones.html">Promociones</a><a href="faq.html">Preguntas Frecuentes</a>
         </div>
       </div>
@@ -522,12 +523,45 @@ document.querySelectorAll('.rv, .rl, .rr').forEach(el => obs.observe(el));
 const form = document.getElementById('contact-form');
 const formDefault = document.getElementById('form-default');
 const formSuccess = document.getElementById('form-success');
+const WA_PHONE = '51999999999'; // actualizar con el numero real de Antezana
+
 if (form) {
+  const enviarPorWhatsApp = () => {
+    const nombre  = document.getElementById('ct-nombre').value;
+    const tel     = document.getElementById('ct-tel').value;
+    const email   = document.getElementById('ct-email').value;
+    const motivo  = document.getElementById('ct-motivo').value;
+    const mensaje = document.getElementById('ct-mensaje').value;
+
+    const texto =
+`Hola, les escribo desde la pagina web 👋
+
+*Nombre:* ${nombre}
+*Telefono:* ${tel}
+*Correo:* ${email}
+*Motivo:* ${motivo}
+
+*Mensaje:*
+${mensaje}`;
+
+    const url = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  };
+
   form.addEventListener('submit', e => {
     e.preventDefault();
+    enviarPorWhatsApp();
     formDefault.style.display = 'none';
     formSuccess.classList.add('show');
   });
+
+  const reabrirWaCt = document.getElementById('reabrir-wa-ct');
+  if (reabrirWaCt) {
+    reabrirWaCt.addEventListener('click', e => {
+      e.preventDefault();
+      enviarPorWhatsApp();
+    });
+  }
 }
 
 // FAQ MINI ACORDEON
