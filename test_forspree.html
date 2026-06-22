@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Test Formspree</title></head>
+<body>
+<h2>Prueba directa de Formspree</h2>
+<button id="btn">Enviar prueba</button>
+<pre id="log" style="background:#eee;padding:1rem;margin-top:1rem;"></pre>
+
+<script>
+const log = document.getElementById('log');
+document.getElementById('btn').addEventListener('click', async () => {
+  log.textContent = 'Enviando...';
+  try {
+    const res = await fetch('https://formspree.io/f/mojoqovb', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        nombre: 'Prueba Test',
+        mensaje: 'Esto es una prueba directa',
+      }),
+    });
+    const data = await res.json();
+    log.textContent = 'STATUS: ' + res.status + '\n' + JSON.stringify(data, null, 2);
+  } catch (err) {
+    log.textContent = 'ERROR: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

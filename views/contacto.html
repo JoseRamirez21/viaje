@@ -312,8 +312,8 @@ footer{background:var(--navy);padding:5rem 0 0;border-top:1px solid rgba(255,255
           </div>
           <div class="form-success" id="form-success">
             <div class="fs-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <div class="fs-title">¡Te llevamos a WhatsApp!</div>
-            <p class="fs-desc">Tu mensaje se abrio en WhatsApp con todos los datos. Solo confirma el envio y nuestro equipo te respondera a la brevedad. Si no se abrio, <a href="#" id="reabrir-wa-ct" style="color:var(--red);font-weight:600">haz clic aqui</a>.</p>
+            <div class="fs-title">¡Mensaje enviado!</div>
+            <p class="fs-desc">Tu mensaje se envio por correo y se abrio en WhatsApp con todos los datos. Solo confirma el envio en WhatsApp y nuestro equipo te respondera a la brevedad. Si no se abrio, <a href="#" id="reabrir-wa-ct" style="color:var(--red);font-weight:600">haz clic aqui</a>.</p>
           </div>
         </div>
       </div>
@@ -524,6 +524,7 @@ const form = document.getElementById('contact-form');
 const formDefault = document.getElementById('form-default');
 const formSuccess = document.getElementById('form-success');
 const WA_PHONE = '51999999999'; // actualizar con el numero real de Antezana
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mojoqovb';
 
 if (form) {
   const enviarPorWhatsApp = () => {
@@ -548,8 +549,31 @@ ${mensaje}`;
     window.open(url, '_blank');
   };
 
-  form.addEventListener('submit', e => {
+  /* Envia una copia del mensaje por correo usando Formspree (no bloquea el flujo si falla) */
+  const enviarPorCorreo = async () => {
+    const datos = {
+      nombre:  document.getElementById('ct-nombre').value,
+      telefono: document.getElementById('ct-tel').value,
+      email:   document.getElementById('ct-email').value,
+      motivo:  document.getElementById('ct-motivo').value,
+      mensaje: document.getElementById('ct-mensaje').value,
+      _subject: 'Nuevo mensaje desde la web de Antezana',
+    };
+
+    try {
+      await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(datos),
+      });
+    } catch (err) {
+      console.error('No se pudo enviar copia por correo:', err);
+    }
+  };
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
+    await enviarPorCorreo();
     enviarPorWhatsApp();
     formDefault.style.display = 'none';
     formSuccess.classList.add('show');
